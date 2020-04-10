@@ -1,4 +1,5 @@
 const path = require("path");
+const CnameWebpackPlugin = require("cname-webpack-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -18,6 +19,9 @@ const plugins = [
       useShortDoctype: true,
     },
   }),
+  new CnameWebpackPlugin({
+    domain: "www.artichokeruby.org",
+  }),
 ];
 
 module.exports = {
@@ -29,28 +33,38 @@ module.exports = {
   },
   entry: path.resolve(__dirname, "src/index.js"),
   output: {
-    path: path.resolve(__dirname, "dist")
+    path: path.resolve(__dirname, "dist"),
   },
   plugins,
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"]
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+      {
+        test: new RegExp(path.resolve(__dirname, "assets", "favicons")),
+        use: {
+          loader: "file-loader",
+          options: {
+            name: "[name].[ext]",
+          },
+        },
       },
       {
         test: /\.(png|jpe?g|gif)$/,
+        exclude: new RegExp(path.resolve(__dirname, "assets", "favicons")),
         use: {
           loader: "url-loader",
           options: {
-            limit: 8192
-          }
-        }
+            limit: 8192,
+          },
+        },
       },
       {
         test: /\.svg$/,
         use: ["svg-url-loader", "svgo-loader"],
       },
-    ]
-  }
+    ],
+  },
 };
