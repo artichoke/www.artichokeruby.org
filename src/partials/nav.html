@@ -1,32 +1,97 @@
-<nav class="site-header sticky-top py-1">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container d-flex flex-column flex-md-row justify-content-between">
-    <div class="w-100">
-      <a class="py-2 d-block my-auto" href="/" aria-label="Artichoke Ruby">
-        <img
-          class="float-left"
-          width="24"
-          height="24"
-          title="Artichoke Ruby"
-          alt="Artichoke Ruby logo"
-          src="artichoke-logo.svg"
-        />
-        Artichoke
-      </a>
-    </div>
-    <div class="container d-flex flex-column flex-md-row justify-content-end">
-      <a class="px-3 py-2 d-none d-md-inline-block" href="/install">Install</a>
-      <a class="px-3 py-2 d-none d-md-inline-block" href="https://artichoke.run"
-        >Playground</a
-      >
-      <a
-        class="px-3 py-2 d-none d-md-inline-block"
-        href="https://discord.gg/QCe2tp2"
-        >Chat</a
-      >
-      <a
-        class="px-3 py-2 d-none d-md-inline-block"
-        href="https://github.com/artichoke/artichoke"
-      ></a>
+    <a class="navbar-brand" href="/" aria-label="Artichoke Ruby">
+      <img
+        class="float-left"
+        width="40"
+        height="40"
+        title="Artichoke Ruby"
+        alt="Artichoke Ruby logo"
+        src="artichoke-logo.svg"
+      />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <div
+          class="container d-flex flex-column flex-md-row justify-content-end"
+        >
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="/install">
+              Install
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="https://artichoke.run">
+              Playground
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="https://discord.gg/QCe2tp2">
+              Chat
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="https://github.com/artichoke/artichoke">
+              Code
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Docs
+            </a>
+            <div
+              class="dropdown-menu dropdown-menu-right"
+              aria-labelledby="navbarDropdown"
+            >
+              <a
+                class="dropdown-item"
+                href="https://artichoke.github.io/artichoke/artichoke/"
+              >
+                artichoke
+              </a>
+              <a
+                class="dropdown-item"
+                href="https://artichoke.github.io/artichoke/artichoke_core/"
+              >
+                artichoke-core
+              </a>
+              <a
+                class="dropdown-item"
+                href="https://artichoke.github.io/artichoke/artichoke_backend/"
+              >
+                artichoke-backend
+              </a>
+              <div class="dropdown-divider"></div>
+              <a
+                class="dropdown-item"
+                href="https://artichoke.github.io/artichoke/spec_runner/"
+              >
+                spec-runner
+              </a>
+            </div>
+          </li>
+        </div>
+      </ul>
     </div>
   </div>
 </nav>
