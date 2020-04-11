@@ -8,12 +8,12 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
-    <title>Artichoke Ruby</title>
+    <title>Install Artichoke - Artichoke Ruby</title>
 
     <!-- opengraph metadata -->
     <meta property="og:title" content="Artichoke Ruby" />
     <meta property="og:site_name" content="artichokeruby.org" />
-    <meta property="og:url" content="https://www.artichokeruby.org/" />
+    <meta property="og:url" content="https://www.artichokeruby.org/install" />
     <meta
       property="og:description"
       content="Artichoke Ruby is a Ruby made with Rust."
@@ -24,15 +24,6 @@
       content="https://www.artichokeruby.org/artichoke-logo.png"
     />
 
-    <!-- favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#b91d47" />
-    <meta name="msapplication-TileColor" content="#b91d47" />
-    <meta name="theme-color" content="#ffffff" />
-
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -40,289 +31,72 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="site.css" />
+    <!-- highight.js -->
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css"
+    />
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-158900370-1"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "UA-158900370-1"); // TODO: update me with a property-specific tag
-    </script>
+    <%= require('html-loader!./partials/favicons.html') %> <%=
+    require('html-loader!./partials/google-analytics.html') %>
   </head>
   <body>
-    <nav class="site-header sticky-top py-1">
-      <div
-        class="container d-flex flex-column flex-md-row justify-content-between"
-      >
-        <div class="w-100">
-          <a class="py-2 d-block my-auto" href="/" aria-label="Artichoke Ruby">
-            <img
-              class="float-left"
-              width="24"
-              height="24"
-              title="Artichoke Ruby"
-              alt="Artichoke Ruby logo"
-              src="<%= require('assets/artichoke-logo.svg') %>"
-            />
-            Artichoke
-          </a>
-        </div>
-        <div
-          class="container d-flex flex-column flex-md-row justify-content-end"
-        >
-          <a class="px-3 py-2 d-none d-md-inline-block" href="/install"
-            >Install</a
-          >
-          <a
-            class="px-3 py-2 d-none d-md-inline-block"
-            href="https://artichoke.run"
-            >Playground</a
-          >
-          <a
-            class="px-3 py-2 d-none d-md-inline-block"
-            href="https://discord.gg/QCe2tp2"
-            >Chat</a
-          >
-          <a
-            class="px-3 py-2 d-none d-md-inline-block"
-            href="https://github.com/artichoke/artichoke"
-          ></a>
-        </div>
+    <%= require('html-loader!./partials/nav.html') %>
+    <div class="d-flex flex-row p-3 p-md-5 m-md-3 bg-light">
+      <div class="my-auto" style="max-width: 50%;">
+        <img
+          class="mw-100"
+          width="400"
+          title="Artichoke Ruby"
+          alt="Artichoke Ruby logo"
+          src="<%= require('./artichoke-logo.svg') %>"
+        />
       </div>
-    </nav>
-
-    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 bg-light">
-      <div class="d-md-flex">
-            <img
-              width="400"
-              height="400"
-              title="Artichoke Ruby"
-              alt="Artichoke Ruby logo"
-              src="<%= require('assets/artichoke-logo.svg') %>"
-            />
-        <div class="my-auto">
-          <h1>Artichoke Ruby</h1>
-          <p class="lead font-weight-normal">
-            Artichoke is a Ruby made with Rust 💎🦀
-          </p>
-          <a
-            class="btn btn-outline-secondary d-inline-block mx-1"
-            href="https://artichoke.run/"
-          >
-            Try Online
-          </a>
-          <a
-            class="btn btn-outline-secondary d-inline-block mx-1"
-            href="/install"
-          >
-            Install
-          </a>
-          <a
-            class="btn btn-outline-secondary d-inline-block mx-1"
-            href="https://github.com/artichoke/artichoke/labels/E-easy"
-          >
-            Contribute
-          </a>
-        </div>
+      <div class="my-auto" style="max-width: 50%;">
+        <h1>Install Artichoke Ruby</h1>
+        <h4>Using Cargo</h4>
+        <pre
+          class="hljs"
+        ><code class="bash">cargo install --git https://github.com/artichoke/artichoke --locked artichoke</code></pre>
+        <p>
+          Artichoke requires the latest stable Rust, clang, ad bison to build.
+          <a href="https://github.com/artichoke/artichoke/blob/master/BUILD.md">
+            Build setup instructions can be found on GitHub</a
+          >.
+        </p>
       </div>
     </div>
 
     <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
       <div class="bg-dark mr-md-3 p-3 text-center text-white overflow-hidden">
-        <a
-          class="twitter-timeline"
-          data-width="500"
-          data-height="500"
-          data-theme="light"
-          href="https://twitter.com/artichokeruby?ref_src=twsrc%5Etfw"
-        >
-          Tweets by artichokeruby
-        </a>
-        <script
-          async
-          src="https://platform.twitter.com/widgets.js"
-          charset="utf-8"
-        ></script>
-      </div>
-      <div
-        class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
-      >
         <div class="my-3 p-3">
-          <h2 class="display-5">Ruby ❤️ WebAssembly</h2>
-          <p class="lead">Execute Ruby on the web.</p>
-          <div class="d-flex">
-            <img
-              title="WebAssembly"
-              alt="WebAssembly logo"
-              height="150"
-              width="150"
-              src="<%= require('assets/webassembly-logo.svg') %>"
-            />
-            <div class="ml-2">
-              <p>
-                Artichoke compiles to WebAssembly with Emscripten. We plan to
-                support compiling for wasm32-unknown-unknown targets.
-              </p>
-              <p>
-                The <a href="https://artichoke.run">playground</a>
-                deploys an Emscripten build of Artichoke.
-              </p>
-            </div>
+          <h2 class="display-5">CLI</h2>
+          <p class="lead">Build applications with <code>artichoke</code>.</p>
+          <div class="mt-1 text-left">
+            <pre
+              class="hljs console"
+            ><code>$ artichoke -e "puts RUBY_DESCRIPTION"
+artichoke 0.1.0 (2020-04-01 revision 2921) [x86_64-darwin]</code></pre>
+          </div>
+        </div>
+      </div>
+      <div class="bg-light mr-md-3 p-3 text-center overflow-hidden">
+        <div class="my-3 p-3">
+          <h2 class="display-5">REPL</h2>
+          <p class="lead">Explore with <code>airb</code>.</p>
+          <div class="mt-1 text-left">
+            <pre class="hljs console"><code>$ airb
+&gt;&gt;&gt; "Hello world!"
+=&gt; "Hello world!"</code></pre>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-      <div
-        class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
-      >
-        <div class="my-3 p-3">
-          <h2 class="display-5">Execute Untrusted Ruby 👾</h2>
-          <p class="lead">Disable sensitive APIs at compile time.</p>
-          <p>
-            Individual pieces of the Artichoke VM and core library APIs can be
-            <a
-              href="https://artichoke.github.io/artichoke/artichoke/#crate-features"
-            >
-              disabled at interpreter compile time</a
-            >.
-          </p>
-          <div class="d-flex">
-            <div class="display-4 my-auto">🔀</div>
-            <div class="ml-2">
-              <p class="text-left">
-                Replace the system environ with an in-memory stub, disable
-                Regexp engines susceptible to catastrophic backtracking, disable
-                randomness, or skip packaging bundled RubyGems from the standard
-                library.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
-      >
-        <div class="my-3 p-3">
-          <h2 class="display-5">💼 Single Binary Applications</h2>
-          <p class="lead">Distribute an bundle as a single executable.</p>
-          <p>
-            Pack a Ruby VM, application source code, configuration, and native
-            extensions into
-            <a href="https://github.com/artichoke/jasper">
-              a single-file bundle</a
-            >.
-          </p>
-          <div class="d-flex">
-            <div class="display-4 my-auto">🔩</div>
-            <div class="ml-2">
-              <p class="text-left">
-                Copy a single file for dead simple Docker deployments. Static
-                compilation removes system dependencies. Easy distribution
-                without requiring installation of a Ruby VM.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <footer class="container py-5">
-      <div class="row">
-        <div class="col-12 col-md">
-          <a class="py-2" href="#" aria-label="Artichoke Ruby">
-            <img
-              width="24"
-              height="24"
-              title="Artichoke Ruby"
-              alt="Artichoke Ruby logo"
-              src="<%= require('assets/artichoke-logo.svg') %>"
-            />
-          </a>
-          <small class="d-block mb-3 text-muted">&copy; 2019-2020</small>
-        </div>
-        <div class="col-6 col-md">
-          <h5>Project</h5>
-          <ul class="list-unstyled text-small">
-            <li>
-              <a class="text-muted" href="https://github.com/artichoke">
-                Organization
-              </a>
-            </li>
-            <li>
-              <a
-                class="text-muted"
-                href="https://github.com/artichoke/artichoke/blob/master/VISION.md"
-              >
-                Vision
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-6 col-md">
-          <h5>Resources</h5>
-          <ul class="list-unstyled text-small">
-            <li>
-              <a
-                class="text-muted"
-                href="https://github.com/artichoke/artichoke/issues/new"
-              >
-                File a bug
-              </a>
-            </li>
-            <li>
-              <a
-                class="text-muted"
-                href="https://artichoke.github.io/artichoke/artichoke/"
-              >
-                Crate docs
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-6 col-md">
-          <h5>Social</h5>
-          <ul class="list-inline">
-            <li class="list-inline-item">
-              <a href="https://twitter.com/artichokeruby">
-                <img
-                  width="40"
-                  height="40"
-                  src="<%= require('assets/social/twitter-logo.svg') %>"
-                />
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="https://github.com/artichoke">
-                <img
-                  width="40"
-                  height="40"
-                  src="<%= require('assets/social/octicons-github-logo.svg') %>"
-                />
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="https://discord.gg/QCe2tp2">
-                <img
-                  width="40"
-                  height="40"
-                  src="<%= require('assets/social/discord-logo.svg') %>"
-                />
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </footer>
+    <%= require('html-loader!./partials/footer.html') %>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
   </body>
 </html>
