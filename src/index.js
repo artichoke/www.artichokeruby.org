@@ -13,4 +13,5 @@ import "assets/favicons/safari-pinned-tab.svg";
 import "assets/favicons/site.webmanifest";
 
 // OpenGraph icons
-import "assets/favicons/artichoke-logo.png";
+import "assets/artichoke-logo.png";
+import "assets/artichoke-logo.svg";

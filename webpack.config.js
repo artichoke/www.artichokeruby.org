@@ -19,6 +19,17 @@ const plugins = [
       useShortDoctype: true,
     },
   }),
+  new HtmlWebPackPlugin({
+    template: "install.html",
+    filename: "install/index.html",
+    minify: {
+      collapseWhitespace: true,
+      minifyCSS: true,
+      minifyJS: true,
+      removeComments: true,
+      useShortDoctype: true,
+    },
+  }),
   new CnameWebpackPlugin({
     domain: "www.artichokeruby.org",
   }),
@@ -43,7 +54,7 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
-        test: new RegExp(path.resolve(__dirname, "assets", "favicons")),
+        test: new RegExp(path.resolve(__dirname, "assets")),
         use: {
           loader: "file-loader",
           options: {
@@ -53,7 +64,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif)$/,
-        exclude: new RegExp(path.resolve(__dirname, "assets", "favicons")),
+        exclude: new RegExp(path.resolve(__dirname, "assets")),
         use: {
           loader: "url-loader",
           options: {
@@ -63,6 +74,7 @@ module.exports = {
       },
       {
         test: /\.svg$/,
+        exclude: new RegExp(path.resolve(__dirname, "assets")),
         use: ["svg-url-loader", "svgo-loader"],
       },
     ],
