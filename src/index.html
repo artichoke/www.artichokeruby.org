@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <title>Artichoke Ruby</title>
+
+    <!-- opengraph metadata -->
+    <meta property="og:title" content="Artichoke Ruby" />
+    <meta property="og:site_name" content="artichokeruby.org" />
+    <meta property="og:url" content="https://www.artichokeruby.org/" />
+    <meta
+      property="og:description"
+      content="Artichoke Ruby is a Ruby made with Rust."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://www.artichokeruby.org/artichoke-logo.png"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <%= require('html-loader!./partials/favicons.html') %> <%=
+    require('html-loader!./partials/google-analytics.html') %>
+  </head>
+  <body>
+    <%= require('html-loader!./partials/nav.html') %>
+
+    <div class="d-flex flex-row p-3 p-md-5 m-md-3 bg-light">
+      <div class="my-auto" style="max-width: 50%;">
+        <img
+          class="mw-100"
+          width="400"
+          title="Artichoke Ruby"
+          alt="Artichoke Ruby logo"
+          src="<%= require('./artichoke-logo.svg') %>"
+        />
+      </div>
+      <div class="my-auto" style="max-width: 50%;">
+        <h1>Artichoke Ruby</h1>
+        <p class="lead font-weight-normal">
+          Artichoke is a Ruby made with Rust 💎🦀
+        </p>
+        <a
+          class="btn btn-outline-secondary d-inline-block mx-1"
+          href="https://artichoke.run/"
+        >
+          Try Online
+        </a>
+        <a
+          class="btn btn-outline-secondary d-inline-block mx-1"
+          href="/install"
+        >
+          Install
+        </a>
+        <a
+          class="btn btn-outline-secondary d-inline-block mx-1"
+          href="https://github.com/artichoke/artichoke/labels/E-easy"
+        >
+          Contribute
+        </a>
+      </div>
+    </div>
+
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+      <div class="bg-light mr-md-3 p-3 text-center overflow-hidden">
+        <div class="my-3 p-3">
+          <h2 class="display-5">Ruby ❤️ WebAssembly</h2>
+          <p class="lead">Execute Ruby on the web.</p>
+          <div class="d-flex">
+            <img
+              title="WebAssembly"
+              alt="WebAssembly logo"
+              height="150"
+              width="150"
+              src="<%= require('./webassembly-logo.svg') %>"
+            />
+            <div class="ml-2">
+              <p>
+                Artichoke compiles to WebAssembly with Emscripten. We plan to
+                support compiling for wasm32-unknown-unknown targets.
+              </p>
+              <p>
+                The <a href="https://artichoke.run">playground</a>
+                deploys an Emscripten build of Artichoke.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-dark mr-md-3 p-3 text-center text-white overflow-hidden">
+        <a
+          class="twitter-timeline"
+          data-width="500"
+          data-height="500"
+          data-theme="light"
+          href="https://twitter.com/artichokeruby?ref_src=twsrc%5Etfw"
+        >
+          Tweets by artichokeruby
+        </a>
+        <script
+          async
+          src="https://platform.twitter.com/widgets.js"
+          charset="utf-8"
+        ></script>
+      </div>
+    </div>
+
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+      <div class="bg-light mr-md-3 p-3 text-center overflow-hidden">
+        <div class="my-3 p-3">
+          <h2 class="display-5">Execute Untrusted Ruby 👾</h2>
+          <p class="lead">Disable sensitive APIs at compile time.</p>
+          <p>
+            Individual pieces of the Artichoke VM and core library APIs can be
+            <a
+              href="https://artichoke.github.io/artichoke/artichoke/#crate-features"
+            >
+              disabled at interpreter compile time</a
+            >.
+          </p>
+          <div class="d-flex">
+            <div class="display-4 my-auto">🔀</div>
+            <div class="ml-2">
+              <p class="text-left">
+                Replace the system environ with an in-memory stub, disable
+                Regexp engines susceptible to catastrophic backtracking, disable
+                randomness, or skip packaging bundled RubyGems from the standard
+                library.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-light mr-md-3 p-3 text-center overflow-hidden">
+        <div class="my-3 p-3">
+          <h2 class="display-5">💼 Single Binary Applications</h2>
+          <p class="lead">Distribute an bundle as a single executable.</p>
+          <p>
+            Pack a Ruby VM, application source code, configuration, and native
+            extensions into
+            <a href="https://github.com/artichoke/jasper">
+              a single-file bundle</a
+            >.
+          </p>
+          <div class="d-flex">
+            <div class="display-4 my-auto">🔩</div>
+            <div class="ml-2">
+              <p class="text-left">
+                Copy a single file for dead simple Docker deployments. Static
+                compilation removes system dependencies. Easy distribution
+                without requiring installation of a Ruby VM.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%= require('html-loader!./partials/footer.html') %>
+  </body>
+</html>
