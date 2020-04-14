@@ -41,53 +41,57 @@
     require('html-loader!./partials/google-analytics.html') %>
   </head>
   <body>
-    <%= require('html-loader!./partials/nav.html') %>
-    <div class="d-flex flex-row p-3 p-md-5 m-md-3 bg-light">
-      <div class="my-auto" style="max-width: 50%;">
-        <img
-          class="mw-100"
-          width="400"
-          title="Artichoke Ruby"
-          alt="Artichoke Ruby logo"
-          src="<%= require('./artichoke-logo.svg').default %>"
-        />
-      </div>
-      <div class="my-auto" style="max-width: 50%;">
-        <h1>Install Artichoke Ruby</h1>
-        <h4>Using Cargo</h4>
-        <pre
-          class="hljs"
-        ><code class="bash">cargo install --git https://github.com/artichoke/artichoke --locked artichoke</code></pre>
-        <p>
-          Artichoke requires the latest stable Rust, clang, ad bison to build.
-          <a href="https://github.com/artichoke/artichoke/blob/master/BUILD.md">
-            Build setup instructions can be found on GitHub</a
-          >.
-        </p>
-      </div>
-    </div>
+    <div class="container">
+      <%= require('html-loader!./partials/nav.html') %>
 
-    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-      <div class="bg-dark mr-md-3 p-3 text-center text-white overflow-hidden">
-        <div class="my-3 p-3">
-          <h2 class="display-5">CLI</h2>
-          <p class="lead">Build applications with <code>artichoke</code>.</p>
-          <div class="mt-1 text-left">
-            <pre
-              class="hljs console"
-            ><code>$ artichoke -e "puts RUBY_DESCRIPTION"
+      <div class="row">
+        <div class="col-3 col-sm-6 my-auto">
+          <img
+            class="mw-100"
+            title="Artichoke Ruby"
+            alt="Artichoke Ruby logo"
+            src="<%= require('./artichoke-logo.svg').default %>"
+          />
+        </div>
+        <div class="col-9 col-sm-6 my-auto">
+          <h1>Install Artichoke Ruby</h1>
+          <h4>Using Cargo</h4>
+          <pre
+            class="hljs"
+          ><code class="bash">cargo install --git https://github.com/artichoke/artichoke --locked artichoke</code></pre>
+          <p>
+            Artichoke requires the latest stable Rust, clang, ad bison to build.
+            <a
+              href="https://github.com/artichoke/artichoke/blob/master/BUILD.md"
+            >
+              Build setup instructions can be found on GitHub</a
+            >.
+          </p>
+        </div>
+
+        <div class="col-6">
+          <div class="bg-dark text-white p-5 h-100">
+            <h2 class="text-center">CLI</h2>
+            <p class="lead text-center">
+              Build applications with <code>artichoke</code>.
+            </p>
+            <div>
+              <pre
+                class="hljs console"
+              ><code>$ artichoke -e "puts RUBY_DESCRIPTION"
 artichoke 0.1.0 (2020-04-01 revision 2921) [x86_64-darwin]</code></pre>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="bg-light mr-md-3 p-3 text-center overflow-hidden">
-        <div class="my-3 p-3">
-          <h2 class="display-5">REPL</h2>
-          <p class="lead">Explore with <code>airb</code>.</p>
-          <div class="mt-1 text-left">
-            <pre class="hljs console"><code>$ airb
+        <div class="col-6">
+          <div class="bg-light p-5 h-100">
+            <h2 class="text-center">REPL</h2>
+            <p class="lead text-center">Explore with <code>airb</code>.</p>
+            <div class="mt-1 text-left">
+              <pre class="hljs console"><code>$ airb
 &gt;&gt;&gt; "Hello world!"
 =&gt; "Hello world!"</code></pre>
+            </div>
           </div>
         </div>
       </div>
