@@ -13,7 +13,7 @@
     <!-- opengraph metadata -->
     <meta property="og:title" content="Artichoke Ruby" />
     <meta property="og:site_name" content="artichokeruby.org" />
-    <meta property="og:url" content="https://www.artichokeruby.org/install" />
+    <meta property="og:url" content="https://www.artichokeruby.org/install/" />
     <meta
       property="og:description"
       content="Artichoke Ruby is a Ruby made with Rust."
@@ -46,20 +46,23 @@
             src="<%= require('./artichoke-logo.svg').default %>"
           />
         </div>
-        <div class="col-lg-9 col-md-6 my-auto py-2">
+        <div class="col-lg-9 col-md-6 my-auto py-4">
           <h1>Install Artichoke Ruby</h1>
           <h4>Using Cargo</h4>
           <pre
             class="hljs"
           ><code class="bash">cargo install --git https://github.com/artichoke/artichoke --locked artichoke</code></pre>
           <p>
-            Artichoke requires the latest stable Rust, clang, ad bison to build.
             <a
               href="https://github.com/artichoke/artichoke/blob/master/BUILD.md"
             >
               Build setup instructions can be found on GitHub</a
             >.
           </p>
+          <h4>Using Docker</h4>
+          <pre
+            class="hljs"
+          ><code class="bash">docker run -it docker.io/artichokeruby/artichoke airb</code></pre>
         </div>
 
         <div class="col-md-6">
