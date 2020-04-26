@@ -16,3 +16,6 @@ import "assets/favicons/site.webmanifest";
 // OpenGraph icons
 import "assets/artichoke-logo.png";
 import "assets/artichoke-logo.svg";
+
+// robots.txt
+import "assets/robots.txt";
