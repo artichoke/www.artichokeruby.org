@@ -48,25 +48,69 @@
         </div>
         <div class="col-lg-9 col-md-6 my-auto py-4">
           <h1>Install Artichoke Ruby</h1>
-          <h4>Using Cargo</h4>
-          <pre
-            class="hljs"
-          ><code class="bash">cargo install --git https://github.com/artichoke/artichoke --locked artichoke</code></pre>
-          <p>
-            <a
-              href="https://github.com/artichoke/artichoke/blob/master/BUILD.md"
-            >
-              Build setup instructions can be found on GitHub</a
-            >.
-          </p>
-          <h4>Using Docker</h4>
-          <pre
-            class="hljs"
-          ><code class="bash">docker run -it docker.io/artichokeruby/artichoke airb</code></pre>
+          <a
+            class="btn btn-outline-secondary d-inline-block mx-1"
+            href="#nightly"
+          >
+            Nightly builds
+          </a>
+          <a
+            class="btn btn-outline-secondary d-inline-block mx-1"
+            href="#docker"
+          >
+            Docker
+          </a>
+          <a
+            class="btn btn-outline-secondary d-inline-block mx-1"
+            href="#cargo"
+          >
+            Cargo
+          </a>
+        </div>
+        <div id="nightly" class="col-12 my-1">
+          <div class="p-2 p-md-5">
+            <h4>Pre-compiled nightly builds</h4>
+            <p>
+              <a href="https://github.com/artichoke/nightly/releases/latest">
+                Download a prebuilt binary from artichoke/nightly</a
+              >. Binaries are available for Linux, Linux/musl, macOS, and
+              Windows.
+            </p>
+            <p>
+              These daily binaries track the latest master branch of Artichoke.
+            </p>
+          </div>
+        </div>
+        <div id="docker" class="col-12 my-1">
+          <div class="p-2 p-md-5 bg-dark text-light">
+            <h4>Using Docker</h4>
+            <pre
+              class="hljs"
+            ><code class="bash">docker run -it docker.io/artichokeruby/artichoke airb</code></pre>
+            <p>
+              Docker tags are updated nightly. Images are built on Ubuntu,
+              Debian Slim, and Alpine.
+            </p>
+          </div>
+        </div>
+        <div id="cargo" class="col-12 my-1">
+          <div class="p-2 p-md-5">
+            <h4>Using Cargo</h4>
+            <pre
+              class="hljs"
+            ><code class="bash">cargo install --git https://github.com/artichoke/artichoke --locked artichoke</code></pre>
+            <p>
+              <a
+                href="https://github.com/artichoke/artichoke/blob/master/BUILD.md"
+              >
+                Build setup instructions can be found on GitHub</a
+              >.
+            </p>
+          </div>
         </div>
 
         <div class="col-md-6">
-          <div class="bg-dark text-white p-2 p-md-5 h-100">
+          <div class="bg-dark text-light p-2 p-md-5 h-100">
             <h2 class="text-center">CLI</h2>
             <p class="lead text-center">
               Build applications with <code>artichoke</code>.
