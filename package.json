@@ -45,11 +45,16 @@
       "commonjs": true,
       "es6": true,
       "node": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "sourceType": "module"
     }
   },
   "scripts": {
     "dev": "npx webpack-dev-server",
     "dev:open": "npx webpack-dev-server --open",
-    "fmt": "npx prettier --write '**/*'"
+    "fmt": "npx prettier --write '**/*'",
+    "lint": "npx eslint --fix ."
   }
 }
