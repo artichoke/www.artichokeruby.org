@@ -32,6 +32,19 @@ jobs:
           user_name: artichoke-ci
           user_email: ci@artichokeruby.org
 
+  js:
+    name: Lint JavaScript
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install toolchain
+        run: npm ci
+
+      - name: Lint with eslint
+        run: npx eslint .
+
   text:
     name: Lint and format text
     runs-on: ubuntu-latest
