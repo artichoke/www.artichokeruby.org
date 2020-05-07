@@ -7,12 +7,13 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 const plugins = [
   new MiniCssExtractPlugin({
-    filename: "[hash].css",
+    filename: "[name].[hash].css",
     chunkFilename: "[id].css",
   }),
   new HtmlWebPackPlugin({
     template: "index.html",
     filename: "index.html",
+    chunks: ["index"],
     minify: {
       collapseWhitespace: true,
       minifyCSS: true,
@@ -24,6 +25,7 @@ const plugins = [
   new HtmlWebPackPlugin({
     template: "install.html",
     filename: "install/index.html",
+    chunks: ["install"],
     minify: {
       collapseWhitespace: true,
       minifyCSS: true,
@@ -44,7 +46,10 @@ module.exports = {
       assets: path.resolve(__dirname, "assets"),
     },
   },
-  entry: path.resolve(__dirname, "src/index.js"),
+  entry: {
+    index: path.resolve(__dirname, "src/index.js"),
+    install: path.resolve(__dirname, "src/install.js"),
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
     publicPath: "/",
