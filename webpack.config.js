@@ -7,8 +7,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 const plugins = [
   new MiniCssExtractPlugin({
-    filename: "[name].[hash].css",
-    chunkFilename: "[id].css",
+    filename: "[contenthash].css",
   }),
   new HtmlWebPackPlugin({
     template: "index.html",
@@ -58,8 +57,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        test: /\.s?css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
       {
         test: new RegExp(path.resolve(__dirname, "assets")),
