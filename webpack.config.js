@@ -7,8 +7,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 const plugins = [
   new MiniCssExtractPlugin({
-    filename: "[name].[hash].css",
-    chunkFilename: "[id].css",
+    filename: "[contenthash].css",
   }),
   new HtmlWebPackPlugin({
     template: "index.html",
