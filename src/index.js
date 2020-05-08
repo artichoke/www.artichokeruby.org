@@ -1,5 +1,5 @@
 import "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "./bootstrap-slim.scss";
 
 // Favicons
 import "assets/favicons/android-chrome-192x192.png";

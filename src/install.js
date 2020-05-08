@@ -1,5 +1,5 @@
 import "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "./bootstrap-slim.scss";
 
 import hljs from "highlight.js/lib/core";
 import "highlight.js/styles/default.css";
