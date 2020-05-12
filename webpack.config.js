@@ -5,6 +5,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
+const hljs = require("highlight.js");
+
 const plugins = [
   new MiniCssExtractPlugin({
     filename: "[contenthash].css",
@@ -83,6 +85,32 @@ module.exports = {
         test: /\.svg$/,
         exclude: new RegExp(path.resolve(__dirname, "assets")),
         use: ["file-loader", "svgo-loader"],
+      },
+      {
+        test: /\.md$/,
+        use: [
+          "html-loader",
+          {
+            loader: "markdown-loader",
+            options: {
+              langPrefix: "hljs language-",
+              highlight: (code, lang) => {
+                switch (lang) {
+                  case null:
+                  case "text":
+                  case "literal":
+                  case "nohighlight": {
+                    return `<pre class="hljs">${code}</pre>`;
+                  }
+                  default: {
+                    const html = hljs.highlight(lang, code).value;
+                    return `<span class="hljs">${html}</span>`;
+                  }
+                }
+              },
+            },
+          },
+        ],
       },
     ],
   },
