@@ -1,6 +1,8 @@
 import "bootstrap";
 import "./bootstrap-slim.scss";
 
+import "./twitter-feed.scss";
+
 // Favicons
 import "assets/favicons/android-chrome-192x192.png";
 import "assets/favicons/android-chrome-512x512.png";
