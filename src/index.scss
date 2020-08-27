@@ -1,0 +1,45 @@
+.artichoke-masthead h1 {
+  font-size: calc(1.525rem + 3.3vw);
+  line-height: 1;
+}
+
+@media (min-width: 1200px) {
+  .artichoke-masthead h1 {
+    font-size: 4rem;
+  }
+}
+
+.artichoke-masthead {
+  padding: 3rem 0;
+  background: linear-gradient(165deg, #f5faf5 50%, #fff 50%);
+}
+
+@media (min-width: 576px) {
+  .artichoke-masthead {
+    padding: 5rem 0;
+  }
+}
+
+.artichoke-masthead .lead {
+  font-size: calc(1.275rem + 0.3vw);
+  font-weight: 400;
+  color: #495057;
+}
+
+.btn-artichoke-primary {
+  font-weight: 600;
+  color: #fff;
+  background-color: #99ba37;
+  border-color: #99ba37;
+}
+
+.masthead-followup-icon {
+  padding: 0.75rem;
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.01)
+  );
+  border-radius: 0.75rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+}

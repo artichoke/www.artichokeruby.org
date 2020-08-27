@@ -1,19 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+    <meta name="description" content="Artichoke is a Ruby made with Rust." />
+    <meta name="author" content="Ryan Lopopolo" />
 
     <title>Artichoke Ruby</title>
 
-    <!-- opengraph metadata -->
-    <meta property="og:title" content="Artichoke Ruby" />
-    <meta property="og:site_name" content="artichokeruby.org" />
+    <link rel="canonical" href="https://www.artichokeruby.org/" />
+
+    <!-- Favicons -->
+    <%= require('html-loader!./partials/favicons.html') %>
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@artichokeruby" />
+    <meta name="twitter:creator" content="@artichokeruby" />
+    <meta name="twitter:title" content="Artichoke Ruby" />
+    <meta
+      name="twitter:description"
+      content="Artichoke is a Ruby made with Rust."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.artichokeruby.org/artichoke-social-logo.png"
+    />
+
+    <!-- Facebook Open Graph metadata -->
     <meta property="og:url" content="https://www.artichokeruby.org/" />
+    <meta property="og:site_name" content="artichokeruby.org" />
+    <meta property="og:title" content="Artichoke Ruby" />
     <meta
       property="og:description"
       content="Artichoke Ruby is a Ruby made with Rust."
@@ -21,165 +41,162 @@
     <meta property="og:type" content="website" />
     <meta
       property="og:image"
-      content="https://www.artichokeruby.org/artichoke-logo.png"
+      content="https://www.artichokeruby.org/artichoke-social-logo.png"
     />
-    <link rel="canonical" href="https://www.artichokeruby.org/" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="800" />
+    <meta property="og:image:height" content="800" />
 
-    <%= require('html-loader!./partials/favicons.html') %> <%=
-    require('html-loader!./partials/google-analytics.html') %>
+    <%= require('html-loader!./partials/google-analytics.html') %>
   </head>
   <body>
+    <a class="sr-only sr-only-focusable" href="#content">
+      Skip to main content
+    </a>
     <%= require('html-loader!./partials/nav.html') %>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3 col-md-6 my-auto">
-          <img
-            class="mw-100 d-block mx-auto"
-            title="Artichoke Ruby"
-            alt="Artichoke Ruby logo"
-            src="<%= require('./artichoke-logo.svg').default %>"
-          />
+    <!--
+      This layout is heavily inspired by the Bootstrap v5 docs homepage, which
+      has the following license:
+
+      The MIT License (MIT)
+
+      Copyright (c) 2011-2020 Twitter, Inc.
+      Copyright (c) 2011-2020 The Bootstrap Authors
+    -->
+    <main class="artichoke-masthead mb-3 mb-md-5" id="content">
+      <div class="container px-4 px-md-3">
+        <div class="row align-items-lg-center">
+          <div class="col-8 mx-auto col-md-4 order-md-2 col-lg-5">
+            <img
+              class="mw-100 d-block mx-auto"
+              title="Artichoke Ruby"
+              alt="Artichoke Ruby logo"
+              src="<%= require('./artichoke-logo.svg').default %>"
+            />
+          </div>
+          <div class="col-md-8 order-md-1 col-lg-7 text-center text-md-left">
+            <h1 class="mb-3">Build the next Ruby for Wasm with Artichoke</h1>
+            <p class="lead mb-4">
+              Bundle Ruby applications into a single Wasm executable with
+              Artichoke, a Ruby made with Rust. The modular interpreter enables
+              running untrusted code.
+            </p>
+            <p class="lead mb-4">
+              Artichoke is pre-release software. We're looking for contributors
+              to build a Ruby for pure Wasm targets.
+            </p>
+            <div class="d-flex flex-column flex-md-row">
+              <a
+                href="https://github.com/artichoke/artichoke/labels/E-easy"
+                class="btn btn-lg btn-artichoke-primary mb-3 mr-md-3"
+                onclick="ga('send', 'event', 'Jumbotron actions', 'Get started', 'Contribute');"
+              >
+                Contribute
+              </a>
+              <a
+                href="/install/"
+                class="btn btn-lg btn-outline-secondary mb-3"
+                onclick="ga('send', 'event', 'Jumbotron actions', 'Download', 'Install v0.1.0-pre.1');"
+              >
+                Install
+              </a>
+            </div>
+            <p class="text-muted mb-0">
+              Currently <strong>v0.1.0-pre.1</strong>
+              <span class="px-1">&middot;</span>
+              <a
+                href="https://github.com/artichoke/artichoke/releases"
+                class="link-secondary"
+              >
+                Previous releases
+              </a>
+            </p>
+          </div>
         </div>
-        <div class="col-lg-9 col-md-6 my-auto py-2">
-          <h1>Artichoke Ruby</h1>
+      </div>
+    </main>
+    <div class="container masthead-followup px-4 px-md-3">
+      <div class="row mb-5 pb-md-4 align-items-center">
+        <div class="col-md-5">
+          <div
+            class="masthead-followup-icon d-inline-block mb-2 text-white bg-success"
+          >
+            <img
+              width="32"
+              height="32"
+              src="<%= require('./Font_Awesome_5_regular_gem.svg').default %>"
+            />
+          </div>
+          <h2 class="display-5 font-weight-normal">Installation</h2>
           <p class="lead font-weight-normal">
-            Artichoke is a Ruby made with Rust 💎🦀
+            Install Artichoke Ruby nightly builds with rbenv, Docker, or Cargo.
+          </p>
+          <p>
+            Nightly installs include artichoke (ruby) and airb (irb) binaries.
+            The Artichoke Ruby Core and Standard Library runtime is bundled in
+            these two artifacts.
+          </p>
+          <a class="btn btn-lg btn-outline-primary mb-3" href="/install/">
+            Read installation docs
+          </a>
+        </div>
+        <div class="col-md-7 pl-md-5">
+          <%= require('./rbenv-install.md') %> <%= require('./docker-run.md') %>
+          <%= require('./cargo-install.md') %>
+        </div>
+      </div>
+
+      <div class="row mb-5 pb-md-4 align-items-center">
+        <div class="col-md-5">
+          <div
+            class="masthead-followup-icon d-inline-block mb-2 text-white bg-dark"
+          >
+            <img
+              alt="Twitter logo"
+              title="Twitter"
+              width="32"
+              height="32"
+              src="<%= require('./partials/social/twitter-logo.svg').default %>"
+            />
+          </div>
+          <h2 class="display-5 font-weight-normal">Project Updates</h2>
+          <p class="lead font-weight-normal">
+            Follow project updates on Twitter
+            <a href="https://twitter.com/artichokeruby">@artichokeruby</a>.
+          </p>
+          <p>
+            Nightly installs include artichoke (ruby) and airb (irb) binaries.
+            The Artichoke Ruby Core and Standard Library runtime is bundled in
+            these two artifacts.
           </p>
           <a
-            class="btn btn-outline-secondary d-inline-block mx-1"
-            href="https://artichoke.run/"
+            href="https://twitter.com/artichokeruby?ref_src=twsrc%5Etfw"
+            class="twitter-follow-button"
+            data-size="large"
+            data-show-count="false"
+            >Follow @artichokeruby</a
           >
-            Try Online
-          </a>
+          <script
+            async
+            src="https://platform.twitter.com/widgets.js"
+            charset="utf-8"
+          ></script>
+        </div>
+        <div class="col-md-7 pl-md-5">
           <a
-            class="btn btn-outline-secondary d-inline-block mx-1"
-            href="/install"
+            class="twitter-timeline"
+            data-height="500"
+            data-theme="light"
+            href="https://twitter.com/artichokeruby?ref_src=twsrc%5Etfw"
           >
-            Install
+            Tweets by artichokeruby
           </a>
-          <a
-            class="btn btn-outline-secondary d-inline-block mx-1"
-            href="https://github.com/artichoke/artichoke/labels/E-easy"
-          >
-            Contribute
-          </a>
-        </div>
-
-        <div class="col-md-6">
-          <div class="d-flex flex-column h-100">
-            <div class="bg-light p-2 p-md-5 h-50">
-              <div>
-                <h2 class="text-center">Ruby ❤️ WebAssembly</h2>
-                <p class="lead text-center">Execute Ruby on the web.</p>
-                <div class="row">
-                  <div class="col-lg-3">
-                    <img
-                      width="80"
-                      class="d-block mx-auto"
-                      title="WebAssembly"
-                      alt="WebAssembly logo"
-                      src="<%= require('./webassembly-logo.svg').default %>"
-                    />
-                  </div>
-                  <div class="col-lg-9">
-                    <p>
-                      Artichoke compiles to WebAssembly with Emscripten. We plan
-                      to support compiling for wasm32-unknown-unknown targets.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="bg-dark p-2 p-md-5 text-light h-50">
-              <div>
-                <h2 class="text-center">MRI-Compatible</h2>
-                <p class="lead text-center">
-                  Artichoke targets MRI Ruby 2.6.3.
-                </p>
-                <div class="row">
-                  <div class="col-lg-3">
-                    <img
-                      width="80"
-                      class="d-block mx-auto"
-                      title="Ruby"
-                      alt="Ruby logo"
-                      src="<%= require('./ruby-logo.svg').default %>"
-                    />
-                  </div>
-                  <div class="col-lg-9">
-                    <p>
-                      If Artichoke does not run Ruby source code in the same way
-                      that MRI does, it is a bug. MRI compatibility means
-                      <a
-                        href="https://github.com/artichoke/artichoke/labels/CAPI-MRI"
-                      >
-                        supporting a C API</a
-                      >, if possible.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="bg-dark h-100 p-1 p-md-3 text-center text-light">
-            <a
-              class="twitter-timeline"
-              data-theme="light"
-              href="https://twitter.com/artichokeruby?ref_src=twsrc%5Etfw"
-            >
-              Tweets by artichokeruby
-            </a>
-            <script
-              async
-              src="https://platform.twitter.com/widgets.js"
-              charset="utf-8"
-            ></script>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="bg-light h-100 p-2 p-md-5">
-            <h2 class="text-center">Run Untrusted Ruby 👾</h2>
-            <p class="lead text-center">
-              Disable sensitive APIs at compile time.
-            </p>
-            <div class="row">
-              <div class="col-lg-3 display-3 my-auto mx-auto text-center">
-                🎛
-              </div>
-              <div class="col-lg-9">
-                <p class="text-left">
-                  Replace the system environ with a stub, disable Regexp engines
-                  susceptible to catastrophic backtracking, or skip packaging
-                  parts of the standard library.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="bg-light h-100 p-2 p-md-5">
-            <h2 class="text-center">💼 Single Binary Apps</h2>
-            <p class="lead text-center">Distribute app bundles with ease.</p>
-            <div class="row">
-              <div class="col-lg-3 display-3 my-auto mx-auto text-center">
-                🔩
-              </div>
-              <div class="col-lg-9">
-                <p class="text-left">
-                  Pack a Ruby VM, application source code, configuration, and
-                  native extensions into
-                  <a href="https://github.com/artichoke/jasper">
-                    a single-file bundle</a
-                  >. Easy distribution without requiring installation of a Ruby
-                  VM.
-                </p>
-              </div>
-            </div>
-          </div>
+          <script
+            async
+            src="https://platform.twitter.com/widgets.js"
+            charset="utf-8"
+          ></script>
         </div>
       </div>
     </div>
