@@ -1,7 +1,8 @@
 import "bootstrap";
 import "./bootstrap-slim.scss";
 
-import "./twitter-feed.scss";
+// marketing hero
+import "./index.scss";
 
 // Favicons
 import "assets/favicons/android-chrome-192x192.png";
@@ -18,6 +19,10 @@ import "assets/favicons/site.webmanifest";
 // OpenGraph icons
 import "assets/artichoke-logo.png";
 import "assets/artichoke-logo.svg";
+import "assets/artichoke-social-logo.png";
 
 // robots.txt
 import "assets/robots.txt";
+
+// install snippets styles
+import "highlight.js/styles/default.css";
