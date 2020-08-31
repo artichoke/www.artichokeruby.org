@@ -56,8 +56,9 @@
     }
   },
   "scripts": {
-    "dev": "npx webpack-dev-server",
-    "dev:open": "npx webpack-dev-server --open",
+    "build": "webpack --mode production",
+    "dev": "webpack-dev-server",
+    "dev:open": "webpack-dev-server --open",
     "fmt": "npx prettier --write '**/*'",
     "lint": "npx eslint --fix ."
   }
