@@ -84,7 +84,7 @@ module.exports = {
       {
         test: /\.svg$/,
         exclude: new RegExp(path.resolve(__dirname, "assets")),
-        use: ["file-loader", "svgo-loader"],
+        use: ["svg-url-loader", "svgo-loader"],
       },
       {
         test: /\.md$/,
