@@ -29,7 +29,7 @@
     "file-loader": "^6.1.0",
     "highlight.js": "^10.2.0",
     "html-loader": "^1.2.1",
-    "html-webpack-plugin": "^4.4.1",
+    "html-webpack-plugin": "^4.5.0",
     "markdown-loader": "^5.1.0",
     "mini-css-extract-plugin": "^0.11.2",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
