@@ -20,6 +20,11 @@
     "description": "Area: Infrastructure for running an open source project."
   },
   {
+    "name": "A-security",
+    "color": "f7e101",
+    "description": "Area: security vulnerabilities and unsoundness issues."
+  },
+  {
     "name": "A-webapp",
     "color": "f7e101",
     "description": "Area: Web frontend for the project site."
