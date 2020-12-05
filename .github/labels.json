@@ -5,6 +5,11 @@
     "description": "Area: CI build infrastructure."
   },
   {
+    "name": "A-content",
+    "color": "f7e101",
+    "description": "Area: Publishing pages."
+  },
+  {
     "name": "A-deps",
     "color": "f7e101",
     "description": "Area: Source and library dependencies."
