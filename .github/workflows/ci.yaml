@@ -30,6 +30,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: gh-pages
+          cname: www.artichokeruby.org
           user_name: artichoke-ci
           user_email: ci@artichokeruby.org
 
