@@ -30,6 +30,11 @@
     "description": "Area: Web frontend for the project site."
   },
   {
+    "name": "A-webpack",
+    "color": "f7e101",
+    "description": "Area: Webpack configuration."
+  },
+  {
     "name": "C-bug",
     "color": "c1c8ff",
     "description": "Category: This is a bug."
