@@ -61,6 +61,7 @@ module.exports = (_env, argv) => {
       install: path.resolve(__dirname, "src/install.js"),
     },
     output: {
+      filename: "[name].[contenthash].js",
       path: path.resolve(__dirname, "dist"),
       publicPath: "/",
     },
