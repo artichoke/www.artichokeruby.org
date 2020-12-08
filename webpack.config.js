@@ -23,7 +23,8 @@ const highlight = (code, lang) => {
 
 const plugins = [
   new MiniCssExtractPlugin({
-    filename: "[contenthash].css",
+    filename: "[name].[contenthash].css",
+    chunkFilename: "[id].[contenthash].css",
   }),
   new HtmlWebPackPlugin({
     template: "index.html",
