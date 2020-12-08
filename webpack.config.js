@@ -23,7 +23,8 @@ const highlight = (code, lang) => {
 
 const plugins = [
   new MiniCssExtractPlugin({
-    filename: "[contenthash].css",
+    filename: "[name].[contenthash].css",
+    chunkFilename: "[id].[contenthash].css",
   }),
   new HtmlWebPackPlugin({
     template: "index.html",
@@ -61,6 +62,7 @@ module.exports = (_env, argv) => {
       install: path.resolve(__dirname, "src/install.js"),
     },
     output: {
+      filename: "[name].[contenthash].js",
       path: path.resolve(__dirname, "dist"),
       publicPath: "/",
     },
