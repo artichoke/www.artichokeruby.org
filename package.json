@@ -19,9 +19,9 @@
   ],
   "repository": "github:artichoke/www.artichokeruby.org",
   "dependencies": {
-    "bootstrap": "^5.0.0-alpha3",
-    "bootstrap-icons": "^1.2.2",
-    "popper.js": "^1.16.1"
+    "@popperjs/core": "^2.6.0",
+    "bootstrap": "^5.0.0-beta1",
+    "bootstrap-icons": "^1.2.2"
   },
   "devDependencies": {
     "css-loader": "^5.0.1",
