@@ -78,7 +78,7 @@
               src="<%= require('./artichoke-logo.svg') %>"
             />
           </div>
-          <div class="col-md-8 order-md-1 col-lg-7 text-center text-md-left">
+          <div class="col-md-8 order-md-1 col-lg-7 text-center text-md-start">
             <h1 class="mb-3">Install Artichoke Ruby</h1>
             <p class="lead mb-4">
               Artichoke Ruby installs on Linux, macOS, and Windows. New builds
@@ -90,14 +90,14 @@
             <div class="d-flex flex-column flex-md-row">
               <a
                 href="#nightly"
-                class="btn btn-lg btn-artichoke-primary mb-3 mr-md-3"
+                class="btn btn-lg btn-artichoke-primary mb-3 me-md-3"
                 onclick="ga('send', 'event', 'Jumbotron actions', 'Install', 'Nightly Builds');"
               >
                 Nightly Builds
               </a>
               <a
                 href="#docker"
-                class="btn btn-lg btn-outline-secondary mb-3 mr-md-3"
+                class="btn btn-lg btn-outline-secondary mb-3 me-md-3"
                 onclick="ga('send', 'event', 'Jumbotron actions', 'Install', 'Docker');"
               >
                 Docker
@@ -153,7 +153,7 @@
             Previous Releases
           </a>
         </div>
-        <div class="col-md-7 pl-md-5">
+        <div class="col-md-7 ps-md-5">
           <%= require('./rbenv-install.md') %> <%=
           require('./ruby-build-install.md') %>
         </div>
@@ -187,7 +187,7 @@
             On Docker Hub
           </a>
         </div>
-        <div class="col-md-7 pl-md-5"><%= require('./docker-run.md') %></div>
+        <div class="col-md-7 ps-md-5"><%= require('./docker-run.md') %></div>
       </div>
       <div id="cargo" class="row mb-5 pb-md-4 align-items-center">
         <div class="col-md-5">
@@ -214,7 +214,7 @@
             Build Guide
           </a>
         </div>
-        <div class="col-md-7 pl-md-5"><%= require('./cargo-install.md') %></div>
+        <div class="col-md-7 ps-md-5"><%= require('./cargo-install.md') %></div>
       </div>
     </div>
 
