@@ -1,7 +1,9 @@
 const path = require("path");
+const glob = require("glob");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const PurgeCSSPlugin = require("purgecss-webpack-plugin");
 const svgToMiniDataURI = require("mini-svg-data-uri");
 
 const hljs = require("highlight.js");
@@ -26,6 +28,9 @@ const plugins = [
     filename: "[name].[contenthash].css",
     chunkFilename: "[id].[contenthash].css",
   }),
+  new PurgeCSSPlugin({
+    paths: glob.sync(`${path.join(__dirname, "src")}/**/*`, { nodir: true }),
+  }),
   new HtmlWebPackPlugin({
     template: "index.html",
     filename: "index.html",
@@ -44,6 +49,16 @@ module.exports = (_env, argv) => {
     minimize: false,
     chunkIds: "deterministic",
     moduleIds: "deterministic",
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          name: "styles",
+          test: /\.css$/,
+          chunks: "all",
+          enforce: true,
+        },
+      },
+    },
   };
   if (argv.mode === "production") {
     cssLoader = MiniCssExtractPlugin.loader;
