@@ -1,3 +1,3 @@
-```bash
+```shell
 $ rbenv install artichoke-dev
 ```
