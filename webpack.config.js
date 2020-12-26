@@ -1,7 +1,7 @@
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
 const hljs = require("highlight.js");
@@ -47,7 +47,7 @@ module.exports = (_env, argv) => {
     cssLoader = MiniCssExtractPlugin.loader;
     optimization = {
       minimize: true,
-      minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin()],
+      minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
     };
   }
   return {
