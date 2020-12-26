@@ -54,8 +54,8 @@
   },
   "scripts": {
     "build": "webpack --mode production",
-    "dev": "webpack-dev-server",
-    "dev:open": "webpack-dev-server --open",
+    "dev": "webpack serve --mode development",
+    "dev:open": "webpack serve --mode development --open",
     "fmt": "npx prettier --write '**/*'",
     "lint": "npx eslint --fix ."
   }
