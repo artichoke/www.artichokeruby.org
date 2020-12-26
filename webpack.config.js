@@ -3,6 +3,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const svgToMiniDataURI = require("mini-svg-data-uri");
 
 const hljs = require("highlight.js");
 
@@ -74,27 +75,26 @@ module.exports = (_env, argv) => {
         },
         {
           test: new RegExp(path.resolve(__dirname, "assets")),
-          use: {
-            loader: "file-loader",
-            options: {
-              name: "[name].[ext]",
-            },
+          type: "asset/resource",
+          generator: {
+            filename: "[name][ext]",
           },
         },
         {
           test: /\.(png|jpe?g|gif)$/,
           exclude: new RegExp(path.resolve(__dirname, "assets")),
-          use: {
-            loader: "url-loader",
-            options: {
-              limit: 8192,
-            },
-          },
+          type: "asset",
         },
         {
           test: /\.svg$/,
           exclude: new RegExp(path.resolve(__dirname, "assets")),
-          use: ["svg-url-loader", "svgo-loader"],
+          type: "asset/inline",
+          generator: {
+            dataUrl: (content) => {
+              content = content.toString();
+              return svgToMiniDataURI(content);
+            },
+          },
         },
         {
           test: /\.md$/,
