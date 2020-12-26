@@ -68,11 +68,6 @@ module.exports = (_env, argv) => {
   }
   return {
     context: path.resolve(__dirname, "src"),
-    resolve: {
-      alias: {
-        assets: path.resolve(__dirname, "assets"),
-      },
-    },
     entry: {
       index: path.resolve(__dirname, "src/index.js"),
       install: path.resolve(__dirname, "src/install.js"),
@@ -89,7 +84,9 @@ module.exports = (_env, argv) => {
           use: [cssLoader, "css-loader", "sass-loader"],
         },
         {
-          test: new RegExp(`${path.resolve(__dirname, "assets")}.*\.svg$`),
+          test: new RegExp(
+            `${path.resolve(__dirname, "src", "assets")}.*\.svg$`
+          ),
           type: "asset/resource",
           use: "svgo-loader",
           generator: {
@@ -97,7 +94,7 @@ module.exports = (_env, argv) => {
           },
         },
         {
-          test: new RegExp(path.resolve(__dirname, "assets")),
+          test: new RegExp(path.resolve(__dirname, "src", "assets")),
           exclude: /\.svg$/,
           type: "asset/resource",
           use: "image-webpack-loader",
@@ -107,13 +104,13 @@ module.exports = (_env, argv) => {
         },
         {
           test: /\.(png|jpe?g|gif)$/,
-          exclude: new RegExp(path.resolve(__dirname, "assets")),
+          exclude: new RegExp(path.resolve(__dirname, "src", "assets")),
           type: "asset",
           use: "image-webpack-loader",
         },
         {
           test: /\.svg$/,
-          exclude: new RegExp(path.resolve(__dirname, "assets")),
+          exclude: new RegExp(path.resolve(__dirname, "src", "assets")),
           type: "asset/inline",
           use: "svgo-loader",
           generator: {
