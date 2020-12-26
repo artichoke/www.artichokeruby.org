@@ -1,8 +1,10 @@
 const path = require("path");
+const glob = require("glob");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const PurgeCSSPlugin = require("purgecss-webpack-plugin");
+const svgToMiniDataURI = require("mini-svg-data-uri");
 
 const hljs = require("highlight.js");
 
@@ -26,6 +28,10 @@ const plugins = [
     filename: "[name].[contenthash].css",
     chunkFilename: "[id].[contenthash].css",
   }),
+  new PurgeCSSPlugin({
+    paths: glob.sync(`${path.join(__dirname, "src")}/**/*`, { nodir: true }),
+    safelist: ["hljs", "language-shell", "hljs-meta", "bash"],
+  }),
   new HtmlWebPackPlugin({
     template: "index.html",
     filename: "index.html",
@@ -42,13 +48,23 @@ module.exports = (_env, argv) => {
   let cssLoader = "style-loader";
   let optimization = {
     minimize: false,
+    chunkIds: "deterministic",
+    moduleIds: "deterministic",
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          name: "styles",
+          test: /\.css$/,
+          chunks: "all",
+          enforce: true,
+        },
+      },
+    },
   };
   if (argv.mode === "production") {
     cssLoader = MiniCssExtractPlugin.loader;
-    optimization = {
-      minimize: true,
-      minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin()],
-    };
+    optimization.minimize = true;
+    optimization.minimizer = ["...", new CssMinimizerPlugin()];
   }
   return {
     context: path.resolve(__dirname, "src"),
@@ -73,28 +89,39 @@ module.exports = (_env, argv) => {
           use: [cssLoader, "css-loader", "sass-loader"],
         },
         {
+          test: new RegExp(`${path.resolve(__dirname, "assets")}.*\.svg$`),
+          type: "asset/resource",
+          use: "svgo-loader",
+          generator: {
+            filename: "[name][ext]",
+          },
+        },
+        {
           test: new RegExp(path.resolve(__dirname, "assets")),
-          use: {
-            loader: "file-loader",
-            options: {
-              name: "[name].[ext]",
-            },
+          exclude: /\.svg$/,
+          type: "asset/resource",
+          use: "image-webpack-loader",
+          generator: {
+            filename: "[name][ext]",
           },
         },
         {
           test: /\.(png|jpe?g|gif)$/,
           exclude: new RegExp(path.resolve(__dirname, "assets")),
-          use: {
-            loader: "url-loader",
-            options: {
-              limit: 8192,
-            },
-          },
+          type: "asset",
+          use: "image-webpack-loader",
         },
         {
           test: /\.svg$/,
           exclude: new RegExp(path.resolve(__dirname, "assets")),
-          use: ["svg-url-loader", "svgo-loader"],
+          type: "asset/inline",
+          use: "svgo-loader",
+          generator: {
+            dataUrl: (content) => {
+              content = content.toString();
+              return svgToMiniDataURI(content);
+            },
+          },
         },
         {
           test: /\.md$/,
