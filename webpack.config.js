@@ -84,9 +84,8 @@ module.exports = (_env, argv) => {
           use: [cssLoader, "css-loader", "sass-loader"],
         },
         {
-          test: new RegExp(
-            `${path.resolve(__dirname, "src", "assets")}.*\.svg$`
-          ),
+          test: /\.svg$/,
+          include: new RegExp(path.resolve(__dirname, "src", "assets")),
           type: "asset/resource",
           use: "svgo-loader",
           generator: {
@@ -94,7 +93,7 @@ module.exports = (_env, argv) => {
           },
         },
         {
-          test: new RegExp(path.resolve(__dirname, "src", "assets")),
+          include: new RegExp(path.resolve(__dirname, "src", "assets")),
           exclude: /\.svg$/,
           type: "asset/resource",
           use: "image-webpack-loader",
