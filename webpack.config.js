@@ -110,7 +110,7 @@ module.exports = (_env, argv) => {
         {
           test: /\.svg$/,
           exclude: new RegExp(path.resolve(__dirname, "src", "assets")),
-          type: "asset/inline",
+          type: "asset",
           use: "svgo-loader",
           generator: {
             dataUrl: (content) => {
