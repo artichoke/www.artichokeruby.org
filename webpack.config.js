@@ -96,7 +96,6 @@ module.exports = (_env, argv) => {
           include: new RegExp(path.resolve(__dirname, "src", "assets")),
           exclude: /\.svg$/,
           type: "asset/resource",
-          use: "image-webpack-loader",
           generator: {
             filename: "[name][ext]",
           },
@@ -105,7 +104,6 @@ module.exports = (_env, argv) => {
           test: /\.(png|jpe?g|gif)$/,
           exclude: new RegExp(path.resolve(__dirname, "src", "assets")),
           type: "asset",
-          use: "image-webpack-loader",
         },
         {
           test: /\.svg$/,
