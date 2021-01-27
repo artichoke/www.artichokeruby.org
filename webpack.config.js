@@ -6,22 +6,8 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const PurgeCSSPlugin = require("purgecss-webpack-plugin");
 const svgToMiniDataURI = require("mini-svg-data-uri");
 
-const hljs = require("highlight.js");
-
-const highlight = (code, lang) => {
-  switch (lang) {
-    case null:
-    case "text":
-    case "literal":
-    case "nohighlight": {
-      return `<pre class="hljs">${code}</pre>`;
-    }
-    default: {
-      const html = hljs.highlight(lang, code).value;
-      return `<span class="hljs">${html}</span>`;
-    }
-  }
-};
+const RemarkHighlight = require("remark-highlight.js");
+const RemarkHTML = require("remark-html");
 
 const plugins = [
   new MiniCssExtractPlugin({
@@ -122,10 +108,11 @@ module.exports = (_env, argv) => {
           use: [
             "html-loader",
             {
-              loader: "markdown-loader",
+              loader: "remark-loader",
               options: {
-                langPrefix: "hljs language-",
-                highlight,
+                remarkOptions: {
+                  plugins: [RemarkHTML, RemarkHighlight],
+                },
               },
             },
           ],
