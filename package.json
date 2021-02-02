@@ -35,7 +35,7 @@
     "remark": "^13.0.0",
     "remark-highlight.js": "^6.0.0",
     "remark-html": "^13.0.1",
-    "remark-loader": "^2.0.0",
+    "remark-loader": "^3.0.0",
     "sass": "^1.32.5",
     "sass-loader": "^10.1.1",
     "style-loader": "^2.0.0",
