@@ -16,14 +16,18 @@ const RemarkHTML = require("remark-html");
 const tailwindExtractor = (content) => {
   // Capture as liberally as possible, including things like `h-(screen-1.5)`
   const broadMatches = content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [];
-  const broadMatchesWithoutTrailingSlash = broadMatches.map((match) => match.trimEnd('\\'));
+  const broadMatchesWithoutTrailingSlash = broadMatches.map((match) =>
+    match.trimEnd("\\")
+  );
 
   // Capture classes within other delimiters like .block(class="w-1/2") in Pug
-  const innerMatches = content.match(/[^<>"'`\s.(){}[\]#=%]*[^<>"'`\s.(){}[\]#=%:]/g) || [];
+  const innerMatches =
+    content.match(/[^<>"'`\s.(){}[\]#=%]*[^<>"'`\s.(){}[\]#=%:]/g) || [];
 
-  return broadMatches.concat(broadMatchesWithoutTrailingSlash).concat(innerMatches);
-}
-
+  return broadMatches
+    .concat(broadMatchesWithoutTrailingSlash)
+    .concat(innerMatches);
+};
 
 const plugins = [
   new MiniCssExtractPlugin({
