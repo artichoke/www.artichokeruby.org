@@ -16,7 +16,7 @@ const plugins = [
   }),
   new PurgeCSSPlugin({
     paths: glob.sync(`${path.join(__dirname, "src")}/**/*`, { nodir: true }),
-    safelist: ["hljs", "language-shell", "hljs-meta", "bash"],
+    safelist: ["hljs", "language-shell", "hljs-meta", "bash", "show"],
   }),
   new HtmlWebPackPlugin({
     template: "index.html",
