@@ -37,7 +37,7 @@
     "remark-html": "^13.0.1",
     "remark-loader": "^3.0.0",
     "sass": "^1.32.6",
-    "sass-loader": "^11.0.0",
+    "sass-loader": "^11.0.1",
     "style-loader": "^2.0.0",
     "svgo": "^1.3.2",
     "svgo-loader": "^2.2.1",
