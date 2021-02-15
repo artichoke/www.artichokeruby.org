@@ -1,13 +1,13 @@
 const path = require("path");
 const glob = require("glob");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const PostHtmlInclude = require("posthtml-include");
+const PostHtmlMakdownIt = require("posthtml-markdownit");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const PurgeCSSPlugin = require("purgecss-webpack-plugin");
 const svgToMiniDataURI = require("mini-svg-data-uri");
-
-const RemarkHighlight = require("remark-highlight.js");
-const RemarkHTML = require("remark-html");
+const hljs = require("highlight.js");
 
 // Taken and modified from tailwindcss at:
 // https://github.com/tailwindlabs/tailwindcss/blob/21f7e67c/src/lib/purgeUnusedStyles.js#L25-L34
@@ -102,7 +102,7 @@ module.exports = (_env, argv) => {
         },
         {
           test: /\.svg$/,
-          include: new RegExp(path.resolve(__dirname, "src", "assets")),
+          include: path.resolve(__dirname, "src", "assets"),
           type: "asset/resource",
           use: "@hyperbola/svgo-loader",
           generator: {
@@ -110,7 +110,7 @@ module.exports = (_env, argv) => {
           },
         },
         {
-          include: new RegExp(path.resolve(__dirname, "src", "assets")),
+          include: path.resolve(__dirname, "src", "assets"),
           exclude: /\.svg$/,
           type: "asset/resource",
           generator: {
@@ -119,12 +119,12 @@ module.exports = (_env, argv) => {
         },
         {
           test: /\.(png|jpe?g|gif)$/,
-          exclude: new RegExp(path.resolve(__dirname, "src", "assets")),
+          exclude: path.resolve(__dirname, "src", "assets"),
           type: "asset",
         },
         {
           test: /\.svg$/,
-          exclude: new RegExp(path.resolve(__dirname, "src", "assets")),
+          exclude: path.resolve(__dirname, "src", "assets"),
           type: "asset",
           use: "@hyperbola/svgo-loader",
           generator: {
@@ -135,16 +135,29 @@ module.exports = (_env, argv) => {
           },
         },
         {
-          test: /\.md$/,
+          test: /.html$/,
           use: [
-            "html-loader",
             {
-              loader: "remark-loader",
+              loader: "html-loader",
               options: {
-                remarkOptions: {
-                  plugins: [RemarkHTML, RemarkHighlight],
-                },
+                esModule: false,
               },
+            },
+            {
+              loader: "posthtml-loader",
+              options: {
+                plugins:[
+                  PostHtmlInclude(),
+                  PostHtmlMakdownIt({
+                    markdownit: {
+                      highlight: (str, lang) => {
+                        const highlighted = hljs.highlight(lang, str, true).value;
+                        return `<pre class="hljs"><code class="hljs language-${lang}">${highlighted}</code></pre>`;
+                      }
+                    },
+                  }),
+                ],
+              }
             },
           ],
         },

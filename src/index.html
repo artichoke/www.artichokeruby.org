@@ -14,7 +14,7 @@
     <link rel="canonical" href="https://www.artichokeruby.org/" />
 
     <!-- Favicons -->
-    <%= require('html-loader!./partials/favicons.html') %>
+    <include src="src/partials/favicons.html"></include>
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -27,7 +27,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://www.artichokeruby.org/artichoke-social-logo.png"
+      content="artichoke-social-logo.png"
     />
 
     <!-- Facebook Open Graph metadata -->
@@ -41,19 +41,19 @@
     <meta property="og:type" content="website" />
     <meta
       property="og:image"
-      content="https://www.artichokeruby.org/artichoke-social-logo.png"
+      content="artichoke-social-logo.png"
     />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1600" />
     <meta property="og:image:height" content="800" />
 
-    <%= require('html-loader!./partials/google-analytics.html') %>
+    <include src="src/partials/google-analytics.html"></include>
   </head>
   <body>
     <a class="visually-hidden visually-hidden-focusable" href="#content">
       Skip to main content
     </a>
-    <%= require('html-loader!./partials/nav/index.html') %>
+    <include src="src/partials/nav/index.html"></include>
 
     <!--
       This layout is heavily inspired by the Bootstrap v5 docs homepage, which
@@ -72,7 +72,7 @@
               class="mw-100 d-block mx-auto"
               title="Artichoke Ruby"
               alt="Artichoke Ruby logo"
-              src="<%= require('./artichoke-logo.svg') %>"
+              src="artichoke-logo.svg"
             />
           </div>
           <div class="col-md-8 order-md-1 col-lg-7 text-center text-md-start">
@@ -151,8 +151,9 @@
           </a>
         </div>
         <div class="col-md-7 ps-md-5">
-          <%= require('./rbenv-install.md') %> <%= require('./docker-run.md') %>
-          <%= require('./cargo-install.md') %>
+          <markdown src="src/rbenv-install.md"></markdown>
+          <markdown src="src/docker-run.md"></markdown>
+          <markdown src="src/cargo-install.md"></markdown>
         </div>
       </div>
 
@@ -165,7 +166,7 @@
               alt="Twitter logo"
               width="32"
               height="32"
-              src="<%= require('./partials/social/twitter-logo.svg') %>"
+              src="partials/social/twitter-logo.svg"
             />
           </div>
           <h2 class="display-5 font-weight-normal">Project Updates</h2>
@@ -197,7 +198,7 @@
       </div>
     </div>
 
-    <%= require('html-loader!./partials/footer.html') %>
+    <include src="src/partials/footer.html"></include>
     <script async src="https://platform.twitter.com/widgets.js"></script>
   </body>
 </html>
