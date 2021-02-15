@@ -7,6 +7,7 @@ import "./index.scss";
 // Assets with well-known filenames
 import "./assets/artichoke-logo.png";
 import "./assets/artichoke-logo.svg";
+import "./assets/artichoke-logo-transparent.png";
 import "./assets/artichoke-social-logo.png";
 import "./assets/robots.txt";
 
