@@ -101,8 +101,15 @@ module.exports = (_env, argv) => {
           use: [cssLoader, "css-loader", "sass-loader"],
         },
         {
+          include: path.resolve(__dirname, "src", "partials", "favicons"),
+          type: "asset/resource",
+          generator: {
+            filename: "[name][ext]",
+          },
+        },
+        {
           test: /\.svg$/,
-          include: new RegExp(path.resolve(__dirname, "src", "assets")),
+          include: path.resolve(__dirname, "src", "assets"),
           type: "asset/resource",
           use: "@hyperbola/svgo-loader",
           generator: {
@@ -110,7 +117,7 @@ module.exports = (_env, argv) => {
           },
         },
         {
-          include: new RegExp(path.resolve(__dirname, "src", "assets")),
+          include: path.resolve(__dirname, "src", "assets"),
           exclude: /\.svg$/,
           type: "asset/resource",
           generator: {
@@ -119,18 +126,34 @@ module.exports = (_env, argv) => {
         },
         {
           test: /\.(png|jpe?g|gif)$/,
-          exclude: new RegExp(path.resolve(__dirname, "src", "assets")),
+          exclude: path.resolve(__dirname, "src", "assets"),
           type: "asset",
         },
         {
           test: /\.svg$/,
-          exclude: new RegExp(path.resolve(__dirname, "src", "assets")),
+          exclude: path.resolve(__dirname, "src", "assets"),
           type: "asset",
           use: "@hyperbola/svgo-loader",
           generator: {
             dataUrl: (content) => {
               content = content.toString();
               return svgToMiniDataURI(content);
+            },
+          },
+        },
+        {
+          test: /\.html$/i,
+          loader: "html-loader",
+          options: {
+            sources: {
+              list: [
+                "...",
+                {
+                  tag: "include",
+                  attribute: "src",
+                  type: "include",
+                },
+              ],
             },
           },
         },
