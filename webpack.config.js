@@ -1,6 +1,7 @@
 const path = require("path");
 const glob = require("glob");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const PostHtml = require("posthtml");
 const PostHtmlInclude = require("posthtml-include");
 const PostHtmlMakdownIt = require("posthtml-markdownit");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -141,23 +142,27 @@ module.exports = (_env, argv) => {
               loader: "html-loader",
               options: {
                 esModule: false,
-              },
-            },
-            {
-              loader: "posthtml-loader",
-              options: {
-                plugins:[
-                  PostHtmlInclude(),
-                  PostHtmlMakdownIt({
+                preprocessor: (content, loaderContext) => {
+                  let result;
+                  const markdownPlugin = PostHtmlMakdownIt({
                     markdownit: {
                       highlight: (str, lang) => {
                         const highlighted = hljs.highlight(lang, str, true).value;
                         return `<pre class="hljs"><code class="hljs language-${lang}">${highlighted}</code></pre>`;
                       }
                     },
-                  }),
-                ],
-              }
+                  });
+
+                  try {
+                    result = PostHtml(PostHtmlInclude()).use().use(markdownPlugin).process(content, { sync: true });
+                  } catch (error) {
+                    loaderContext.emitError(error);
+                    return content;
+                  }
+
+                  return result.html;
+                },
+              },
             },
           ],
         },
