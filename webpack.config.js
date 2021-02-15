@@ -147,14 +147,18 @@ module.exports = (_env, argv) => {
                   const markdownPlugin = PostHtmlMakdownIt({
                     markdownit: {
                       highlight: (str, lang) => {
-                        const highlighted = hljs.highlight(lang, str, true).value;
-                        return `<pre class="hljs"><code class="hljs language-${lang}">${highlighted}</code></pre>`;
-                      }
+                        const highlighted = hljs.highlight(lang, str, true);
+                        const html = highlighted.value;
+                        return `<pre class="hljs"><code class="hljs language-${lang}">${html}</code></pre>`;
+                      },
                     },
                   });
 
                   try {
-                    result = PostHtml(PostHtmlInclude()).use().use(markdownPlugin).process(content, { sync: true });
+                    result = PostHtml(PostHtmlInclude())
+                      .use()
+                      .use(markdownPlugin)
+                      .process(content, { sync: true });
                   } catch (error) {
                     loaderContext.emitError(error);
                     return content;
