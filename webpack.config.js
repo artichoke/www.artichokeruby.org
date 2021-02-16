@@ -1,14 +1,38 @@
 const path = require("path");
 const glob = require("glob");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const PostHtml = require("posthtml");
-const PostHtmlInclude = require("posthtml-include");
-const PostHtmlMakdownIt = require("posthtml-markdownit");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const PurgeCSSPlugin = require("purgecss-webpack-plugin");
-const svgToMiniDataURI = require("mini-svg-data-uri");
 const hljs = require("highlight.js");
+const posthtml = require("posthtml");
+const posthtmlInclude = require("posthtml-include");
+const posthtmlMarkdownit = require("posthtml-markdownit");
+const svgToMiniDataURI = require("mini-svg-data-uri");
+
+const posthtmlHtmlLoaderPreprocessor = (content, loaderContext) => {
+  const markdownPlugin = posthtmlMarkdownit({
+    markdownit: {
+      highlight: (str, lang) => {
+        const highlighted = hljs.highlight(lang, str, true);
+        const html = highlighted.value;
+        return `<pre class="hljs"><code class="hljs language-${lang}">${html}</code></pre>`;
+      },
+    },
+  });
+
+  try {
+    const result = posthtml()
+      .use(posthtmlInclude())
+      .use(markdownPlugin)
+      .process(content, { sync: true });
+
+    return result.html;
+  } catch (error) {
+    loaderContext.emitError(error);
+    return content;
+  }
+};
 
 // Taken and modified from tailwindcss at:
 // https://github.com/tailwindlabs/tailwindcss/blob/21f7e67c/src/lib/purgeUnusedStyles.js#L25-L34
@@ -136,39 +160,14 @@ module.exports = (_env, argv) => {
           },
         },
         {
-          test: /.html$/,
-          use: [
-            {
-              loader: "html-loader",
-              options: {
-                esModule: false,
-                preprocessor: (content, loaderContext) => {
-                  let result;
-                  const markdownPlugin = PostHtmlMakdownIt({
-                    markdownit: {
-                      highlight: (str, lang) => {
-                        const highlighted = hljs.highlight(lang, str, true);
-                        const html = highlighted.value;
-                        return `<pre class="hljs"><code class="hljs language-${lang}">${html}</code></pre>`;
-                      },
-                    },
-                  });
-
-                  try {
-                    result = PostHtml(PostHtmlInclude())
-                      .use()
-                      .use(markdownPlugin)
-                      .process(content, { sync: true });
-                  } catch (error) {
-                    loaderContext.emitError(error);
-                    return content;
-                  }
-
-                  return result.html;
-                },
-              },
+          test: /\.html$/,
+          use: {
+            loader: "html-loader",
+            options: {
+              esModule: false,
+              preprocessor: posthtmlHtmlLoaderPreprocessor,
             },
-          ],
+          },
         },
       ],
     },
