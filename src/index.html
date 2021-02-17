@@ -91,17 +91,18 @@
               <a
                 href="/install/"
                 class="btn btn-lg btn-outline-secondary mb-3"
-                onclick="ga('send', 'event', 'Jumbotron actions', 'Download', 'Install v0.1.0-pre.1');"
+                onclick="ga('send', 'event', 'Jumbotron actions', 'Download', 'Install v0.1.0-pre.0');"
               >
                 Install
               </a>
             </div>
             <p class="text-muted mb-0">
-              Currently <strong>v0.1.0-pre.1</strong>
+              Currently <strong>v0.1.0-pre.0</strong>
               <span class="px-1">&middot;</span>
               <a
                 href="https://github.com/artichoke/artichoke/releases"
                 class="link-secondary"
+                onclick="ga('send', 'event', 'Jumbotron actions', 'Download', 'Previous releases');"
               >
                 Previous releases
               </a>
@@ -140,7 +141,11 @@
             The Artichoke Ruby Core and Standard Library runtime is bundled in
             these two artifacts.
           </p>
-          <a class="btn btn-lg btn-outline-primary mb-3" href="/install/">
+          <a
+            class="btn btn-lg btn-outline-primary mb-3"
+            href="/install/"
+            onclick="ga('send', 'event', 'Installation', 'Read installation docs');"
+          >
             Read installation docs
           </a>
         </div>
@@ -166,7 +171,12 @@
           <h2 class="display-5 font-weight-normal">Project Updates</h2>
           <p class="lead font-weight-normal">
             Follow project updates on Twitter
-            <a href="https://twitter.com/artichokeruby">@artichokeruby</a>.
+            <a
+              href="https://twitter.com/artichokeruby"
+              onclick="ga('send', 'event', 'Project Updates', '@artichokeruby');"
+            >
+              @artichokeruby</a
+            >.
           </p>
           <p>
             We'll tweet about Rust, crates we're developing, and new releases.
@@ -176,8 +186,10 @@
             class="twitter-follow-button"
             data-size="large"
             data-show-count="false"
-            >Follow @artichokeruby</a
+            onclick="ga('send', 'event', 'Project Updates', 'Follow @artichokeruby');"
           >
+            Follow @artichokeruby
+          </a>
         </div>
         <div class="col-md-7 ps-md-5">
           <a

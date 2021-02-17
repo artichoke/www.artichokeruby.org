@@ -138,11 +138,17 @@
           <p>
             These daily binaries track the latest trunk commit of Artichoke.
             Binaries are also distributed through
-            <a href="https://github.com/rbenv/ruby-build">ruby-build</a>.
+            <a
+              href="https://github.com/rbenv/ruby-build"
+              onclick="ga('send', 'event', 'Pre-compiled nightly builds', 'ruby-build');"
+            >
+              ruby-build</a
+            >.
           </p>
           <a
             class="btn btn-lg btn-outline-success mb-3"
             href="https://github.com/artichoke/nightly/releases"
+            onclick="ga('send', 'event', 'Pre-compiled nightly builds', 'Previous Releases');"
           >
             Previous Releases
           </a>
@@ -176,6 +182,7 @@
           <a
             class="btn btn-lg btn-outline-info mb-3"
             href="https://hub.docker.com/r/artichokeruby/artichoke"
+            onclick="ga('send', 'event', 'Docker images', 'On Docker Hub');"
           >
             On Docker Hub
           </a>
@@ -201,6 +208,7 @@
           <a
             class="btn btn-lg btn-outline-dark mb-3"
             href="https://github.com/artichoke/artichoke/blob/trunk/BUILD.md"
+            onclick="ga('send', 'event', 'Using Cargo', 'Build Guide');"
           >
             Build Guide
           </a>
