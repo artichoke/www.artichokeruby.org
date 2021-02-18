@@ -90,14 +90,14 @@
               <a
                 href="https://github.com/artichoke/artichoke/labels/E-easy"
                 class="btn btn-lg btn-artichoke-primary mb-3 me-md-3"
-                onclick="gtag('send', 'event', 'jumbotron', 'click', 'Get started - Contribute');"
+                onclick="gtag('event', 'click',  {'event_category': 'jumbotron', 'event_action': 'click', 'event_label': 'Get started - Contribute'});"
               >
                 Contribute
               </a>
               <a
                 href="/install/"
                 class="btn btn-lg btn-outline-secondary mb-3"
-                onclick="gtag('send', 'event', 'jumbotron', 'click', 'Download - Install v0.1.0-pre.0');"
+                onclick="gtag('event', 'click',  {'event_category': 'jumbotron', 'event_action': 'click', 'event_label': 'Download - Install v0.1.0-pre.0'});"
               >
                 Install
               </a>
@@ -108,7 +108,7 @@
               <a
                 href="https://github.com/artichoke/artichoke/releases"
                 class="link-secondary"
-                onclick="gtag('send', 'event', 'jumbotron', 'click', 'Download - Previous releases');"
+                onclick="gtag('event', 'click',  {'event_category': 'jumbotron', 'event_action': 'click', 'event_label': 'Download - Previous releases'});"
               >
                 Previous releases
               </a>
@@ -137,7 +137,7 @@
           <a
             class="btn btn-lg btn-outline-primary mb-3"
             href="/install/"
-            onclick="gtag('send', 'event', 'install', 'click', 'Read install guide');"
+            onclick="gtag('event', 'click',  {'event_category': 'install', 'event_action': 'click', 'event_label': 'Read install guide'});"
           >
             Read install guide
           </a>
@@ -166,7 +166,7 @@
             Stay up to date with project updates on Twitter
             <a
               href="https://twitter.com/artichokeruby"
-              onclick="gtag('send', 'event', 'follow', 'click', '@artichokeruby');"
+              onclick="gtag('event', 'click',  {'event_category': 'subscribe', 'event_action': 'click', 'event_label': '@artichokeruby'});"
             >
               @artichokeruby</a
             >.
@@ -179,7 +179,7 @@
             class="twitter-follow-button"
             data-size="large"
             data-show-count="false"
-            onclick="gtag('send', 'event', 'follow', 'click', 'Follow @artichokeruby');"
+            onclick="gtag('event', 'click',  {'event_category': 'subscribe', 'event_action': 'click', 'event_label': 'Follow @artichokeruby'});"
           >
             Follow @artichokeruby
           </a>
