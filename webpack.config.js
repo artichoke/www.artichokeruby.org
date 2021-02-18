@@ -10,6 +10,8 @@ const posthtmlInclude = require("posthtml-include");
 const posthtmlMarkdownit = require("posthtml-markdownit");
 const svgToMiniDataURI = require("mini-svg-data-uri");
 
+const root = path.resolve(__dirname);
+
 const posthtmlHtmlLoaderPreprocessor = (content, loaderContext) => {
   const markdownPlugin = posthtmlMarkdownit({
     markdownit: {
@@ -23,7 +25,7 @@ const posthtmlHtmlLoaderPreprocessor = (content, loaderContext) => {
 
   try {
     const result = posthtml()
-      .use(posthtmlInclude())
+      .use(posthtmlInclude({ root }))
       .use(markdownPlugin)
       .process(content, { sync: true });
 
@@ -127,7 +129,7 @@ module.exports = (_env, argv) => {
         },
         {
           test: /\.svg$/,
-          include: path.resolve(__dirname, "src", "assets"),
+          include: path.resolve(__dirname, "node_modules", "@artichokeruby/logo/img"),
           type: "asset/resource",
           use: "@hyperbola/svgo-loader",
           generator: {
@@ -135,7 +137,7 @@ module.exports = (_env, argv) => {
           },
         },
         {
-          include: path.resolve(__dirname, "src", "assets"),
+          include: path.resolve(__dirname, "node_modules", "@artichokeruby/logo/img"),
           exclude: /\.svg$/,
           type: "asset/resource",
           generator: {
@@ -143,13 +145,27 @@ module.exports = (_env, argv) => {
           },
         },
         {
+          include: path.resolve(__dirname, "src", "assets"),
+          type: "asset/resource",
+          generator: {
+            filename: "[name][ext]",
+          },
+        },
+        {
+          include: path.resolve(__dirname, "node_modules", "@artichokeruby/logo/favicons"),
+          type: "asset/resource",
+          generator: {
+            filename: "[name][ext]",
+          },
+        },
+        {
           test: /\.(png|jpe?g|gif)$/,
-          exclude: path.resolve(__dirname, "src", "assets"),
+          include: path.resolve(__dirname, "node_modules", "@artichokeruby/logo/optimized"),
           type: "asset",
         },
         {
           test: /\.svg$/,
-          exclude: path.resolve(__dirname, "src", "assets"),
+          exclude: path.resolve(__dirname, "node_modules", "@artichokeruby/logo/img"),
           type: "asset",
           use: "@hyperbola/svgo-loader",
           generator: {
