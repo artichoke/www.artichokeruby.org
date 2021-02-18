@@ -35,11 +35,12 @@
 
 .masthead-followup-icon {
   padding: 0.75rem;
-  background-image: linear-gradient(
-    to bottom right,
-    rgba(255, 255, 255, 0.2),
-    rgba(255, 255, 255, 0.01)
-  );
+  background-image:
+    linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.01)
+    );
   border-radius: 0.75rem;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
 }
