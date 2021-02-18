@@ -5,10 +5,10 @@ import "./bootstrap-slim.scss";
 import "./index.scss";
 
 // Assets with well-known filenames
-import "./assets/artichoke-logo.png";
-import "./assets/artichoke-logo.svg";
-import "./assets/artichoke-logo-transparent.png";
-import "./assets/artichoke-social-logo.png";
+import "@artichokeruby/logo/img/artichoke-logo.png";
+import "@artichokeruby/logo/img/artichoke-logo.svg";
+import "@artichokeruby/logo/img/artichoke-logo-transparent.png";
+import "@artichokeruby/logo/img/artichoke-social-logo.png";
 import "./assets/robots.txt";
 
 // install snippets styles
