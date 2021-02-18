@@ -129,11 +129,15 @@ module.exports = (_env, argv) => {
         },
         {
           test: /\.svg$/,
-          include: path.resolve(
-            __dirname,
-            "node_modules",
-            "@artichokeruby/logo/img"
-          ),
+          include: [
+            path.resolve(__dirname, "src", "assets"),
+            path.resolve(__dirname, "node_modules", "@artichokeruby/logo/img"),
+            path.resolve(
+              __dirname,
+              "node_modules",
+              "@artichokeruby/logo/favicons"
+            ),
+          ],
           type: "asset/resource",
           use: "@hyperbola/svgo-loader",
           generator: {
@@ -141,30 +145,16 @@ module.exports = (_env, argv) => {
           },
         },
         {
-          include: path.resolve(
-            __dirname,
-            "node_modules",
-            "@artichokeruby/logo/img"
-          ),
+          include: [
+            path.resolve(__dirname, "src", "assets"),
+            path.resolve(__dirname, "node_modules", "@artichokeruby/logo/img"),
+            path.resolve(
+              __dirname,
+              "node_modules",
+              "@artichokeruby/logo/favicons"
+            ),
+          ],
           exclude: /\.svg$/,
-          type: "asset/resource",
-          generator: {
-            filename: "[name][ext]",
-          },
-        },
-        {
-          include: path.resolve(__dirname, "src", "assets"),
-          type: "asset/resource",
-          generator: {
-            filename: "[name][ext]",
-          },
-        },
-        {
-          include: path.resolve(
-            __dirname,
-            "node_modules",
-            "@artichokeruby/logo/favicons"
-          ),
           type: "asset/resource",
           generator: {
             filename: "[name][ext]",
@@ -181,11 +171,15 @@ module.exports = (_env, argv) => {
         },
         {
           test: /\.svg$/,
-          exclude: path.resolve(
-            __dirname,
-            "node_modules",
-            "@artichokeruby/logo/img"
-          ),
+          exclude: [
+            path.resolve(__dirname, "src", "assets"),
+            path.resolve(__dirname, "node_modules", "@artichokeruby/logo/img"),
+            path.resolve(
+              __dirname,
+              "node_modules",
+              "@artichokeruby/logo/favicons"
+            ),
+          ],
           type: "asset",
           use: "@hyperbola/svgo-loader",
           generator: {
