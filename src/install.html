@@ -53,6 +53,7 @@
     <include src="src/partials/google-analytics.html"></include>
   </head>
   <body>
+    <include src="src/partials/google-analytics-noscript.html"></include>
     <a class="visually-hidden visually-hidden-focusable" href="#content">
       Skip to main content
     </a>
@@ -91,22 +92,16 @@
               <a
                 href="#nightly"
                 class="btn btn-lg btn-artichoke-primary mb-3 me-md-3"
-                onclick="gtag('event', 'click',  {'event_category': 'jumbotron', 'event_action': 'click', 'event_label': 'Install - Nightly Builds'});"
               >
                 Nightly Builds
               </a>
               <a
                 href="#docker"
                 class="btn btn-lg btn-outline-secondary mb-3 me-md-3"
-                onclick="gtag('event', 'click',  {'event_category': 'jumbotron', 'event_action': 'click', 'event_label': 'Install - Docker'});"
               >
                 Docker
               </a>
-              <a
-                href="#cargo"
-                class="btn btn-lg btn-outline-secondary mb-3"
-                onclick="gtag('event', 'click',  {'event_category': 'jumbotron', 'event_action': 'click', 'event_label': 'Install - Cargo'});"
-              >
+              <a href="#cargo" class="btn btn-lg btn-outline-secondary mb-3">
                 Cargo
               </a>
             </div>
@@ -144,17 +139,11 @@
           <p>
             These daily binaries track the latest trunk commit of Artichoke.
             Binaries are also distributed through
-            <a
-              href="https://github.com/rbenv/ruby-build"
-              onclick="gtag('event', 'click',  {'event_category': 'nightly', 'event_action': 'click', 'event_label': 'Pre-compiled nightly builds - ruby-build'});"
-            >
-              ruby-build</a
-            >.
+            <a href="https://github.com/rbenv/ruby-build">ruby-build</a>.
           </p>
           <a
             class="btn btn-lg btn-outline-success mb-3"
             href="https://github.com/artichoke/nightly/releases"
-            onclick="gtag('event', 'click',  {'event_category': 'nightly', 'event_action': 'click', 'event_label': 'Pre-compiled nightly builds - Previous Releases'});"
           >
             Previous Releases
           </a>
@@ -188,7 +177,6 @@
           <a
             class="btn btn-lg btn-outline-info mb-3"
             href="https://hub.docker.com/r/artichokeruby/artichoke"
-            onclick="gtag('event', 'click',  {'event_category': 'docker', 'event_action': 'click', 'event_label': 'Docker images - On Docker Hub'});"
           >
             On Docker Hub
           </a>
@@ -214,7 +202,6 @@
           <a
             class="btn btn-lg btn-outline-dark mb-3"
             href="https://github.com/artichoke/artichoke/blob/trunk/BUILD.md"
-            onclick="gtag('event', 'click',  {'event_category': 'cargo', 'event_action': 'click', 'event_label': 'Using Cargo - Build Guide'});"
           >
             Build Guide
           </a>

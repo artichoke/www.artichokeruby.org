@@ -50,6 +50,7 @@
     <include src="src/partials/google-analytics.html"></include>
   </head>
   <body>
+    <include src="src/partials/google-analytics-noscript.html"></include>
     <a class="visually-hidden visually-hidden-focusable" href="#content">
       Skip to main content
     </a>
@@ -90,15 +91,10 @@
               <a
                 href="https://github.com/artichoke/artichoke/labels/E-easy"
                 class="btn btn-lg btn-artichoke-primary mb-3 me-md-3"
-                onclick="gtag('event', 'click',  {'event_category': 'jumbotron', 'event_action': 'click', 'event_label': 'Get started - Contribute'});"
               >
                 Contribute
               </a>
-              <a
-                href="/install/"
-                class="btn btn-lg btn-outline-secondary mb-3"
-                onclick="gtag('event', 'click',  {'event_category': 'jumbotron', 'event_action': 'click', 'event_label': 'Download - Install v0.1.0-pre.0'});"
-              >
+              <a href="/install/" class="btn btn-lg btn-outline-secondary mb-3">
                 Install
               </a>
             </div>
@@ -108,7 +104,6 @@
               <a
                 href="https://github.com/artichoke/artichoke/releases"
                 class="link-secondary"
-                onclick="gtag('event', 'click',  {'event_category': 'jumbotron', 'event_action': 'click', 'event_label': 'Download - Previous releases'});"
               >
                 Previous releases
               </a>
@@ -134,11 +129,7 @@
             The Artichoke Ruby Core and Standard Library runtime is bundled in
             these two artifacts.
           </p>
-          <a
-            class="btn btn-lg btn-outline-primary mb-3"
-            href="/install/"
-            onclick="gtag('event', 'click',  {'event_category': 'install', 'event_action': 'click', 'event_label': 'Read install guide'});"
-          >
+          <a class="btn btn-lg btn-outline-primary mb-3" href="/install/">
             Read install guide
           </a>
         </div>
@@ -164,12 +155,7 @@
           <h2 class="display-5 font-weight-normal">Subscribe</h2>
           <p class="lead font-weight-normal">
             Stay up to date with project updates on Twitter
-            <a
-              href="https://twitter.com/artichokeruby"
-              onclick="gtag('event', 'click',  {'event_category': 'subscribe', 'event_action': 'click', 'event_label': '@artichokeruby'});"
-            >
-              @artichokeruby</a
-            >.
+            <a href="https://twitter.com/artichokeruby">@artichokeruby</a>.
           </p>
           <p>
             We'll tweet about Rust, crates we're developing, and new releases.
@@ -179,7 +165,6 @@
             class="twitter-follow-button"
             data-size="large"
             data-show-count="false"
-            onclick="gtag('event', 'click',  {'event_category': 'subscribe', 'event_action': 'click', 'event_label': 'Follow @artichokeruby'});"
           >
             Follow @artichokeruby
           </a>
