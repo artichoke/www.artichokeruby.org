@@ -37,7 +37,7 @@
     "posthtml": "^0.15.1",
     "posthtml-include": "^1.6.2",
     "posthtml-markdownit": "^1.2.3",
-    "purgecss-webpack-plugin": "^4.0.0",
+    "purgecss-webpack-plugin": "^4.0.2",
     "sass": "^1.32.8",
     "sass-loader": "^11.0.1",
     "style-loader": "^2.0.0",
