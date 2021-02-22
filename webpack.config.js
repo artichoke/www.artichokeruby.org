@@ -194,7 +194,6 @@ module.exports = (_env, argv) => {
           use: {
             loader: "html-loader",
             options: {
-              esModule: false,
               preprocessor: posthtmlHtmlLoaderPreprocessor,
             },
           },
