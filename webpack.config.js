@@ -4,37 +4,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const PurgeCSSPlugin = require("purgecss-webpack-plugin");
-const hljs = require("highlight.js");
-const posthtml = require("posthtml");
-const posthtmlInclude = require("posthtml-include");
-const posthtmlMarkdownit = require("posthtml-markdownit");
 const svgToMiniDataURI = require("mini-svg-data-uri");
-
-const root = path.resolve(__dirname);
-
-const posthtmlHtmlLoaderPreprocessor = (content, loaderContext) => {
-  const markdownPlugin = posthtmlMarkdownit({
-    markdownit: {
-      highlight: (str, lang) => {
-        const highlighted = hljs.highlight(lang, str, true);
-        const html = highlighted.value;
-        return `<pre class="hljs"><code class="hljs language-${lang}">${html}</code></pre>`;
-      },
-    },
-  });
-
-  try {
-    const result = posthtml()
-      .use(posthtmlInclude({ root }))
-      .use(markdownPlugin)
-      .process(content, { sync: true });
-
-    return result.html;
-  } catch (error) {
-    loaderContext.emitError(error);
-    return content;
-  }
-};
 
 // Taken and modified from tailwindcss at:
 // https://github.com/tailwindlabs/tailwindcss/blob/21f7e67c/src/lib/purgeUnusedStyles.js#L25-L34
@@ -63,7 +33,15 @@ const plugins = [
   }),
   new PurgeCSSPlugin({
     paths: glob.sync(`${path.join(__dirname, "src")}/**/*`, { nodir: true }),
-    safelist: ["pre", "hljs", "language-shell", "hljs-meta", "bash", "show"],
+    safelist: [
+      "artichoke-highlight",
+      "bash",
+      "hljs",
+      "hljs-meta",
+      "language-shell",
+      "pre",
+      "show",
+    ],
     // Taken and modified from tailwindcss at:
     // https://github.com/tailwindlabs/tailwindcss/blob/21f7e67c/src/lib/purgeUnusedStyles.js#L108-117
     //
@@ -191,12 +169,12 @@ module.exports = (_env, argv) => {
         },
         {
           test: /\.html$/,
-          use: {
-            loader: "html-loader",
-            options: {
-              preprocessor: posthtmlHtmlLoaderPreprocessor,
-            },
-          },
+          include: path.resolve(__dirname, "src", "partials"),
+          use: "html-loader",
+        },
+        {
+          test: /\.md$/,
+          use: ["html-loader", path.resolve(__dirname, "loaders/markdown.js")],
         },
       ],
     },
