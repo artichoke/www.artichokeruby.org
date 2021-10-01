@@ -9,6 +9,8 @@ name: CI
       - trunk
   schedule:
     - cron: "0 0 * * TUE"
+concurrency:
+  group: ci-${{ github.head_ref }}
 jobs:
   build:
     name: Build and deploy
