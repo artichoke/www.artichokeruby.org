@@ -22,7 +22,7 @@
     "@artichokeruby/logo": "^0.10.0",
     "@popperjs/core": "^2.10.2",
     "bootstrap": "^5.1.1",
-    "bootstrap-icons": "^1.5.0"
+    "bootstrap-icons": "^1.6.1"
   },
   "devDependencies": {
     "@hyperbola/svgo-loader": "^0.2.2",
