@@ -32,7 +32,7 @@
     "highlight.js": "^11.3.1",
     "html-loader": "^3.0.1",
     "html-webpack-plugin": "^5.5.0",
-    "marked": "^3.0.4",
+    "marked": "^4.0.0",
     "mini-css-extract-plugin": "^2.4.3",
     "mini-svg-data-uri": "^1.4.3",
     "purgecss-webpack-plugin": "^4.0.3",
