@@ -180,10 +180,5 @@ module.exports = (_env, argv) => {
     },
     plugins,
     optimization,
-    devServer: {
-      compress: true,
-      host: "127.0.0.1",
-      port: 8080,
-    },
   };
 };
