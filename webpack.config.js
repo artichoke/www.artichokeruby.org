@@ -66,10 +66,100 @@ const plugins = [
   }),
 ];
 
-module.exports = (_env, argv) => {
-  let cssLoader = "style-loader";
-  let optimization = {
-    minimize: false,
+module.exports = {
+  context: path.resolve(__dirname, "src"),
+  entry: {
+    index: path.resolve(__dirname, "src/index.js"),
+    install: path.resolve(__dirname, "src/install.js"),
+  },
+  output: {
+    filename: "[name].[contenthash].js",
+    path: path.resolve(__dirname, "dist"),
+    publicPath: "/",
+  },
+  module: {
+    rules: [
+      {
+        test: /\.s?css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.svg$/,
+        include: [
+          path.resolve(__dirname, "src", "assets"),
+          path.resolve(__dirname, "node_modules", "@artichokeruby/logo/img"),
+          path.resolve(
+            __dirname,
+            "node_modules",
+            "@artichokeruby/logo/favicons"
+          ),
+        ],
+        type: "asset/resource",
+        use: "@hyperbola/svgo-loader",
+        generator: {
+          filename: "[name][ext]",
+        },
+      },
+      {
+        include: [
+          path.resolve(__dirname, "src", "assets"),
+          path.resolve(__dirname, "node_modules", "@artichokeruby/logo/img"),
+          path.resolve(
+            __dirname,
+            "node_modules",
+            "@artichokeruby/logo/favicons"
+          ),
+        ],
+        exclude: /\.svg$/,
+        type: "asset/resource",
+        generator: {
+          filename: "[name][ext]",
+        },
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/,
+        include: path.resolve(
+          __dirname,
+          "node_modules",
+          "@artichokeruby/logo/optimized"
+        ),
+        type: "asset",
+      },
+      {
+        test: /\.svg$/,
+        exclude: [
+          path.resolve(__dirname, "src", "assets"),
+          path.resolve(__dirname, "node_modules", "@artichokeruby/logo/img"),
+          path.resolve(
+            __dirname,
+            "node_modules",
+            "@artichokeruby/logo/favicons"
+          ),
+        ],
+        type: "asset",
+        use: "@hyperbola/svgo-loader",
+        generator: {
+          dataUrl: (content) => {
+            content = content.toString();
+            return svgToMiniDataURI(content);
+          },
+        },
+      },
+      {
+        test: /\.html$/,
+        include: path.resolve(__dirname, "src", "partials"),
+        use: "html-loader",
+      },
+      {
+        test: /\.md$/,
+        use: ["html-loader", path.resolve(__dirname, "loaders/markdown.js")],
+      },
+    ],
+  },
+  plugins,
+  optimization: {
+    minimize: true,
+    minimizer: ["...", new CssMinimizerPlugin()],
     chunkIds: "deterministic",
     moduleIds: "deterministic",
     splitChunks: {
@@ -82,103 +172,5 @@ module.exports = (_env, argv) => {
         },
       },
     },
-  };
-  if (argv.mode === "production") {
-    cssLoader = MiniCssExtractPlugin.loader;
-    optimization.minimize = true;
-    optimization.minimizer = ["...", new CssMinimizerPlugin()];
-  }
-  return {
-    context: path.resolve(__dirname, "src"),
-    entry: {
-      index: path.resolve(__dirname, "src/index.js"),
-      install: path.resolve(__dirname, "src/install.js"),
-    },
-    output: {
-      filename: "[name].[contenthash].js",
-      path: path.resolve(__dirname, "dist"),
-      publicPath: "/",
-    },
-    module: {
-      rules: [
-        {
-          test: /\.s?css$/,
-          use: [cssLoader, "css-loader", "sass-loader"],
-        },
-        {
-          test: /\.svg$/,
-          include: [
-            path.resolve(__dirname, "src", "assets"),
-            path.resolve(__dirname, "node_modules", "@artichokeruby/logo/img"),
-            path.resolve(
-              __dirname,
-              "node_modules",
-              "@artichokeruby/logo/favicons"
-            ),
-          ],
-          type: "asset/resource",
-          use: "@hyperbola/svgo-loader",
-          generator: {
-            filename: "[name][ext]",
-          },
-        },
-        {
-          include: [
-            path.resolve(__dirname, "src", "assets"),
-            path.resolve(__dirname, "node_modules", "@artichokeruby/logo/img"),
-            path.resolve(
-              __dirname,
-              "node_modules",
-              "@artichokeruby/logo/favicons"
-            ),
-          ],
-          exclude: /\.svg$/,
-          type: "asset/resource",
-          generator: {
-            filename: "[name][ext]",
-          },
-        },
-        {
-          test: /\.(png|jpe?g|gif)$/,
-          include: path.resolve(
-            __dirname,
-            "node_modules",
-            "@artichokeruby/logo/optimized"
-          ),
-          type: "asset",
-        },
-        {
-          test: /\.svg$/,
-          exclude: [
-            path.resolve(__dirname, "src", "assets"),
-            path.resolve(__dirname, "node_modules", "@artichokeruby/logo/img"),
-            path.resolve(
-              __dirname,
-              "node_modules",
-              "@artichokeruby/logo/favicons"
-            ),
-          ],
-          type: "asset",
-          use: "@hyperbola/svgo-loader",
-          generator: {
-            dataUrl: (content) => {
-              content = content.toString();
-              return svgToMiniDataURI(content);
-            },
-          },
-        },
-        {
-          test: /\.html$/,
-          include: path.resolve(__dirname, "src", "partials"),
-          use: "html-loader",
-        },
-        {
-          test: /\.md$/,
-          use: ["html-loader", path.resolve(__dirname, "loaders/markdown.js")],
-        },
-      ],
-    },
-    plugins,
-    optimization,
-  };
+  },
 };

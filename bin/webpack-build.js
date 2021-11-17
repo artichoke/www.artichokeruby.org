@@ -8,7 +8,7 @@ const main = async () => {
     let compiler;
     const webpackConfig = {
       mode: "production",
-      ...config(options.env, { mode: "prodution" }),
+      ...config,
     };
 
     try {
