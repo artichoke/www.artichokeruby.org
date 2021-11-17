@@ -49,8 +49,6 @@ const main = async () => {
       resolve();
     };
     createCompiler(options, callback);
-
-    resolve();
   });
 };
 
