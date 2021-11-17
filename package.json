@@ -40,8 +40,7 @@
     "sass-loader": "^12.3.0",
     "style-loader": "^3.3.1",
     "svgo": "^2.8.0",
-    "webpack": "^5.64.1",
-    "webpack-cli": "^4.9.1"
+    "webpack": "^5.64.1"
   },
   "eslintConfig": {
     "env": {
@@ -56,8 +55,8 @@
     }
   },
   "scripts": {
-    "build": "webpack --mode production",
-    "dev": "npx chokidar-cli \"src/**/*\" -c \"webpack --mode production\" --initial",
+    "build": "node bin/webpack-build.js",
+    "dev": "npx chokidar-cli \"src/**/*\" -c \"npm run build\" --initial",
     "fmt": "npx prettier --write \"**/*\"",
     "lint": "npx eslint --fix .",
     "serve": "python -m http.server --directory dist --bind 127.0.0.1 8080"
