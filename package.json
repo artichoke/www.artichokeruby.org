@@ -57,6 +57,6 @@
     "fmt": "npx prettier --write \"**/*\"",
     "lint": "npx eslint --fix .",
     "serve": "python3 -u -m http.server --directory dist --bind 127.0.0.1 0",
-    "start": "npx concurrently \"npm:build\" \"npm:serve\""
+    "start": "npx concurrently \"npm:dev\" \"npm:serve\""
   }
 }
