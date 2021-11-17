@@ -56,7 +56,7 @@
     "dev": "npx chokidar-cli \"src/**/*\" \"package.json\" \"package-lock.json\" \"webpack.config.*\" -c \"npm run build\" --initial",
     "fmt": "npx prettier --write \"**/*\"",
     "lint": "npx eslint --fix .",
-    "serve": "python -m http.server --directory dist --bind 127.0.0.1 8080",
-    "start": "npx concurrently \"npm:build\" \"npm:serve\""
+    "serve": "python3 -u -m http.server --directory dist --bind 127.0.0.1 0",
+    "start": "npx concurrently \"npm:dev\" \"npm:serve\""
   }
 }
