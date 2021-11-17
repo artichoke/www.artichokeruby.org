@@ -22,24 +22,6 @@ const main = async () => {
     return compiler;
   };
 
-  const callback = (error, stats) => {
-    if (error) {
-      console.error(error);
-      process.exit(2);
-    }
-
-    if (stats.hasErrors()) {
-      process.exitCode = 1;
-    }
-
-    const printedStats = stats.toString();
-
-    // Avoid extra empty line when `stats: 'none'`
-    if (printedStats) {
-      console.log(printedStats);
-    }
-  };
-
   const env = {
     WEBPACK_BUNDLE: true,
     WEBPACK_BUILD: true,
@@ -48,6 +30,24 @@ const main = async () => {
   const options = { env };
 
   return new Promise((resolve) => {
+    const callback = (error, stats) => {
+      if (error) {
+        console.error(error);
+        process.exit(2);
+      }
+
+      if (stats.hasErrors()) {
+        process.exitCode = 1;
+      }
+
+      const printedStats = stats.toString();
+
+      // Avoid extra empty line when `stats: 'none'`
+      if (printedStats) {
+        console.log(printedStats);
+      }
+      resolve();
+    };
     createCompiler(options, callback);
 
     resolve();
