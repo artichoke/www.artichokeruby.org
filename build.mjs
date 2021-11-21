@@ -74,7 +74,6 @@ const includeMarkdown = (source) => {
   return marked(content.toString());
 }
 
-
 const esbuildSassPlugin = {
   name: "sass",
   setup(build) {
