@@ -47,7 +47,7 @@ jobs:
         run: npm ci
 
       - name: Lint with eslint
-        run: npx eslint .
+        run: npm run lint
 
   text:
     name: Lint and format text
