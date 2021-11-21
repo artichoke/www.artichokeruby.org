@@ -55,11 +55,16 @@
     }
   },
   "scripts": {
-    "build": "node bin/webpack-build.js",
-    "dev": "npx chokidar-cli \"src/**/*\" \"package.json\" \"package-lock.json\" \"webpack.config.*\" -c \"npm run build\" --initial",
+    "build:debug": "node build.mjs",
+    "build:release": "node build.mjs --release",
+    "clean": "rm -rf dist",
+    "dev:debug": "npx concurrently \"npm:serve\" \"npm:watch:debug\"",
+    "dev:release": "npx concurrently \"npm:serve\" \"npm:watch:release\"",
     "fmt": "npx prettier --write \"**/*\"",
-    "lint": "npx eslint --fix .",
+    "lint": "npx eslint . --ext .js,.jsx,.mjs,.ts,.tsx",
+    "lint:fix": "npx eslint . --ext .js,.jsx,.mjs,.ts,.tsx --fix",
     "serve": "python3 -u -m http.server --directory dist --bind 127.0.0.1 0",
-    "start": "npx concurrently \"npm:dev\" \"npm:serve\""
+    "watch:debug": "npx chokidar-cli \"package.json\" \"package-lock.json\" \"build.mjs\" \"src/**/*\" -c \"npm run build:debug\" --initial",
+    "watch:release": "npx chokidar-cli \"package.json\" \"package-lock.json\" \"build.mjs\" \"src/**/*\" -c \"npm run build:release\" --initial"
   }
 }
