@@ -22,8 +22,8 @@ jobs:
       - name: Install toolchain
         run: npm ci
 
-      - name: Webpack build
-        run: npm run build
+      - name: Build Webapp
+        run: node build.mjs --release
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

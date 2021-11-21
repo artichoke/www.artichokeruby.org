@@ -6,7 +6,7 @@
         height="40"
         title="Artichoke Ruby"
         alt="Artichoke Ruby logo"
-        src="~@artichokeruby/logo/optimized/nav-white.svg"
+        src="/nav-white.svg"
       />
     </a>
     <button
@@ -24,10 +24,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
+          <!-- prettier-ignore -->
+          <a class="nav-link <% if (it.page === 'index') { %> active" aria-current="page" <% } else { %> " <% } %> href="/">
+            Home
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/install/">
+          <!-- prettier-ignore -->
+          <a class="nav-link <% if (it.page === 'install') { %> active" aria-current="page" <% } else { %> " <% } %> href="/install/">
             Install
           </a>
         </li>

@@ -1,6 +1,6 @@
 {
   "name": "@artichokeruby/www.artichokeruby.org",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "description": "Artichoke project website",
   "keywords": [
@@ -20,24 +20,17 @@
   "repository": "github:artichoke/www.artichokeruby.org",
   "dependencies": {
     "@artichokeruby/logo": "^0.10.0",
+    "@minify-html/js": "^0.7.0",
     "@popperjs/core": "^2.10.2",
     "bootstrap": "^5.1.3",
     "bootstrap-icons": "^1.7.1"
   },
   "devDependencies": {
-    "@hyperbola/svgo-loader": "^0.2.2",
-    "css-loader": "^6.5.1",
-    "css-minimizer-webpack-plugin": "^3.1.3",
+    "esbuild": "^0.13.14",
+    "eta": "^1.12.3",
     "highlight.js": "^11.3.1",
-    "html-loader": "^3.0.1",
-    "html-webpack-plugin": "^5.5.0",
-    "marked": "^4.0.3",
-    "mini-css-extract-plugin": "^2.4.3",
-    "mini-svg-data-uri": "^1.4.3",
-    "sass": "^1.43.4",
-    "sass-loader": "^12.3.0",
-    "svgo": "^2.8.0",
-    "webpack": "^5.64.1"
+    "marked": "^4.0.4",
+    "sass": "^1.43.4"
   },
   "eslintConfig": {
     "env": {
@@ -47,16 +40,21 @@
       "node": true
     },
     "parserOptions": {
-      "ecmaVersion": 2018,
+      "ecmaVersion": 2020,
       "sourceType": "module"
     }
   },
   "scripts": {
-    "build": "node bin/webpack-build.js",
-    "dev": "npx chokidar-cli \"src/**/*\" \"package.json\" \"package-lock.json\" \"webpack.config.*\" -c \"npm run build\" --initial",
+    "build:debug": "node build.mjs",
+    "build:release": "node build.mjs --release",
+    "clean": "rm -rf dist",
+    "dev:debug": "npx concurrently \"npm:serve\" \"npm:watch:debug\"",
+    "dev:release": "npx concurrently \"npm:serve\" \"npm:watch:release\"",
     "fmt": "npx prettier --write \"**/*\"",
-    "lint": "npx eslint --fix .",
+    "lint": "npx eslint . --ext .js,.jsx,.mjs,.ts,.tsx",
+    "lint:fix": "npx eslint . --ext .js,.jsx,.mjs,.ts,.tsx --fix",
     "serve": "python3 -u -m http.server --directory dist --bind 127.0.0.1 0",
-    "start": "npx concurrently \"npm:dev\" \"npm:serve\""
+    "watch:debug": "npx chokidar-cli \"package.json\" \"package-lock.json\" \"build.mjs\" \"src/**/*\" -c \"npm run build:debug\" --initial",
+    "watch:release": "npx chokidar-cli \"package.json\" \"package-lock.json\" \"build.mjs\" \"src/**/*\" -c \"npm run build:release\" --initial"
   }
 }

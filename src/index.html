@@ -12,9 +12,10 @@
     <title>Artichoke Ruby</title>
 
     <link rel="canonical" href="https://www.artichokeruby.org/" />
+    <link rel="stylesheet" href="/main.bundle.css" />
 
     <!-- Favicons -->
-    <%= require("./partials/favicons.html").default %>
+    <%~ includeFile("partials/favicons.html") %>
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -47,14 +48,14 @@
     <meta property="og:image:width" content="1600" />
     <meta property="og:image:height" content="800" />
 
-    <%= require("./partials/google-analytics.html").default %>
+    <%~ includeFile("partials/google-analytics.html") %>
   </head>
   <body>
-    <%= require("./partials/google-analytics-noscript.html").default %>
+    <%~ includeFile("partials/google-analytics-noscript.html") %>
     <a class="visually-hidden visually-hidden-focusable" href="#content">
       Skip to main content
     </a>
-    <%= require("./partials/nav/index.html").default %>
+    <%~ includeFile("partials/nav.html", { page: "index" }) %>
 
     <!--
       This layout is heavily inspired by the Bootstrap v5 docs homepage, which
@@ -73,7 +74,7 @@
               class="mw-100 d-block mx-auto"
               title="Artichoke Ruby"
               alt="Artichoke Ruby logo"
-              src="<%= require('@artichokeruby/logo/optimized/artichoke-logo.svg') %>"
+              src="/artichoke-logo.svg"
             />
           </div>
           <div class="col-md-8 order-md-1 col-lg-7 text-center text-md-start">
@@ -124,12 +125,7 @@
               bg-artichoke
             "
           >
-            <img
-              alt="Ruby logo"
-              width="32"
-              height="32"
-              src="<%= require('./logos/ruby.svg') %>"
-            />
+            <img alt="Ruby logo" width="32" height="32" src="/logos/ruby.svg" />
           </div>
           <h2 class="display-5 font-weight-normal">Install</h2>
           <p class="lead font-weight-normal">
@@ -146,9 +142,9 @@
         </div>
         <!-- prettier-ignore -->
         <div class="col-md-7 ps-md-5">
-          <%= require("./rbenv-install.md").default %>
-          <%= require("./docker-run.md").default %>
-          <%= require("./cargo-install.md").default %>
+          <%~ it.includeMarkdown("rbenv-install.md") %>
+          <%~ it.includeMarkdown("docker-run.md") %>
+          <%~ it.includeMarkdown("cargo-install.md") %>
         </div>
       </div>
 
@@ -167,7 +163,7 @@
               alt="Twitter logo"
               width="32"
               height="32"
-              src="<%= require('@artichokeruby/logo/social/twitter-logo-blue.svg') %>"
+              src="/social/twitter-logo-blue.svg"
             />
           </div>
           <h2 class="display-5 font-weight-normal">Subscribe</h2>
@@ -200,7 +196,8 @@
       </div>
     </div>
 
-    <%= require("./partials/footer.html").default %>
+    <%~ includeFile("partials/footer.html") %>
     <script async src="https://platform.twitter.com/widgets.js"></script>
+    <script async type="module" src="/main.bundle.js"></script>
   </body>
 </html>
