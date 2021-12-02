@@ -26,7 +26,7 @@
     "bootstrap-icons": "^1.7.1"
   },
   "devDependencies": {
-    "esbuild": "^0.13.14",
+    "esbuild": "^0.14.1",
     "eta": "^1.12.3",
     "highlight.js": "^11.3.1",
     "marked": "^4.0.4",
