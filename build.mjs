@@ -47,7 +47,6 @@ const assets = Object.freeze([
   "node_modules/@artichokeruby/logo/social/discord-logo.svg",
 ]);
 
-
 marked.setOptions({
   renderer: new marked.Renderer(),
   highlight: (code, language) => {
@@ -72,7 +71,7 @@ const includeMarkdown = (source) => {
   const filePath = path.join(__dirname, "src", source);
   const content = readFileSync(filePath);
   return marked(content.toString());
-}
+};
 
 const esbuildSassPlugin = {
   name: "sass",
@@ -84,7 +83,10 @@ const esbuildSassPlugin = {
       };
     });
     build.onLoad({ filter: /.*/, namespace: "sass" }, (args) => {
-      let compiled = sass.renderSync({ file: args.path, includePaths: [path.join(__dirname, "node_modules")], });
+      let compiled = sass.renderSync({
+        file: args.path,
+        includePaths: [path.join(__dirname, "node_modules")],
+      });
       return {
         contents: compiled.css.toString(),
         loader: "css",
@@ -151,7 +153,10 @@ const build = async () => {
     install = minifyHtml.minify(install, cfg);
   }
 
-  await fs.writeFile(path.join(__dirname, "dist", "install", "index.html"), install);
+  await fs.writeFile(
+    path.join(__dirname, "dist", "install", "index.html"),
+    install
+  );
 
   await esbuild.build({
     entryPoints: {
