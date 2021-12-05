@@ -1,7 +1,5 @@
 import "bootstrap";
-import "./bootstrap-slim.scss";
-
-// marketing hero
+import "normalize.css";
 import "./index.scss";
 
 // install snippets styles
