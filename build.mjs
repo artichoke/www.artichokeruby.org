@@ -10,6 +10,7 @@ import { renderFile } from "eta";
 import esbuild from "esbuild";
 import hljs from "highlight.js";
 import { marked } from "marked";
+import { PurgeCSS } from "purgecss";
 import sass from "sass";
 
 // eslint-disable-next-line no-shadow
@@ -161,6 +162,14 @@ const build = async () => {
     minify: process.argv.includes("--release"),
     plugins: [esbuildSassPlugin],
   });
+
+  const purgeCSSResult = await new PurgeCSS().purge({
+    content: ["dist/**/*.html"],
+    css: ["dist/**/*.css"],
+  });
+  for (const { file, css } of purgeCSSResult) {
+    await fs.writeFile(file, css);
+  }
 };
 
 (async function main() {
