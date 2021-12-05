@@ -95,6 +95,31 @@ const esbuildSassPlugin = {
   },
 };
 
+const renderTemplate = async (template) => {
+  let content = await renderFile(
+    template,
+    { includeMarkdown },
+    { views: path.join(__dirname, "src") }
+  );
+
+  if (process.argv.includes("--release")) {
+    const cfg = minifyHtml.createConfiguration({
+      do_not_minify_doctype: true,
+      ensure_spec_compliant_unquoted_attribute_values: true,
+      keep_closing_tags: true,
+      keep_html_and_head_opening_tags: true,
+      keep_spaces_between_attributes: true,
+      minify_js: true,
+      minify_css: true,
+      remove_bangs: false,
+    });
+
+    content = minifyHtml.minify(content, cfg);
+  }
+
+  return content;
+};
+
 const build = async () => {
   await fs.mkdir("dist/install", { recursive: true });
   await fs.mkdir("dist/logos", { recursive: true });
@@ -113,46 +138,10 @@ const build = async () => {
     })
   );
 
-  let index = await renderFile(
-    "index.html",
-    { includeMarkdown },
-    { views: path.join(__dirname, "src") }
-  );
-
-  if (process.argv.includes("--release")) {
-    const cfg = minifyHtml.createConfiguration({
-      ensure_spec_compliant_unquoted_attribute_values: true,
-      keep_html_and_head_opening_tags: true,
-      keep_closing_tags: true,
-      minify_js: true,
-      minify_css: true,
-      remove_bangs: false,
-    });
-
-    index = minifyHtml.minify(index, cfg);
-  }
-
+  let index = await renderTemplate("index.html");
   await fs.writeFile(path.join(__dirname, "dist", "index.html"), index);
 
-  let install = await renderFile(
-    "install.html",
-    { includeMarkdown },
-    { views: path.join(__dirname, "src") }
-  );
-
-  if (process.argv.includes("--release")) {
-    const cfg = minifyHtml.createConfiguration({
-      ensure_spec_compliant_unquoted_attribute_values: true,
-      keep_html_and_head_opening_tags: true,
-      keep_closing_tags: true,
-      minify_js: true,
-      minify_css: true,
-      remove_bangs: false,
-    });
-
-    install = minifyHtml.minify(install, cfg);
-  }
-
+  let install = await renderTemplate("install.html");
   await fs.writeFile(
     path.join(__dirname, "dist", "install", "index.html"),
     install
