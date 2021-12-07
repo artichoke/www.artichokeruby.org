@@ -97,10 +97,19 @@ const esbuildSassPlugin = {
   },
 };
 
-const renderTemplate = async (template) => {
+const renderTemplate = async (template, language) => {
+  const localePath = path.join(__dirname, "src", "locales", language + '.json');
+  const t = JSON.parse(readFileSync(localePath));
+  const prefix = (language == "en") ? "" : ("/" + language)
+
   let content = await renderFile(
     template,
-    { includeMarkdown },
+    {
+      language,
+      t,
+      prefix,
+      includeMarkdown
+    },
     { views: path.join(__dirname, "src") }
   );
 
@@ -123,9 +132,14 @@ const renderTemplate = async (template) => {
 };
 
 const build = async () => {
+  const locales = ["en", "zh-hans"];
+
   await fs.mkdir("dist/install", { recursive: true });
   await fs.mkdir("dist/logos", { recursive: true });
   await fs.mkdir("dist/social", { recursive: true });
+  await fs.mkdir("dist/zh-hans/install", { recursive: true });
+  await fs.mkdir("dist/zh-hans/logos", { recursive: true });
+  await fs.mkdir("dist/zh-hans/social", { recursive: true });
 
   await Promise.all(
     assets.map(async (asset) => {
@@ -140,14 +154,20 @@ const build = async () => {
     })
   );
 
-  let index = await renderTemplate("index.html");
-  await fs.writeFile(path.join(__dirname, "dist", "index.html"), index);
+  await Promise.all(locales.map(async (lang) => {
+    let index = await renderTemplate("index.html", lang);
+    await fs.writeFile(lang == "en" ?
+      path.join(__dirname, "dist", "index.html") :
+      path.join(__dirname, "dist", lang, "index.html"), index);
 
-  let install = await renderTemplate("install.html");
-  await fs.writeFile(
-    path.join(__dirname, "dist", "install", "index.html"),
-    install
-  );
+    let install = await renderTemplate("install.html", lang);
+    await fs.writeFile(
+      lang == "en" ?
+        path.join(__dirname, "dist", "install", "index.html") :
+        path.join(__dirname, "dist", lang, "install", "index.html"),
+      install
+    );
+  }));
 
   await esbuild.build({
     entryPoints: {

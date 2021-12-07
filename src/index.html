@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="<%= it.language %>" dir="ltr">
   <head>
     <meta charset="utf-8" />
     <meta
@@ -67,9 +67,9 @@
   <body>
     <%~ includeFile("partials/google-analytics-noscript.html") %>
     <a class="visually-hidden visually-hidden-focusable" href="#content">
-      Skip to main content
+      <%= it.t.skip_to_main %>
     </a>
-    <%~ includeFile("partials/nav.html", { page: "index" }) %>
+    <%~ includeFile("partials/nav.html", { page: "index", t: it.t.nav, prefix: it.prefix }) %>
 
     <!--
       This layout is heavily inspired by the Bootstrap v5 docs homepage, which
@@ -92,35 +92,31 @@
             />
           </div>
           <div class="col-md-8 order-md-1 col-lg-7 text-center text-md-start">
-            <h1 class="mb-3">Build the next Ruby for Wasm with Artichoke</h1>
-            <p class="lead mb-4">
-              Bundle Ruby applications into a single Wasm executable with
-              Artichoke, a Ruby made with Rust. The modular interpreter enables
-              running untrusted code.
-            </p>
-            <p class="lead mb-4">
-              Artichoke is pre-release software. We're looking for contributors
-              to build a Ruby for pure Wasm targets.
-            </p>
+            <h1 class="mb-3"><%= it.t.index.title %></h1>
+            <% it.t.index.description.forEach(paragraph => { %>
+              <p class="lead mb-4">
+                <%= paragraph %>
+              </p>
+            <% }) %>
             <div class="d-flex flex-column flex-md-row">
               <a
                 href="https://github.com/artichoke/artichoke/labels/E-easy"
                 class="btn btn-lg btn-artichoke-primary mb-3 me-md-3"
               >
-                Contribute
+                <%= it.t.index.contribute %>
               </a>
-              <a href="/install/" class="btn btn-lg btn-outline-secondary mb-3">
-                Install
+              <a href="<%= it.prefix + '/install/' %>" class="btn btn-lg btn-outline-secondary mb-3">
+                <%= it.t.index.install.title %>
               </a>
             </div>
             <p class="text-muted mb-0">
-              Currently <strong>v0.1.0-pre.0</strong>
+              <%= it.t.index.current %> <strong>v0.1.0-pre.0</strong>
               <span class="px-1">&middot;</span>
               <a
                 href="https://github.com/artichoke/artichoke/releases"
                 class="link-secondary"
               >
-                Previous releases
+              <%= it.t.index.previous_releases %>
               </a>
             </p>
           </div>
@@ -135,17 +131,15 @@
           >
             <img alt="Ruby." width="32" height="32" src="/logos/ruby.svg" />
           </div>
-          <h2 class="display-5 font-weight-normal">Install</h2>
+          <h2 class="display-5 font-weight-normal"><%= it.t.index.install.title %></h2>
           <p class="lead font-weight-normal">
-            Install Artichoke Ruby nightly builds with rbenv, Docker, or Cargo.
+            <%= it.t.index.install.content %>
           </p>
           <p>
-            Nightly installs include artichoke (ruby) and airb (irb) binaries.
-            The Artichoke Ruby Core and Standard Library runtime is bundled in
-            these two artifacts.
+            <%= it.t.index.install.hint %>
           </p>
-          <a class="btn btn-lg btn-outline-primary mb-3" href="/install/">
-            Read install guide
+          <a class="btn btn-lg btn-outline-primary mb-3" href="<%= it.prefix + '/install/' %>">
+            <%= it.t.index.install.guide %>
           </a>
         </div>
         <!-- prettier-ignore -->
@@ -168,13 +162,13 @@
               src="/social/twitter-logo-blue.svg"
             />
           </div>
-          <h2 class="display-5 font-weight-normal">Subscribe</h2>
+          <h2 class="display-5 font-weight-normal"><%= it.t.index.subscribe.title %></h2>
           <p class="lead font-weight-normal">
-            Stay up to date with project updates on Twitter
+            <%= it.t.index.subscribe.content %>
             <a href="https://twitter.com/artichokeruby">@artichokeruby</a>.
           </p>
           <p>
-            We'll tweet about Rust, crates we're developing, and new releases.
+            <%= it.t.index.subscribe.hint %>
           </p>
           <a
             href="https://twitter.com/artichokeruby?ref_src=twsrc%5Etfw"
@@ -198,7 +192,7 @@
       </div>
     </div>
 
-    <%~ includeFile("partials/footer.html") %>
+    <%~ includeFile("partials/footer.html", { t: it.t.footer }) %>
     <script async src="https://platform.twitter.com/widgets.js"></script>
     <script async type="module" src="/main.bundle.js"></script>
   </body>

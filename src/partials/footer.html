@@ -1,11 +1,11 @@
 <footer class="container py-5">
   <div class="row">
     <div class="col-xs-12 col-md-4">
-      <h5>Project</h5>
+      <h5><%= it.t.project %></h5>
       <ul class="list-unstyled text-small">
         <li>
           <a class="text-muted" href="https://github.com/artichoke">
-            Organization
+            <%= it.t.organization %>
           </a>
         </li>
         <li>
@@ -13,20 +13,20 @@
             class="text-muted"
             href="https://github.com/artichoke/artichoke/blob/trunk/VISION.md"
           >
-            Vision
+          <%= it.t.vision %>
           </a>
         </li>
       </ul>
     </div>
     <div class="col-xs-12 col-md-4">
-      <h5>Resources</h5>
+      <h5><%= it.t.resources %></h5>
       <ul class="list-unstyled text-small">
         <li>
           <a
             class="text-muted"
             href="https://github.com/artichoke/artichoke/issues/new"
           >
-            File a bug
+            <%= it.t.file_bug %>
           </a>
         </li>
         <li>
@@ -34,13 +34,13 @@
             class="text-muted"
             href="https://artichoke.github.io/artichoke/artichoke/"
           >
-            Crate docs
+          <%= it.t.docs %>
           </a>
         </li>
       </ul>
     </div>
     <div class="col-xs-12 col-md-4">
-      <h5>Social</h5>
+      <h5><%= it.t.social %></h5>
       <ul class="list-inline">
         <li class="list-inline-item">
           <a href="https://twitter.com/artichokeruby">
@@ -76,7 +76,7 @@
     </div>
     <hr class="my-0" />
     <div class="col-12 px-0">
-      <a href="/" aria-label="Artichoke Ruby">
+      <a href="<%= it.prefix + '/' %>" aria-label="Artichoke Ruby">
         <img
           alt="Artichoke Ruby."
           title="Artichoke Ruby"
