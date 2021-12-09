@@ -123,6 +123,8 @@ const renderTemplate = async (template) => {
 
 const build = async () => {
   await fs.mkdir("dist/install", { recursive: true });
+  await fs.mkdir("dist/install-cn", { recursive: true });
+  await fs.mkdir("dist/index-cn", { recursive: true });
   await fs.mkdir("dist/logos", { recursive: true });
   await fs.mkdir("dist/social", { recursive: true });
 
@@ -142,10 +144,22 @@ const build = async () => {
   let index = await renderTemplate("index.html");
   await fs.writeFile(path.join(__dirname, "dist", "index.html"), index);
 
+  let indexCN = await renderTemplate("index-cn.html");
+  await fs.writeFile(
+    path.join(__dirname, "dist", "index-cn", "index.html"),
+    indexCN
+  );
+
   let install = await renderTemplate("install.html");
   await fs.writeFile(
     path.join(__dirname, "dist", "install", "index.html"),
     install
+  );
+
+  let installCN = await renderTemplate("install-cn.html");
+  await fs.writeFile(
+    path.join(__dirname, "dist", "install-cn", "index.html"),
+    installCN
   );
 
   await esbuild.build({
