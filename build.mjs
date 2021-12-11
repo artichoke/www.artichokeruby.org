@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-import { readFileSync } from "node:fs";
+import { readFileSync, readFile } from "node:fs";
 import fs from "node:fs/promises";
 import { createRequire } from "node:module";
 import path from "node:path";
@@ -19,6 +19,9 @@ const minifyHtml = require("@minify-html/js");
 
 // eslint-disable-next-line no-shadow
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
+
+const locales = ["en", "zh-hans"];
+const defaultLocale = locales[0];
 
 const assets = Object.freeze([
   "src/assets/robots.txt",
@@ -69,6 +72,16 @@ marked.setOptions({
   xhtml: false,
 });
 
+const readFileAsync = async (path) => {
+  return new Promise((resolve, reject) => {
+    readFile(path, (err, data) => {
+      if (err)
+        reject(err);
+      resolve(data);
+    });
+  });
+};
+
 const includeMarkdown = (source) => {
   const filePath = path.join(__dirname, "src", source);
   const content = readFileSync(filePath);
@@ -99,8 +112,8 @@ const esbuildSassPlugin = {
 
 const renderTemplate = async (template, language) => {
   const localePath = path.join(__dirname, "src", "locales", language + '.json');
-  const t = JSON.parse(readFileSync(localePath));
-  const prefix = (language == "en") ? "" : ("/" + language)
+  const t = JSON.parse(await readFileAsync(localePath));
+  const prefix = (language === defaultLocale) ? "" : ("/" + language)
 
   let content = await renderFile(
     template,
@@ -132,14 +145,14 @@ const renderTemplate = async (template, language) => {
 };
 
 const build = async () => {
-  const locales = ["en", "zh-hans"];
-
-  await fs.mkdir("dist/install", { recursive: true });
-  await fs.mkdir("dist/logos", { recursive: true });
-  await fs.mkdir("dist/social", { recursive: true });
-  await fs.mkdir("dist/zh-hans/install", { recursive: true });
-  await fs.mkdir("dist/zh-hans/logos", { recursive: true });
-  await fs.mkdir("dist/zh-hans/social", { recursive: true });
+  await Promise.all(
+    locales.map(async (lang) => {
+      const prefix = (lang === defaultLocale) ? "" : `/${lang}`;
+      await fs.mkdir(`dist${prefix}/install`, { recursive: true });
+      await fs.mkdir(`dist${prefix}/logos`, { recursive: true });
+      await fs.mkdir(`dist${prefix}/social`, { recursive: true });
+    })
+  );
 
   await Promise.all(
     assets.map(async (asset) => {
@@ -156,13 +169,13 @@ const build = async () => {
 
   await Promise.all(locales.map(async (lang) => {
     let index = await renderTemplate("index.html", lang);
-    await fs.writeFile(lang == "en" ?
+    await fs.writeFile(lang === defaultLocale ?
       path.join(__dirname, "dist", "index.html") :
       path.join(__dirname, "dist", lang, "index.html"), index);
 
     let install = await renderTemplate("install.html", lang);
     await fs.writeFile(
-      lang == "en" ?
+      lang === defaultLocale ?
         path.join(__dirname, "dist", "install", "index.html") :
         path.join(__dirname, "dist", lang, "install", "index.html"),
       install
