@@ -167,6 +167,7 @@ const build = async () => {
   const purgeCSSResult = await new PurgeCSS().purge({
     content: ["dist/**/*.html"],
     css: ["dist/**/*.css"],
+    safelist: ["show"],
   });
   for (const { file, css } of purgeCSSResult) {
     await fs.writeFile(file, css);
