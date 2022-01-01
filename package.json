@@ -19,7 +19,7 @@
   ],
   "repository": "github:artichoke/www.artichokeruby.org",
   "dependencies": {
-    "@artichokeruby/logo": "^0.11.0",
+    "@artichokeruby/logo": "^0.12.0",
     "@minify-html/js": "^0.7.0",
     "@popperjs/core": "^2.11.0",
     "bootstrap": "^5.1.3",
