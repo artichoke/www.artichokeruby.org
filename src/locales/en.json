@@ -26,6 +26,7 @@
     "install": "Install Artichoke Ruby",
     "targets": "Artichoke Ruby installs on Linux, macOS, and Windows. New builds are pushed nightly.",
     "try": "Try out a build using one of these installation methods.",
+    "description": "Install Artichoke Ruby, a Ruby made with Rust.",
     "nightly": {
       "go": "Nightly Builds",
       "title": "Pre-compiled nightly builds",
@@ -34,12 +35,14 @@
       "button": "Previous Releases"
     },
     "docker": {
+      "go": "Docker",
       "title": "Docker images",
       "content": "Nightly builds of Artichoke are pushed to Docker Hub. Images are built on Ubuntu 18.04, Debian Buster Slim, and Alpine 3.",
       "hint": "These daily images track the latest trunk commit of Artichoke.",
       "button": "On Docker Hub"
     },
     "cargo": {
+      "go": "Cargo",
       "title": "Using Cargo",
       "content": "Artichoke builds and installs using Cargo, the Rust package manager.",
       "hint": "Building with Cargo compiles the latest trunk commit of Artichoke.",

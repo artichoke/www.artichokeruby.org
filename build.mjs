@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-import { readFileSync, readFile } from "node:fs";
+import { readFileSync } from "node:fs";
 import fs from "node:fs/promises";
 import { createRequire } from "node:module";
 import path from "node:path";
@@ -72,16 +72,6 @@ marked.setOptions({
   xhtml: false,
 });
 
-const readFileAsync = async (path) => {
-  return new Promise((resolve, reject) => {
-    readFile(path, (err, data) => {
-      if (err)
-        reject(err);
-      resolve(data);
-    });
-  });
-};
-
 const includeMarkdown = (source) => {
   const filePath = path.join(__dirname, "src", source);
   const content = readFileSync(filePath);
@@ -112,7 +102,7 @@ const esbuildSassPlugin = {
 
 const renderTemplate = async (template, language) => {
   const localePath = path.join(__dirname, "src", "locales", language + '.json');
-  const t = JSON.parse(await readFileAsync(localePath));
+  const t = JSON.parse(await fs.readFile(localePath));
   const prefix = (language === defaultLocale) ? "" : ("/" + language)
 
   let content = await renderFile(
