@@ -69,7 +69,8 @@
     <a class="visually-hidden visually-hidden-focusable" href="#content">
       <%= it.t.skip_to_main %>
     </a>
-    <%~ includeFile("partials/nav.html", { page: "index", t: it.t.nav, prefix: it.prefix }) %>
+    <%~ includeFile("partials/nav.html", { page: "index", t: it.t.nav, prefix:
+    it.prefix }) %>
 
     <!--
       This layout is heavily inspired by the Bootstrap v5 docs homepage, which
@@ -94,9 +95,7 @@
           <div class="col-md-8 order-md-1 col-lg-7 text-center text-md-start">
             <h1 class="mb-3"><%= it.t.index.title %></h1>
             <% it.t.index.description.forEach(paragraph => { %>
-              <p class="lead mb-4">
-                <%= paragraph %>
-              </p>
+            <p class="lead mb-4"><%= paragraph %></p>
             <% }) %>
             <div class="d-flex flex-column flex-md-row">
               <a
@@ -105,7 +104,10 @@
               >
                 <%= it.t.index.contribute %>
               </a>
-              <a href="<%= it.prefix + '/install/' %>" class="btn btn-lg btn-outline-secondary mb-3">
+              <a
+                href="<%= it.prefix + '/install/' %>"
+                class="btn btn-lg btn-outline-secondary mb-3"
+              >
                 <%= it.t.index.install.title %>
               </a>
             </div>
@@ -116,7 +118,7 @@
                 href="https://github.com/artichoke/artichoke/releases"
                 class="link-secondary"
               >
-              <%= it.t.index.previous_releases %>
+                <%= it.t.index.previous_releases %>
               </a>
             </p>
           </div>
@@ -131,14 +133,17 @@
           >
             <img alt="Ruby." width="32" height="32" src="/logos/ruby.svg" />
           </div>
-          <h2 class="display-5 font-weight-normal"><%= it.t.index.install.title %></h2>
+          <h2 class="display-5 font-weight-normal">
+            <%= it.t.index.install.title %>
+          </h2>
           <p class="lead font-weight-normal">
             <%= it.t.index.install.content %>
           </p>
-          <p>
-            <%= it.t.index.install.hint %>
-          </p>
-          <a class="btn btn-lg btn-outline-primary mb-3" href="<%= it.prefix + '/install/' %>">
+          <p><%= it.t.index.install.hint %></p>
+          <a
+            class="btn btn-lg btn-outline-primary mb-3"
+            href="<%= it.prefix + '/install/' %>"
+          >
             <%= it.t.index.install.guide %>
           </a>
         </div>
@@ -162,14 +167,14 @@
               src="/social/twitter-logo-blue.svg"
             />
           </div>
-          <h2 class="display-5 font-weight-normal"><%= it.t.index.subscribe.title %></h2>
+          <h2 class="display-5 font-weight-normal">
+            <%= it.t.index.subscribe.title %>
+          </h2>
           <p class="lead font-weight-normal">
             <%= it.t.index.subscribe.content %>
             <a href="https://twitter.com/artichokeruby">@artichokeruby</a>.
           </p>
-          <p>
-            <%= it.t.index.subscribe.hint %>
-          </p>
+          <p><%= it.t.index.subscribe.hint %></p>
           <a
             href="https://twitter.com/artichokeruby?ref_src=twsrc%5Etfw"
             class="twitter-follow-button"

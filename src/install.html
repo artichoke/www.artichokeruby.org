@@ -9,10 +9,7 @@
 
     <title><%= it.t.install.title %></title>
 
-    <meta
-      name="description"
-      content="<%= it.t.install.description %>"
-    />
+    <meta name="description" content="<%= it.t.install.description %>" />
 
     <link rel="dns-prefetch" href="//www.googletagmanager.com" />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
@@ -65,7 +62,8 @@
     <a class="visually-hidden visually-hidden-focusable" href="#content">
       <%= it.t.skip_to_main %>
     </a>
-    <%~ includeFile("partials/nav.html", { page: "install", t: it.t.nav, prefix: it.prefix }) %>
+    <%~ includeFile("partials/nav.html", { page: "install", t: it.t.nav, prefix:
+    it.prefix }) %>
 
     <!--
       This layout is heavily inspired by the Bootstrap v5 docs homepage, which
@@ -89,12 +87,8 @@
           </div>
           <div class="col-md-8 order-md-1 col-lg-7 text-center text-md-start">
             <h1 class="mb-3"><%= it.t.install.title %></h1>
-            <p class="lead mb-4">
-              <%= it.t.install.install %>
-            </p>
-            <p class="lead mb-4">
-              <%= it.t.install.try %>
-            </p>
+            <p class="lead mb-4"><%= it.t.install.install %></p>
+            <p class="lead mb-4"><%= it.t.install.try %></p>
             <div class="d-flex flex-column flex-md-row">
               <a
                 href="#nightly"
@@ -152,7 +146,7 @@
             class="btn btn-lg btn-outline-success mb-3"
             href="https://github.com/artichoke/nightly/releases"
           >
-          <%= it.t.install.nightly.button %>
+            <%= it.t.install.nightly.button %>
           </a>
         </div>
         <!-- prettier-ignore -->
@@ -178,7 +172,9 @@
               />
             </svg>
           </div>
-          <h2 class="display-5 font-weight-normal"><%= it.t.install.docker.title %></h2>
+          <h2 class="display-5 font-weight-normal">
+            <%= it.t.install.docker.title %>
+          </h2>
           <p class="lead font-weight-normal">
             <%= it.t.install.docker.content %>
           </p>
@@ -201,13 +197,13 @@
           >
             <img alt="Rust Cargo." width="32" src="/logos/cargo.svg" />
           </div>
-          <h2 class="display-5 font-weight-normal"><%= it.t.install.cargo.title %></h2>
+          <h2 class="display-5 font-weight-normal">
+            <%= it.t.install.cargo.title %>
+          </h2>
           <p class="lead font-weight-normal">
             <%= it.t.install.cargo.content %>
           </p>
-          <p>
-            <%= it.t.install.cargo.hint %>
-          </p>
+          <p><%= it.t.install.cargo.hint %></p>
           <a
             class="btn btn-lg btn-outline-dark mb-3"
             href="https://github.com/artichoke/artichoke/blob/trunk/BUILD.md"

@@ -101,9 +101,9 @@ const esbuildSassPlugin = {
 };
 
 const renderTemplate = async (template, language) => {
-  const localePath = path.join(__dirname, "src", "locales", language + '.json');
+  const localePath = path.join(__dirname, "src", "locales", language + ".json");
   const t = JSON.parse(await fs.readFile(localePath));
-  const prefix = (language === defaultLocale) ? "" : ("/" + language)
+  const prefix = language === defaultLocale ? "" : "/" + language;
 
   let content = await renderFile(
     template,
@@ -111,7 +111,7 @@ const renderTemplate = async (template, language) => {
       language,
       t,
       prefix,
-      includeMarkdown
+      includeMarkdown,
     },
     { views: path.join(__dirname, "src") }
   );
@@ -137,7 +137,7 @@ const renderTemplate = async (template, language) => {
 const build = async () => {
   await Promise.all(
     locales.map(async (lang) => {
-      const prefix = (lang === defaultLocale) ? "" : `/${lang}`;
+      const prefix = lang === defaultLocale ? "" : `/${lang}`;
       await fs.mkdir(`dist${prefix}/install`, { recursive: true });
       await fs.mkdir(`dist${prefix}/logos`, { recursive: true });
       await fs.mkdir(`dist${prefix}/social`, { recursive: true });
@@ -157,20 +157,25 @@ const build = async () => {
     })
   );
 
-  await Promise.all(locales.map(async (lang) => {
-    let index = await renderTemplate("index.html", lang);
-    await fs.writeFile(lang === defaultLocale ?
-      path.join(__dirname, "dist", "index.html") :
-      path.join(__dirname, "dist", lang, "index.html"), index);
+  await Promise.all(
+    locales.map(async (lang) => {
+      let index = await renderTemplate("index.html", lang);
+      await fs.writeFile(
+        lang === defaultLocale
+          ? path.join(__dirname, "dist", "index.html")
+          : path.join(__dirname, "dist", lang, "index.html"),
+        index
+      );
 
-    let install = await renderTemplate("install.html", lang);
-    await fs.writeFile(
-      lang === defaultLocale ?
-        path.join(__dirname, "dist", "install", "index.html") :
-        path.join(__dirname, "dist", lang, "install", "index.html"),
-      install
-    );
-  }));
+      let install = await renderTemplate("install.html", lang);
+      await fs.writeFile(
+        lang === defaultLocale
+          ? path.join(__dirname, "dist", "install", "index.html")
+          : path.join(__dirname, "dist", lang, "install", "index.html"),
+        install
+      );
+    })
+  );
 
   await esbuild.build({
     entryPoints: {
