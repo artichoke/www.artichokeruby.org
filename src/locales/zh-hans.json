@@ -30,8 +30,8 @@
     "nightly": {
       "go": "Nightly构建版本",
       "title": "预编译的nightly构建内容",
-      "content": "在<a href=\"https:\/\/github.com\/artichoke\/nightly\/releases\/latest\">artichoke\/nightly<\/a>下载预编译的二进制文件。文件支持Linux、Linux/musl、macOS和Windows。",
-      "hint": "每日的二进制文件包含了Artichoke的最新trunk commit。这些二进制文件也可于<a href=\"https:\/\/github.com\/rbenv\/ruby-build\">ruby-build<\/a>获取。",
+      "content": "在<a href=\"https://github.com/artichoke/nightly/releases/latest\">artichoke/nightly</a>下载预编译的二进制文件。文件支持Linux、Linux/musl、macOS和Windows。",
+      "hint": "每日的二进制文件包含了Artichoke的最新trunk commit。这些二进制文件也可于<a href=\"https://github.com/rbenv/ruby-build\">ruby-build</a>获取。",
       "button": "以往版本"
     },
     "docker": {
