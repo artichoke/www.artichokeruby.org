@@ -1,57 +1,57 @@
 {
   "skip_to_main": "跳转至主体内容",
   "index": {
-    "title": "使用Artichoke为Wasm打造下一代Ruby",
+    "title": "Artichoke：基于Wasm技术打造下一代Ruby",
     "description": [
-      "使用Artichoke，用Rust打造的Ruby，来将Ruby应用打包成单个Wasm可执行文件。并在模块化的解释器中运行未经信任的代码。",
-      "Artichoke还未进入正式版本。我们期待有人一起为Wasm平台打造Ruby。"
+      "Artichoke是用Rust打造的Ruby。它可将Ruby应用打包成单个Wasm二进制文件，并在模块化的解释器中运行未经信任的代码。",
+      "Artichoke现处于Beta版本。我们欢迎贡献者一起打造基于Wasm技术的Ruby。"
     ],
     "contribute": "贡献",
     "current": "当前",
     "previous_releases": "以往版本",
     "install": {
       "title": "安装",
-      "content": "使用rbenv、Docker或Cargo安装Artichoke的每夜构建版本。",
-      "hint": "每夜构建包含artichoke (ruby) 和 airb (irb) 的二进制文件，Artichoke Ruby核心和标准库也包含于其中。",
+      "content": "使用rbenv、Docker或Cargo安装Artichoke的nightly构建版本。",
+      "hint": "Nightly构建版本包含artichoke (ruby) 和 airb (irb) 的二进制文件，Artichoke Ruby核心和标准库也包含于其中。",
       "guide": "阅读安装说明"
     },
     "subscribe": {
       "title": "订阅",
       "content": "在Twitter上追踪项目最新进展",
-      "hint": "我们会发布有关Rust、开发中的crates，以及新版本的信息。"
+      "hint": "我们会发布有关Rust、开发中的crates以及新版本的信息。"
     }
   },
   "install": {
     "title": "安装Artichoke – Artichoke Ruby",
     "install": "安装Artichoke Ruby",
     "targets": "Artichoke Ruby可安装在Linux、macOS和Windows上。新的构建将于每夜更新。",
-    "try": "尝试以下安装方式之一。",
-    "description": "安装Artichoke Ruby，以Rust构建的Ruby.",
+    "try": "尝试以下安装方式:",
+    "description": "安装Artichoke Ruby，以Rust构建的Ruby。",
     "nightly": {
-      "go": "每夜构建",
-      "title": "编译好的每夜构建内容",
-      "content": "在artichoke/nightly下载预先构建好的内容，支持Linux、Linux/musl、macOS和Windows.",
-      "hint": "这些构建包含了最新的Artichoke代码。也可获取于",
+      "go": "Nightly构建版本",
+      "title": "预编译的nightly构建内容",
+      "content": "在<a href=\"https:\/\/github.com\/artichoke\/nightly\/releases\/latest\">artichoke\/nightly<\/a>下载预编译的二进制文件。文件支持Linux、Linux/musl、macOS和Windows。",
+      "hint": "每日的二进制文件包含了Artichoke的最新trunk commit。这些二进制文件也可于<a href=\"https:\/\/github.com\/rbenv\/ruby-build\">ruby-build<\/a>获取。",
       "button": "以往版本"
     },
     "docker": {
       "go": "Docker",
       "title": "Docker镜像",
-      "content": "Artichoke的每夜构建会被推送至Docker Hub，镜像基于Ubuntu 18.04、Debian Buster Slim和Alpine 3构建。",
-      "hint": "这些镜像包含了Artichoke每天的最新主干提交。",
-      "button": "On Docker Hub"
+      "content": "Artichoke的nightly构建会被推送至Docker Hub，镜像的构建基于Ubuntu 18.04、Debian Buster Slim和Alpine 3。",
+      "hint": "这些每日镜像包含了Artichoke的最新trunk commit。",
+      "button": "Docker Hub"
     },
     "cargo": {
       "go": "Cargo",
       "title": "使用Cargo",
-      "content": "Artichoke使用Cargo，Rust的包管理器，来进行构建和安装。",
-      "hint": "使用Cargo编译最新的Artichoke代码。",
+      "content": "Artichoke使用Rust的软件包管理器Cargo进行构建和安装操作。",
+      "hint": "使用Cargo编译Artichoke的最新trunk commit。",
       "button": "构建指南"
     }
   },
   "footer": {
-    "project": "项目",
-    "organization": "组织",
+    "about": "信息",
+    "organization": "GitHub项目",
     "vision": "愿景",
     "resources": "资源",
     "file_bug": "提交Bug",
