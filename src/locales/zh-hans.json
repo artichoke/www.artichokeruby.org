@@ -1,10 +1,10 @@
 {
   "skip_to_main": "跳转至主体内容",
   "index": {
-    "title": "Artichoke：基于Wasm技术打造下一代Ruby",
+    "title": "Artichoke：基于wasm技术打造下一代Ruby",
     "description": [
-      "Artichoke是用Rust打造的Ruby。它可将Ruby应用打包成单个Wasm二进制文件，并在模块化的解释器中运行未经信任的代码。",
-      "Artichoke现处于Beta版本。我们欢迎贡献者一起打造基于Wasm技术的Ruby。"
+      "Artichoke是用Rust打造的Ruby。它可将Ruby应用打包成单个wasm二进制文件，并在模块化的解释器中运行未经信任的代码。",
+      "Artichoke现处于Beta版本。我们欢迎贡献者一起打造基于wasm技术的Ruby。"
     ],
     "contribute": "贡献",
     "current": "当前",
