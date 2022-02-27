@@ -12,7 +12,7 @@
     "install": {
       "title": "安装",
       "content": "使用rbenv、Docker或Cargo安装Artichoke的nightly构建版本。",
-      "hint": "Nightly构建版本包含artichoke (ruby) 和 airb (irb) 的二进制文件，Artichoke Ruby核心和标准库也包含于其中。",
+      "hint": "Nightly构建版本包含artichoke (ruby) 和 airb (irb) 的二进制文件，Artichoke Ruby的核心和标准库运行时也包含于其中。",
       "guide": "阅读安装说明"
     },
     "subscribe": {
@@ -37,7 +37,7 @@
     "docker": {
       "go": "Docker",
       "title": "Docker镜像",
-      "content": "Artichoke的nightly构建会被推送至Docker Hub，镜像的构建基于Ubuntu 18.04、Debian Buster Slim和Alpine 3。",
+      "content": "Artichoke的nightly构建会被推送至Docker Hub。镜像的构建基于Ubuntu 18.04、Debian Buster Slim和Alpine 3。",
       "hint": "这些每日镜像包含了Artichoke的最新trunk commit。",
       "button": "Docker Hub"
     },
