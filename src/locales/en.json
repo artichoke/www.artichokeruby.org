@@ -1,0 +1,67 @@
+{
+  "skip_to_main": "Skip to main content",
+  "index": {
+    "title": "Build the next Ruby for Wasm with Artichoke",
+    "description": [
+      "Bundle Ruby applications into a single Wasm binary with Artichoke, a Ruby made with Rust. The modular interpreter enables running untrusted code.",
+      "Artichoke is pre-release software. We're looking for contributors to build a Ruby for pure Wasm targets."
+    ],
+    "contribute": "Contribute",
+    "current": "Currently",
+    "previous_releases": "Previous releases",
+    "install": {
+      "title": "Install",
+      "content": "Install Artichoke Ruby nightly builds with rbenv, Docker, or Cargo.",
+      "hint": "Nightly builds include artichoke (ruby) and airb (irb) binaries. The Artichoke Ruby Core and Standard Library runtime is bundled in these two artifacts.",
+      "guide": "Read install guide"
+    },
+    "subscribe": {
+      "title": "Subscribe",
+      "content": "Stay up to date with project updates on Twitter",
+      "hint": "We'll tweet about Rust, crates we're developing, and new releases."
+    }
+  },
+  "install": {
+    "title": "Install Artichoke – Artichoke Ruby",
+    "install": "Install Artichoke Ruby",
+    "targets": "Artichoke Ruby installs on Linux, macOS, and Windows. New builds are pushed nightly.",
+    "try": "Try out a build using one of these installation methods.",
+    "description": "Install Artichoke Ruby, a Ruby made with Rust.",
+    "nightly": {
+      "go": "Nightly Builds",
+      "title": "Pre-compiled nightly builds",
+      "content": "Download a pre-compiled binary from <a href=\"https://github.com/artichoke/nightly/releases/latest\">artichoke/nightly</a>. Binaries are available for Linux, Linux/musl, macOS, and Windows.",
+      "hint": "These daily binaries track the latest trunk commit of Artichoke. Binaries are also distributed with <a href=\"https://github.com/rbenv/ruby-build\">ruby-build</a>.",
+      "button": "Previous Releases"
+    },
+    "docker": {
+      "go": "Docker",
+      "title": "Docker images",
+      "content": "Nightly builds of Artichoke are pushed to Docker Hub. Images are built on Ubuntu 18.04, Debian Buster Slim, and Alpine 3.",
+      "hint": "These daily images track the latest trunk commit of Artichoke.",
+      "button": "Docker Hub"
+    },
+    "cargo": {
+      "go": "Cargo",
+      "title": "Using Cargo",
+      "content": "Artichoke builds and installs using Cargo, the Rust package manager.",
+      "hint": "Building with Cargo compiles the latest trunk commit of Artichoke.",
+      "button": "Build Guide"
+    }
+  },
+  "footer": {
+    "about": "Info",
+    "organization": "GitHub Organization",
+    "vision": "Vision",
+    "resources": "Resources",
+    "file_bug": "File a bug",
+    "docs": "Crate docs",
+    "social": "Social"
+  },
+  "nav": {
+    "home": "Home",
+    "install": "Install",
+    "code": "Code",
+    "docs": "Docs"
+  }
+}

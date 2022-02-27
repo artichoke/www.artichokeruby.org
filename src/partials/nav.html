@@ -1,6 +1,10 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <div class="container">
-    <a class="navbar-brand" href="/" aria-label="Artichoke Ruby">
+  <div class="container d-flex flex-row justify-content-between">
+    <a
+      class="navbar-brand"
+      href="<%= it.prefix + '/' %>"
+      aria-label="Artichoke Ruby"
+    >
       <img
         alt="Artichoke Ruby."
         title="Artichoke Ruby"
@@ -25,14 +29,14 @@
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
           <!-- prettier-ignore -->
-          <a class="nav-link <% if (it.page === 'index') { %> active" aria-current="page" <% } else { %> " <% } %> href="/">
-            Home
+          <a class="nav-link <% if (it.page === 'index') { %> active" aria-current="page" <% } else { %> " <% } %> href="<%= it.prefix + '/' %>">
+            <%= it.t.home %>
           </a>
         </li>
         <li class="nav-item">
           <!-- prettier-ignore -->
-          <a class="nav-link <% if (it.page === 'install') { %> active" aria-current="page" <% } else { %> " <% } %> href="/install/">
-            Install
+          <a class="nav-link <% if (it.page === 'install') { %> active" aria-current="page" <% } else { %> " <% } %> href="<%= it.prefix + '/install/' %>">
+            <%= it.t.install %>
           </a>
         </li>
         <li class="nav-item">
@@ -43,7 +47,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="https://github.com/artichoke/artichoke">
-            Code
+            <%= it.t.code %>
           </a>
         </li>
         <li class="nav-item dropdown">
@@ -55,7 +59,7 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            Docs
+            <%= it.t.docs %>
           </a>
           <ul
             class="dropdown-menu dropdown-menu-end"

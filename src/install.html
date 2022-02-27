@@ -7,12 +7,9 @@
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
 
-    <title>Install Artichoke – Artichoke Ruby</title>
+    <title><%= it.t.install.title %></title>
 
-    <meta
-      name="description"
-      content="Install Artichoke Ruby, a Ruby made with Rust."
-    />
+    <meta name="description" content="<%= it.t.install.description %>" />
 
     <link rel="dns-prefetch" href="//www.googletagmanager.com" />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
@@ -62,9 +59,10 @@
   </head>
   <body>
     <a class="visually-hidden visually-hidden-focusable" href="#content">
-      Skip to main content
+      <%= it.t.skip_to_main %>
     </a>
-    <%~ includeFile("partials/nav.html", { page: "install" }) %>
+    <%~ includeFile("partials/nav.html", { page: "install", t: it.t.nav, prefix:
+    it.prefix }) %>
 
     <!--
       This layout is heavily inspired by the Bootstrap v5 docs homepage, which
@@ -87,29 +85,24 @@
             />
           </div>
           <div class="col-md-8 order-md-1 col-lg-7 text-center text-md-start">
-            <h1 class="mb-3">Install Artichoke Ruby</h1>
-            <p class="lead mb-4">
-              Artichoke Ruby installs on Linux, macOS, and Windows. New builds
-              are pushed nightly.
-            </p>
-            <p class="lead mb-4">
-              Try out a build using one of these installation methods.
-            </p>
+            <h1 class="mb-3"><%= it.t.install.install %></h1>
+            <p class="lead mb-4"><%= it.t.install.targets %></p>
+            <p class="lead mb-4"><%= it.t.install.try %></p>
             <div class="d-flex flex-column flex-md-row">
               <a
                 href="#nightly"
                 class="btn btn-lg btn-artichoke-primary mb-3 me-md-3"
               >
-                Nightly Builds
+                <%= it.t.install.nightly.go %>
               </a>
               <a
                 href="#docker"
                 class="btn btn-lg btn-outline-secondary mb-3 me-md-3"
               >
-                Docker
+                <%= it.t.install.docker.go %>
               </a>
               <a href="#cargo" class="btn btn-lg btn-outline-secondary mb-3">
-                Cargo
+                <%= it.t.install.cargo.go %>
               </a>
             </div>
           </div>
@@ -139,22 +132,17 @@
             </svg>
           </div>
           <h2 class="display-5 font-weight-normal">
-            Pre-compiled nightly builds
+            <%= it.t.install.nightly.title %>
           </h2>
           <p class="lead font-weight-normal">
-            Download a prebuilt binary from artichoke/nightly. Binaries are
-            available for Linux, Linux/musl, macOS, and Windows.
+            <%~ it.t.install.nightly.content %>
           </p>
-          <p>
-            These daily binaries track the latest trunk commit of Artichoke.
-            Binaries are also distributed through
-            <a href="https://github.com/rbenv/ruby-build">ruby-build</a>.
-          </p>
+          <p><%~ it.t.install.nightly.hint %></p>
           <a
             class="btn btn-lg btn-outline-success mb-3"
             href="https://github.com/artichoke/nightly/releases"
           >
-            Previous Releases
+            <%= it.t.install.nightly.button %>
           </a>
         </div>
         <!-- prettier-ignore -->
@@ -180,17 +168,18 @@
               />
             </svg>
           </div>
-          <h2 class="display-5 font-weight-normal">Docker images</h2>
+          <h2 class="display-5 font-weight-normal">
+            <%= it.t.install.docker.title %>
+          </h2>
           <p class="lead font-weight-normal">
-            Nightly builds of Artichoke are pushed to Docker Hub. Images are
-            built on Ubuntu 18.04, Debian Buster Slim, and Alpine 3.
+            <%= it.t.install.docker.content %>
           </p>
-          <p>These daily images track the latest trunk commit of Artichoke.</p>
+          <p><%= it.t.install.docker.hint %></p>
           <a
             class="btn btn-lg btn-outline-info mb-3"
             href="https://hub.docker.com/r/artichokeruby/artichoke"
           >
-            On Docker Hub
+            <%= it.t.install.docker.button %>
           </a>
         </div>
         <div class="col-md-7 ps-md-5">
@@ -204,18 +193,18 @@
           >
             <img alt="Rust Cargo." width="32" src="/logos/cargo.svg" />
           </div>
-          <h2 class="display-5 font-weight-normal">Using Cargo</h2>
+          <h2 class="display-5 font-weight-normal">
+            <%= it.t.install.cargo.title %>
+          </h2>
           <p class="lead font-weight-normal">
-            Artichoke builds and installs using Cargo, the Rust package manager.
+            <%= it.t.install.cargo.content %>
           </p>
-          <p>
-            Building with Cargo compiles the latest trunk commit of Artichoke.
-          </p>
+          <p><%= it.t.install.cargo.hint %></p>
           <a
             class="btn btn-lg btn-outline-dark mb-3"
             href="https://github.com/artichoke/artichoke/blob/trunk/BUILD.md"
           >
-            Build Guide
+            <%= it.t.install.cargo.button %>
           </a>
         </div>
         <div class="col-md-7 ps-md-5">
@@ -224,7 +213,7 @@
       </div>
     </div>
 
-    <%~ includeFile("partials/footer.html") %>
+    <%~ includeFile("partials/footer.html", { t: it.t.footer }) %>
     <script async type="module" src="/main.bundle.js"></script>
   </body>
 </html>

@@ -20,6 +20,9 @@ const minifyHtml = require("@minify-html/js");
 // eslint-disable-next-line no-shadow
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
+const locales = ["en", "zh-hans"];
+const defaultLocale = locales[0];
+
 const assets = Object.freeze([
   "src/assets/robots.txt",
   "src/logos/cargo.svg",
@@ -97,10 +100,19 @@ const esbuildSassPlugin = {
   },
 };
 
-const renderTemplate = async (template) => {
+const renderTemplate = async (template, language) => {
+  const localePath = path.join(__dirname, "src", "locales", language + ".json");
+  const t = JSON.parse(await fs.readFile(localePath));
+  const prefix = language === defaultLocale ? "" : "/" + language;
+
   let content = await renderFile(
     template,
-    { includeMarkdown },
+    {
+      language,
+      t,
+      prefix,
+      includeMarkdown,
+    },
     { views: path.join(__dirname, "src") }
   );
 
@@ -123,9 +135,14 @@ const renderTemplate = async (template) => {
 };
 
 const build = async () => {
-  await fs.mkdir("dist/install", { recursive: true });
-  await fs.mkdir("dist/logos", { recursive: true });
-  await fs.mkdir("dist/social", { recursive: true });
+  await Promise.all(
+    locales.map(async (lang) => {
+      const prefix = lang === defaultLocale ? "" : `/${lang}`;
+      await fs.mkdir(`dist${prefix}/install`, { recursive: true });
+      await fs.mkdir(`dist${prefix}/logos`, { recursive: true });
+      await fs.mkdir(`dist${prefix}/social`, { recursive: true });
+    })
+  );
 
   await Promise.all(
     assets.map(async (asset) => {
@@ -140,13 +157,24 @@ const build = async () => {
     })
   );
 
-  let index = await renderTemplate("index.html");
-  await fs.writeFile(path.join(__dirname, "dist", "index.html"), index);
+  await Promise.all(
+    locales.map(async (lang) => {
+      let index = await renderTemplate("index.html", lang);
+      await fs.writeFile(
+        lang === defaultLocale
+          ? path.join(__dirname, "dist", "index.html")
+          : path.join(__dirname, "dist", lang, "index.html"),
+        index
+      );
 
-  let install = await renderTemplate("install.html");
-  await fs.writeFile(
-    path.join(__dirname, "dist", "install", "index.html"),
-    install
+      let install = await renderTemplate("install.html", lang);
+      await fs.writeFile(
+        lang === defaultLocale
+          ? path.join(__dirname, "dist", "install", "index.html")
+          : path.join(__dirname, "dist", lang, "install", "index.html"),
+        install
+      );
+    })
   );
 
   await esbuild.build({
