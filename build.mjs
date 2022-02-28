@@ -21,14 +21,14 @@ const minifyHtml = require("@minify-html/js");
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 const makeLocale = (language, twitter) => {
-  const urlPrefix = language === "en" ? "/" : `/${language}/`;
+  const urlPrefix = language === "en" ? "/" : `/${language.toLowerCase()}/`;
   const pathPrefix = language === "en" ? "" : `${language}`;
   const locale = Object.assign(Object.create(null), {
     language,
     twitter,
     pathPrefix,
     links: {
-      home: language === "en" ? "/" : `/${language}/`,
+      home: urlPrefix,
       install: `${urlPrefix}install/`,
     },
     default: language === "en",
