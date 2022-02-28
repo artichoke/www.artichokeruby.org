@@ -22,7 +22,7 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 const makeLocale = (language, twitter, isDefaultLocale = false) => {
   const urlPrefix = isDefaultLocale ? "/" : `/${language.toLowerCase()}/`;
-  const pathPrefix = isDefaultLocale ? "" : `${language}`;
+  const pathPrefix = isDefaultLocale ? "" : `${language.toLowerCase()}`;
   const locale = Object.assign(Object.create(null), {
     language,
     twitter,
