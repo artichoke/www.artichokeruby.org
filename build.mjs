@@ -51,7 +51,7 @@ const makeLocale = (language, twitter) => {
 // - `default`: A Boolean which indicates if the locale is the default locale.
 const locales = Object.freeze([
   makeLocale("en", "en"),
-  makeLocale("zh-hans", "zh-cn"),
+  makeLocale("zh-Hans", "zh-cn"),
 ]);
 
 const assets = Object.freeze([
