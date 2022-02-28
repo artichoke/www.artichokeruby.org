@@ -27,10 +27,10 @@ const makeLocale = (language, twitter) => {
     language,
     twitter,
     pathPrefix,
-    links: {
+    links: Object.assign(Object.create(null), {
       home: urlPrefix,
       install: `${urlPrefix}install/`,
-    },
+    }),
     default: language === "en",
     stringsPath: path.join(__dirname, "src", "locales", `${language}.json`),
   });
@@ -134,18 +134,18 @@ const esbuildSassPlugin = {
 const renderTemplate = async (template, locale) => {
   const t = JSON.parse(await fs.readFile(locale.stringsPath));
 
-  let content = await renderFile(
-    template,
-    {
-      locale,
-      locales: Object.fromEntries(
-        locales.map((locale) => [locale.language, locale])
-      ),
-      t,
-      includeMarkdown,
-    },
-    { views: path.join(__dirname, "src") }
-  );
+  const context = {
+    locale,
+    locales: Object.fromEntries(
+      locales.map((locale) => [locale.language, locale])
+    ),
+    defaultLocale: locales.find((locale) => locale.default),
+    t,
+    includeMarkdown,
+  };
+  let content = await renderFile(template, context, {
+    views: path.join(__dirname, "src"),
+  });
 
   if (process.argv.includes("--release")) {
     const cfg = minifyHtml.createConfiguration({
