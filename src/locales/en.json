@@ -44,7 +44,7 @@
     "docker": {
       "go": "Docker",
       "title": "Docker images",
-      "content": "Nightly builds of Artichoke are pushed to Docker Hub. Images are built on Ubuntu 18.04, Debian Buster Slim, and Alpine 3.",
+      "content": "Nightly builds of Artichoke are pushed to Docker Hub. Images are built on Ubuntu 18.04, Debian Bullseye Slim, and Alpine 3.",
       "hint": "These daily images track the latest trunk commit of Artichoke.",
       "button": "Docker Hub"
     },
