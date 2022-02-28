@@ -1,6 +1,10 @@
 {
   "skip_to_main": "跳转至主体内容",
   "index": {
+    "head": {
+      "title": "Artichoke Ruby",
+      "description": "Artichoke是用Rust打造的Ruby"
+    },
     "title": "Artichoke：基于wasm技术打造下一代Ruby",
     "description": [
       "Artichoke是用Rust打造的Ruby。它可将Ruby应用打包成单个wasm二进制文件，并在模块化的解释器中运行未经信任的代码。",
@@ -22,11 +26,13 @@
     }
   },
   "install": {
-    "title": "安装Artichoke – Artichoke Ruby",
+    "head": {
+      "title": "安装Artichoke – Artichoke Ruby",
+      "description": "安装Artichoke Ruby，以Rust构建的Ruby。"
+    },
     "install": "安装Artichoke Ruby",
     "targets": "Artichoke Ruby可安装在Linux、macOS和Windows上。新的构建将于每夜更新。",
     "try": "尝试以下安装方式:",
-    "description": "安装Artichoke Ruby，以Rust构建的Ruby。",
     "nightly": {
       "go": "Nightly构建版本",
       "title": "预编译的nightly构建内容",

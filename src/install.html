@@ -7,9 +7,9 @@
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
 
-    <title><%= it.t.install.title %></title>
+    <title><%= it.t.install.head.title %></title>
 
-    <meta name="description" content="<%= it.t.install.description %>" />
+    <meta name="description" content="<%= it.t.install.head.description %>" />
 
     <link rel="dns-prefetch" href="//www.googletagmanager.com" />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
@@ -28,10 +28,10 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@artichokeruby" />
     <meta name="twitter:creator" content="@artichokeruby" />
-    <meta name="twitter:title" content="Artichoke Ruby" />
+    <meta name="twitter:title" content="<%= it.t.install.head.title %>" />
     <meta
       name="twitter:description"
-      content="Install Artichoke Ruby, a Ruby made with Rust."
+      content="<%= it.t.install.head.description %>"
     />
     <meta
       name="twitter:image"
@@ -41,10 +41,10 @@
     <!-- Facebook Open Graph metadata -->
     <meta property="og:url" content="https://www.artichokeruby.org/install/" />
     <meta property="og:site_name" content="artichokeruby.org" />
-    <meta property="og:title" content="Install Artichoke Ruby" />
+    <meta property="og:title" content="<%= it.t.install.head.title %>" />
     <meta
       property="og:description"
-      content="Install Artichoke Ruby, a Ruby made with Rust."
+      content="<%= it.t.install.head.description %>"
     />
     <meta property="og:type" content="website" />
     <meta
