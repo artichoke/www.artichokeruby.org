@@ -1,6 +1,10 @@
 {
   "skip_to_main": "Skip to main content",
   "index": {
+    "head": {
+      "title": "Artichoke Ruby",
+      "description": "Artichoke is a Ruby made with Rust."
+    },
     "title": "Build the next Ruby for Wasm with Artichoke",
     "description": [
       "Bundle Ruby applications into a single Wasm binary with Artichoke, a Ruby made with Rust. The modular interpreter enables running untrusted code.",
@@ -22,7 +26,10 @@
     }
   },
   "install": {
-    "title": "Install Artichoke – Artichoke Ruby",
+    "head": {
+      "title": "Install Artichoke – Artichoke Ruby",
+      "description": "Install Artichoke Ruby, a Ruby made with Rust."
+    },
     "install": "Install Artichoke Ruby",
     "targets": "Artichoke Ruby installs on Linux, macOS, and Windows. New builds are pushed nightly.",
     "try": "Try out a build using one of these installation methods.",
