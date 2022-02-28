@@ -43,7 +43,7 @@
     "docker": {
       "go": "Docker",
       "title": "Docker镜像",
-      "content": "Artichoke的nightly构建会被推送至Docker Hub。镜像的构建基于Ubuntu 18.04、Debian Bullseye Slim和Alpine 3。",
+      "content": "Artichoke的nightly构建会被推送至Docker Hub。镜像的构建基于Ubuntu 20.04、Debian Bullseye Slim和Alpine 3。",
       "hint": "这些每日镜像包含了Artichoke的最新trunk commit。",
       "button": "Docker Hub"
     },
