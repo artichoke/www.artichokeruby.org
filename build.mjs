@@ -20,9 +20,9 @@ const minifyHtml = require("@minify-html/js");
 // eslint-disable-next-line no-shadow
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
-const makeLocale = (language, twitter) => {
-  const urlPrefix = language === "en" ? "/" : `/${language.toLowerCase()}/`;
-  const pathPrefix = language === "en" ? "" : `${language}`;
+const makeLocale = (language, twitter, isDefaultLocale = false) => {
+  const urlPrefix = isDefaultLocale ? "/" : `/${language.toLowerCase()}/`;
+  const pathPrefix = isDefaultLocale ? "" : `${language}`;
   const locale = Object.assign(Object.create(null), {
     language,
     twitter,
@@ -31,7 +31,7 @@ const makeLocale = (language, twitter) => {
       home: urlPrefix,
       install: `${urlPrefix}install/`,
     }),
-    default: language === "en",
+    default: isDefaultLocale,
     stringsPath: path.join(__dirname, "src", "locales", `${language}.json`),
   });
   return Object.freeze(locale);
@@ -50,7 +50,7 @@ const makeLocale = (language, twitter) => {
 //   current locale.
 // - `default`: A Boolean which indicates if the locale is the default locale.
 const locales = Object.freeze([
-  makeLocale("en", "en"),
+  makeLocale("en", "en", true),
   makeLocale("zh-Hans", "zh-cn"),
 ]);
 
