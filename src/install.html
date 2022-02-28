@@ -20,7 +20,10 @@
     <!-- Favicons -->
     <%~ includeFile("partials/favicons.html") %>
 
-    <link rel="canonical" href="https://www.artichokeruby.org/install/" />
+    <link
+      rel="canonical"
+      href="https://www.artichokeruby.org<%= it.locale.links.install %>"
+    />
 
     <link rel="stylesheet" href="/main.bundle.css" />
 
@@ -39,7 +42,10 @@
     />
 
     <!-- Facebook Open Graph metadata -->
-    <meta property="og:url" content="https://www.artichokeruby.org/install/" />
+    <meta
+      property="og:url"
+      content="https://www.artichokeruby.org<%= it.locale.links.install %>"
+    />
     <meta property="og:site_name" content="artichokeruby.org" />
     <meta property="og:title" content="<%= it.t.install.head.title %>" />
     <meta
@@ -61,8 +67,8 @@
     <a class="visually-hidden visually-hidden-focusable" href="#content">
       <%= it.t.skip_to_main %>
     </a>
-    <%~ includeFile("partials/nav.html", { page: "install", pageSlug: "install",
-    t: it.t.nav, prefix: it.prefix }) %>
+    <%~ includeFile("partials/nav.html", { page: "install", t: it.t.nav, locale:
+    it.locale, locales: it.locales }) %>
 
     <!--
       This layout is heavily inspired by the Bootstrap v5 docs homepage, which

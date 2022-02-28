@@ -27,7 +27,10 @@
     <!-- Favicons -->
     <%~ includeFile("partials/favicons.html") %>
 
-    <link rel="canonical" href="https://www.artichokeruby.org/" />
+    <link
+      rel="canonical"
+      href="https://www.artichokeruby.org<%= it.locale.links.home %>"
+    />
 
     <link rel="stylesheet" href="/main.bundle.css" />
 
@@ -46,7 +49,10 @@
     />
 
     <!-- Facebook Open Graph metadata -->
-    <meta property="og:url" content="https://www.artichokeruby.org/" />
+    <meta
+      property="og:url"
+      content="https://www.artichokeruby.org<%= it.locale.links.home %>"
+    />
     <meta property="og:site_name" content="artichokeruby.org" />
     <meta property="og:title" content="<%= it.t.index.head.title %>" />
     <meta
@@ -68,8 +74,8 @@
     <a class="visually-hidden visually-hidden-focusable" href="#content">
       <%= it.t.skip_to_main %>
     </a>
-    <%~ includeFile("partials/nav.html", { page: "index", pageSlug: "", t:
-    it.t.nav, prefix: it.prefix }) %>
+    <%~ includeFile("partials/nav.html", { page: "home", t: it.t.nav, locale:
+    it.locale, locales: it.locales }) %>
 
     <!--
       This layout is heavily inspired by the Bootstrap v5 docs homepage, which
@@ -104,7 +110,7 @@
                 <%= it.t.index.contribute %>
               </a>
               <a
-                href="<%= it.prefix + '/install/' %>"
+                href="<%= it.locale.links.install %>"
                 class="btn btn-lg btn-outline-secondary mb-3"
               >
                 <%= it.t.index.install.title %>
@@ -141,7 +147,7 @@
           <p><%= it.t.index.install.hint %></p>
           <a
             class="btn btn-lg btn-outline-primary mb-3"
-            href="<%= it.prefix + '/install/' %>"
+            href="<%= it.locale.links.install %>"
           >
             <%= it.t.index.install.guide %>
           </a>
@@ -178,6 +184,7 @@
             href="https://twitter.com/artichokeruby?ref_src=twsrc%5Etfw"
             class="twitter-follow-button"
             data-size="large"
+            data-lang="<%= it.locale.twitter %>"
             data-show-count="false"
           >
             Follow @artichokeruby
@@ -186,8 +193,8 @@
         <div class="col-md-7 ps-md-5">
           <a
             class="twitter-timeline"
+            data-lang="<%= it.locale.twitter %>"
             data-height="500"
-            data-theme="light"
             href="https://twitter.com/artichokeruby?ref_src=twsrc%5Etfw"
           >
             Tweets by artichokeruby
