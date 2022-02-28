@@ -20,18 +20,19 @@ const minifyHtml = require("@minify-html/js");
 // eslint-disable-next-line no-shadow
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
-const makeLocale = (language, twitter) => {
-  const urlPrefix = language === "en" ? "/" : `/${language}/`;
-  const pathPrefix = language === "en" ? "" : `${language}`;
+const makeLocale = (language, twitter, isDefaultLocale = false) => {
+  const urlPrefix = isDefaultLocale ? "/" : `/${language.toLowerCase()}/`;
+  const pathPrefix = isDefaultLocale ? "" : `${language}`;
   const locale = Object.assign(Object.create(null), {
     language,
     twitter,
     pathPrefix,
-    links: {
-      home: language === "en" ? "/" : `/${language}/`,
+    links: Object.assign(Object.create(null), {
+      home: urlPrefix,
       install: `${urlPrefix}install/`,
-    },
-    default: language === "en",
+    }),
+    default: isDefaultLocale,
+    stringsPath: path.join(__dirname, "src", "locales", `${language}.json`),
   });
   return Object.freeze(locale);
 };
@@ -49,8 +50,8 @@ const makeLocale = (language, twitter) => {
 //   current locale.
 // - `default`: A Boolean which indicates if the locale is the default locale.
 const locales = Object.freeze([
-  makeLocale("en", "en"),
-  makeLocale("zh-hans", "zh-cn"),
+  makeLocale("en", "en", true),
+  makeLocale("zh-Hans", "zh-cn"),
 ]);
 
 const assets = Object.freeze([
@@ -131,26 +132,20 @@ const esbuildSassPlugin = {
 };
 
 const renderTemplate = async (template, locale) => {
-  const localePath = path.join(
-    __dirname,
-    "src",
-    "locales",
-    `${locale.language}.json`
-  );
-  const t = JSON.parse(await fs.readFile(localePath));
+  const t = JSON.parse(await fs.readFile(locale.stringsPath));
 
-  let content = await renderFile(
-    template,
-    {
-      locale,
-      locales: Object.fromEntries(
-        locales.map((locale) => [locale.language, locale])
-      ),
-      t,
-      includeMarkdown,
-    },
-    { views: path.join(__dirname, "src") }
-  );
+  const context = {
+    locale,
+    locales: Object.fromEntries(
+      locales.map((locale) => [locale.language, locale])
+    ),
+    defaultLocale: locales.find((locale) => locale.default),
+    t,
+    includeMarkdown,
+  };
+  let content = await renderFile(template, context, {
+    views: path.join(__dirname, "src"),
+  });
 
   if (process.argv.includes("--release")) {
     const cfg = minifyHtml.createConfiguration({
