@@ -24,6 +24,18 @@
       rel="canonical"
       href="https://www.artichokeruby.org<%= it.locale.links.install %>"
     />
+    <% for (const [lang, locale] of Object.entries(it.locales)) { %>
+    <link
+      rel="alternate"
+      href="https://www.artichokeruby.org<%= locale.links.install %>"
+      hreflang="<%= lang %>"
+    />
+    <% } %>
+    <link
+      rel="alternate"
+      href="https://www.artichokeruby.org<%= it.defaultLocale.links.install %>"
+      hreflang="x-default"
+    />
 
     <link rel="stylesheet" href="/main.bundle.css" />
 
