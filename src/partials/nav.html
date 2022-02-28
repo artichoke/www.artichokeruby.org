@@ -2,7 +2,7 @@
   <div class="container d-flex flex-row justify-content-between">
     <a
       class="navbar-brand"
-      href="<%= it.prefix + '/' %>"
+      href="<%= it.locale.links.home %>"
       aria-label="Artichoke Ruby"
     >
       <img
@@ -29,13 +29,13 @@
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
           <!-- prettier-ignore -->
-          <a class="nav-link <% if (it.page === 'index') { %> active" aria-current="page" <% } else { %> " <% } %> href="<%= it.prefix + '/' %>">
+          <a class="nav-link <% if (it.page === 'home') { %> active" aria-current="page" <% } else { %> " <% } %> href="<%= it.locale.links.home %>">
             <%= it.t.home %>
           </a>
         </li>
         <li class="nav-item">
           <!-- prettier-ignore -->
-          <a class="nav-link <% if (it.page === 'install') { %> active" aria-current="page" <% } else { %> " <% } %> href="<%= it.prefix + '/install/' %>">
+          <a class="nav-link <% if (it.page === 'install') { %> active" aria-current="page" <% } else { %> " <% } %> href="<%= it.locale.links.install %>">
             <%= it.t.install %>
           </a>
         </li>
@@ -204,13 +204,13 @@
             <li>
               <a
                 class="dropdown-item"
-                href="/<%= it.pageSlug === '' ? '' : `${it.pageSlug}/` %>"
+                href="<%= it.locales['en'].links[it.page] %>"
               >
                 English
               </a>
               <a
                 class="dropdown-item"
-                href="/zh-hans/<%= it.pageSlug === '' ? '' : `${it.pageSlug}/` %>"
+                href="<%= it.locales['zh-hans'].links[it.page] %>"
               >
                 中文
               </a>

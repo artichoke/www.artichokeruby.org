@@ -20,8 +20,38 @@ const minifyHtml = require("@minify-html/js");
 // eslint-disable-next-line no-shadow
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
-const locales = ["en", "zh-hans"];
-const defaultLocale = locales[0];
+const makeLocale = (language, twitter) => {
+  const urlPrefix = language === "en" ? "/" : `/${language}/`;
+  const pathPrefix = language === "en" ? "" : `${language}`;
+  const locale = Object.assign(Object.create(null), {
+    language,
+    twitter,
+    pathPrefix,
+    links: {
+      home: language === "en" ? "/" : `/${language}/`,
+      install: `${urlPrefix}install/`,
+    },
+    default: language === "en",
+  });
+  return Object.freeze(locale);
+};
+
+// Locales in this build script contain the following keys:
+//
+// - `language`: An IETF BCP 47 language tag See:
+//   - https://en.wikipedia.org/wiki/IETF_language_tag
+//   - https://www.rfc-editor.org/info/bcp47
+// - `twitter`: A language code accepted by the `data-lang` attribute on Twitter
+//   embeds.
+// - `pathPrefix`: A (possibly empty) directory name where templates should be
+//   rendered on disk.
+// - `slugToLink`: A function that takes a page slug and returns a link for the
+//   current locale.
+// - `default`: A Boolean which indicates if the locale is the default locale.
+const locales = Object.freeze([
+  makeLocale("en", "en"),
+  makeLocale("zh-hans", "zh-cn"),
+]);
 
 const assets = Object.freeze([
   "src/assets/robots.txt",
@@ -100,17 +130,23 @@ const esbuildSassPlugin = {
   },
 };
 
-const renderTemplate = async (template, language) => {
-  const localePath = path.join(__dirname, "src", "locales", language + ".json");
+const renderTemplate = async (template, locale) => {
+  const localePath = path.join(
+    __dirname,
+    "src",
+    "locales",
+    `${locale.language}.json`
+  );
   const t = JSON.parse(await fs.readFile(localePath));
-  const prefix = language === defaultLocale ? "" : "/" + language;
 
   let content = await renderFile(
     template,
     {
-      language,
+      locale,
+      locales: Object.fromEntries(
+        locales.map((locale) => [locale.language, locale])
+      ),
       t,
-      prefix,
       includeMarkdown,
     },
     { views: path.join(__dirname, "src") }
@@ -136,13 +172,15 @@ const renderTemplate = async (template, language) => {
 
 const build = async () => {
   await Promise.all(
-    locales.map(async (lang) => {
-      const prefix = lang === defaultLocale ? "" : `/${lang}`;
-      await fs.mkdir(`dist${prefix}/install`, { recursive: true });
-      await fs.mkdir(`dist${prefix}/logos`, { recursive: true });
-      await fs.mkdir(`dist${prefix}/social`, { recursive: true });
+    locales.map(async (locale) => {
+      await fs.mkdir(
+        path.normalize(path.join("dist", locale.pathPrefix, "install")),
+        { recursive: true }
+      );
     })
   );
+  await fs.mkdir(path.join("dist", "logos"), { recursive: true });
+  await fs.mkdir(path.join("dist", "social"), { recursive: true });
 
   await Promise.all(
     assets.map(async (asset) => {
@@ -158,22 +196,18 @@ const build = async () => {
   );
 
   await Promise.all(
-    locales.map(async (lang) => {
-      let index = await renderTemplate("index.html", lang);
-      await fs.writeFile(
-        lang === defaultLocale
-          ? path.join(__dirname, "dist", "index.html")
-          : path.join(__dirname, "dist", lang, "index.html"),
-        index
+    locales.map(async (locale) => {
+      let index = await renderTemplate("index.html", locale);
+      const indexOut = path.normalize(
+        path.join(__dirname, "dist", locale.pathPrefix, "index.html")
       );
+      await fs.writeFile(indexOut, index);
 
-      let install = await renderTemplate("install.html", lang);
-      await fs.writeFile(
-        lang === defaultLocale
-          ? path.join(__dirname, "dist", "install", "index.html")
-          : path.join(__dirname, "dist", lang, "install", "index.html"),
-        install
+      let install = await renderTemplate("install.html", locale);
+      const installOut = path.normalize(
+        path.join(__dirname, "dist", locale.pathPrefix, "install", "index.html")
       );
+      await fs.writeFile(installOut, install);
     })
   );
 
