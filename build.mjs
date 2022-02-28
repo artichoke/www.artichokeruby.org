@@ -32,6 +32,7 @@ const makeLocale = (language, twitter) => {
       install: `${urlPrefix}install/`,
     },
     default: language === "en",
+    stringsPath: path.join(__dirname, "src", "locales", `${language}.json`),
   });
   return Object.freeze(locale);
 };
@@ -131,13 +132,7 @@ const esbuildSassPlugin = {
 };
 
 const renderTemplate = async (template, locale) => {
-  const localePath = path.join(
-    __dirname,
-    "src",
-    "locales",
-    `${locale.language}.json`
-  );
-  const t = JSON.parse(await fs.readFile(localePath));
+  const t = JSON.parse(await fs.readFile(locale.stringsPath));
 
   let content = await renderFile(
     template,
