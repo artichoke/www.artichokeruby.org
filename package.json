@@ -55,7 +55,7 @@
     "lint": "npx eslint . --ext .js,.jsx,.mjs,.ts,.tsx",
     "lint:fix": "npx eslint . --ext .js,.jsx,.mjs,.ts,.tsx --fix",
     "release:markdown_link_check": "find . -name '*.md' -and -not -path '*/node_modules/*' | sort | xargs -n1 npx markdown-link-check --config .github/markdown-link-check.json",
-    "serve": "python3 -u -m http.server --directory dist --bind 127.0.0.1 0",
+    "serve": "python3 -u -m http.server --directory dist --bind localhost 0",
     "watch:debug": "npx chokidar-cli \"package.json\" \"package-lock.json\" \"build.mjs\" \"src/**/*\" -c \"npm run build:debug\" --initial",
     "watch:release": "npx chokidar-cli \"package.json\" \"package-lock.json\" \"build.mjs\" \"src/**/*\" -c \"npm run build:release\" --initial"
   }
