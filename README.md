@@ -23,3 +23,11 @@ is automatically deployed to [www.artichokeruby.org] when PRs get merged by a
 
 [www.artichokeruby.org]: https://www.artichokeruby.org/
 [deploy-workflow]: .github/workflows/ci.yaml
+
+## Localization
+
+[www.artichokeruby.org] has several localizations and accepts PRs to add
+additional localizations:
+
+- `en`: <https://www.artichokeruby.org/>
+- `zh-Hans`: <https://www.artichokeruby.org/zh-hans/>
