@@ -108,18 +108,24 @@
             <p class="lead mb-4"><%= it.t.install.try %></p>
             <div class="d-flex flex-column flex-md-row">
               <a
+                class="btn btn-lg btn-dark mb-3 me-md-3"
                 href="#nightly"
-                class="btn btn-lg btn-artichoke-primary mb-3 me-md-3"
+                role="button"
               >
                 <%= it.t.install.nightly.go %>
               </a>
               <a
+                class="btn btn-lg btn-secondary mb-3 me-md-3"
                 href="#docker"
-                class="btn btn-lg btn-outline-secondary mb-3 me-md-3"
+                role="button"
               >
                 <%= it.t.install.docker.go %>
               </a>
-              <a href="#cargo" class="btn btn-lg btn-outline-secondary mb-3">
+              <a
+                class="btn btn-lg btn-secondary mb-3"
+                href="#cargo"
+                role="button"
+              >
                 <%= it.t.install.cargo.go %>
               </a>
             </div>
@@ -157,8 +163,9 @@
           </p>
           <p><%~ it.t.install.nightly.hint %></p>
           <a
-            class="btn btn-lg btn-outline-success mb-3"
+            class="btn btn-lg btn-dark mb-3"
             href="https://github.com/artichoke/nightly/releases"
+            role="button"
           >
             <%= it.t.install.nightly.button %>
           </a>
@@ -194,8 +201,9 @@
           </p>
           <p><%= it.t.install.docker.hint %></p>
           <a
-            class="btn btn-lg btn-outline-info mb-3"
+            class="btn btn-lg btn-secondary mb-3"
             href="https://hub.docker.com/r/artichokeruby/artichoke"
+            role="button"
           >
             <%= it.t.install.docker.button %>
           </a>
@@ -219,8 +227,9 @@
           </p>
           <p><%= it.t.install.cargo.hint %></p>
           <a
-            class="btn btn-lg btn-outline-dark mb-3"
+            class="btn btn-lg btn-secondary mb-3"
             href="https://github.com/artichoke/artichoke/blob/trunk/BUILD.md"
+            role="button"
           >
             <%= it.t.install.cargo.button %>
           </a>
