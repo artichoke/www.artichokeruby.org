@@ -1,8 +1,8 @@
 import "bootstrap";
-import "./bootstrap-slim.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 // marketing hero
-import "./index.scss";
+import "./index.css";
 
 // install snippets styles
 import "highlight.js/styles/default.css";

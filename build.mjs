@@ -11,7 +11,6 @@ import esbuild from "esbuild";
 import hljs from "highlight.js";
 import { marked } from "marked";
 import { PurgeCSS } from "purgecss";
-import sass from "sass";
 
 // eslint-disable-next-line no-shadow
 const require = createRequire(import.meta.url);
@@ -109,28 +108,6 @@ const includeMarkdown = (source) => {
   return marked(content.toString());
 };
 
-const esbuildSassPlugin = {
-  name: "sass",
-  setup(build) {
-    build.onResolve({ filter: /\.scss$/ }, (args) => {
-      return {
-        path: path.resolve(args.resolveDir, args.path),
-        namespace: "sass",
-      };
-    });
-    build.onLoad({ filter: /.*/, namespace: "sass" }, (args) => {
-      let compiled = sass.renderSync({
-        file: args.path,
-        includePaths: [path.join(__dirname, "node_modules")],
-      });
-      return {
-        contents: compiled.css.toString(),
-        loader: "css",
-      };
-    });
-  },
-};
-
 const renderTemplate = async (template, locale) => {
   const t = JSON.parse(await fs.readFile(locale.stringsPath));
 
@@ -218,7 +195,6 @@ const build = async () => {
       ".ttf": "file",
     },
     minify: process.argv.includes("--release"),
-    plugins: [esbuildSassPlugin],
   });
 
   const purgeCSSResult = await new PurgeCSS().purge({
