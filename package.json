@@ -30,8 +30,7 @@
     "eta": "^1.12.3",
     "highlight.js": "^11.5.0",
     "marked": "^4.0.12",
-    "purgecss": "^4.1.3",
-    "sass": "^1.49.10"
+    "purgecss": "^4.1.3"
   },
   "eslintConfig": {
     "env": {
