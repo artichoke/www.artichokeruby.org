@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@minify-html/js": "^0.8.0",
-    "esbuild": "^0.14.34",
+    "esbuild": "^0.14.42",
     "eta": "^1.12.3",
     "highlight.js": "^11.5.0",
     "marked": "^4.0.12",
