@@ -27,7 +27,7 @@
     "@minify-html/js": "^0.8.1",
     "esbuild": "^0.14.48",
     "eta": "^1.12.3",
-    "highlight.js": "^11.5.1",
+    "highlight.js": "^11.6.0",
     "marked": "^4.0.17",
     "purgecss": "^4.1.3"
   },
