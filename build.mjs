@@ -1,20 +1,17 @@
 /* eslint-disable no-console */
 
+import { Buffer } from "node:buffer";
 import { readFileSync } from "node:fs";
 import fs from "node:fs/promises";
-import { createRequire } from "node:module";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import minifyHtml from "@minify-html/node";
 import { renderFile } from "eta";
 import esbuild from "esbuild";
 import hljs from "highlight.js";
 import { marked } from "marked";
 import { PurgeCSS } from "purgecss";
-
-// eslint-disable-next-line no-shadow
-const require = createRequire(import.meta.url);
-const minifyHtml = require("@minify-html/js");
 
 // eslint-disable-next-line no-shadow
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
@@ -125,7 +122,8 @@ const renderTemplate = async (template, locale) => {
   });
 
   if (process.argv.includes("--release")) {
-    const cfg = minifyHtml.createConfiguration({
+    const input = Buffer.from(content);
+    const output = minifyHtml.minify(input, {
       do_not_minify_doctype: true,
       ensure_spec_compliant_unquoted_attribute_values: true,
       keep_closing_tags: true,
@@ -136,7 +134,7 @@ const renderTemplate = async (template, locale) => {
       remove_bangs: false,
     });
 
-    content = minifyHtml.minify(content, cfg);
+    content = output.toString();
   }
 
   return content;
