@@ -61,115 +61,22 @@
           >
             <%= it.t.docs %>
           </a>
+          <!-- prettier-ignore -->
           <ul
             class="dropdown-menu dropdown-menu-end"
             aria-labelledby="navbarDropdown"
           >
+            <% for (const section of it.crates) { %> <% for (const crate of section.crates) { %>
             <li>
-              <a
-                class="dropdown-item"
-                href="https://artichoke.github.io/artichoke/artichoke/"
-              >
-                artichoke
+              <a class="dropdown-item" href="<% crate.docs %>">
+                <%= crate.name %>
               </a>
             </li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="https://artichoke.github.io/artichoke/artichoke_core/"
-              >
-                artichoke-core
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="https://artichoke.github.io/artichoke/artichoke_backend/"
-              >
-                artichoke-backend
-              </a>
-            </li>
+            <% } %>
+            <% if (section.hasNext) { %>
             <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="https://artichoke.github.io/artichoke/spinoso_array/"
-              >
-                spionso-array
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="https://artichoke.github.io/artichoke/spinoso_env/"
-              >
-                spionso-env
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="https://artichoke.github.io/artichoke/spinoso_exception/"
-              >
-                spionso-exception
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="https://artichoke.github.io/artichoke/spinoso_math/"
-              >
-                spionso-math
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="https://artichoke.github.io/artichoke/spinoso_random/"
-              >
-                spionso-random
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="https://artichoke.github.io/artichoke/spinoso_regexp/"
-              >
-                spionso-regexp
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="https://artichoke.github.io/artichoke/spinoso_securerandom/"
-              >
-                spionso-securerandom
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="https://artichoke.github.io/artichoke/spinoso_string/"
-              >
-                spionso-string
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="https://artichoke.github.io/artichoke/spinoso_symbol/"
-              >
-                spionso-symbol
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="https://artichoke.github.io/artichoke/spinoso_time/"
-              >
-                spionso-time
-              </a>
-            </li>
+            <% } %>
+            <% } %>
           </ul>
         </li>
         <li class="nav-item dropdown">

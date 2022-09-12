@@ -3,6 +3,7 @@
 import { Buffer } from "node:buffer";
 import { readFileSync } from "node:fs";
 import fs from "node:fs/promises";
+import https from "node:https";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -15,6 +16,99 @@ import { PurgeCSS } from "purgecss";
 
 // eslint-disable-next-line no-shadow
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
+
+const loadJsonFromUrl = async (url) => {
+  const options = {
+    headers: { "User-Agent": "Mozilla/5.0" },
+  };
+  // return new pending promise
+  return new Promise((resolve, reject) => {
+    // select http or https module, depending on reqested url
+    const request = https.get(url, options, (response) => {
+      // handle http errors
+      if (response.statusCode < 200 || response.statusCode > 299) {
+        reject(
+          new Error("Failed to load page, status code: " + response.statusCode)
+        );
+      }
+      // temporary data holder
+      const body = [];
+      // on every content chunk, push it to the data array
+      response.on("data", (chunk) => body.push(chunk));
+      // we are done, resolve promise with those joined chunks
+      response.on("end", () => resolve(body.join("")));
+    });
+    // handle connection errors of the request
+    request.on("error", (err) => reject(err));
+  }).then((body) => JSON.parse(body));
+};
+
+const getCrates = async () => {
+  const artichokeTree = await loadJsonFromUrl(
+    "https://api.github.com/repos/artichoke/artichoke/git/trees/trunk"
+  );
+  const dirs = artichokeTree.tree.filter((item) => item.type === "tree");
+
+  const rustCrates = (
+    await loadJsonFromUrl("https://api.github.com/orgs/artichoke/repos")
+  )
+    .filter((repo) => repo.topics.includes("rust-crate"))
+    .filter((repo) => !repo.topics.includes("fork"))
+    .filter((repo) => repo.name !== "artichoke")
+    .map((repo) => {
+      return { name: repo.name, docs: repo.homepage };
+    });
+  rustCrates.sort((a, b) => a.name.localeCompare(b.name));
+
+  const makeDocEntry = (item) => {
+    const crateName = item.path.replaceAll("-", "_");
+    return {
+      name: item.path,
+      docs: `https://artichoke.github.io/artichoke/${crateName}`,
+    };
+  };
+
+  return [
+    {
+      section: "artichoke",
+      crates: [makeDocEntry({ path: "artichoke" })],
+      hasNext: true,
+    },
+    {
+      section: "core",
+      crates: dirs
+        .filter((item) => item.path.startsWith("artichoke"))
+        .map(makeDocEntry),
+      hasNext: true,
+    },
+    {
+      section: "spinoso",
+      crates: dirs
+        .filter((item) => item.path.startsWith("spinoso"))
+        .map(makeDocEntry),
+      hasNext: true,
+    },
+    {
+      section: "scolapasta",
+      crates: dirs
+        .filter((item) => item.path.startsWith("scolapasta"))
+        .map(makeDocEntry),
+      hasNext: true,
+    },
+    {
+      section: "mezzaluna",
+      crates: dirs
+        .filter((item) => item.path.startsWith("mezzaluna"))
+        .map(makeDocEntry),
+      hasNext: true,
+    },
+    {
+      section: "first party external",
+      crates: rustCrates,
+      hasNext: false,
+    },
+  ];
+};
 
 const makeLocale = (language, twitter, isDefaultLocale = false) => {
   const urlPrefix = isDefaultLocale ? "/" : `/${language.toLowerCase()}/`;
@@ -105,7 +199,7 @@ const includeMarkdown = (source) => {
   return marked(content.toString());
 };
 
-const renderTemplate = async (template, locale) => {
+const renderTemplate = async (template, locale, crates) => {
   const t = JSON.parse(await fs.readFile(locale.stringsPath));
 
   const context = {
@@ -116,6 +210,7 @@ const renderTemplate = async (template, locale) => {
     defaultLocale: locales.find((locale) => locale.default),
     t,
     includeMarkdown,
+    crates,
   };
   let content = await renderFile(template, context, {
     views: path.join(__dirname, "src"),
@@ -141,6 +236,8 @@ const renderTemplate = async (template, locale) => {
 };
 
 const build = async () => {
+  const crates = await getCrates();
+
   await Promise.all(
     locales.map(async (locale) => {
       await fs.mkdir(
@@ -167,13 +264,13 @@ const build = async () => {
 
   await Promise.all(
     locales.map(async (locale) => {
-      let index = await renderTemplate("index.html", locale);
+      let index = await renderTemplate("index.html", locale, crates);
       const indexOut = path.normalize(
         path.join(__dirname, "dist", locale.pathPrefix, "index.html")
       );
       await fs.writeFile(indexOut, index);
 
-      let install = await renderTemplate("install.html", locale);
+      let install = await renderTemplate("install.html", locale, crates);
       const installOut = path.normalize(
         path.join(__dirname, "dist", locale.pathPrefix, "install", "index.html")
       );
