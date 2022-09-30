@@ -79,8 +79,14 @@
     <a class="visually-hidden visually-hidden-focusable" href="#content">
       <%= it.t.skip_to_main %>
     </a>
-    <%~ includeFile("partials/nav.html", { page: "install", t: it.t.nav, locale:
-    it.locale, locales: it.locales }) %>
+    <!-- prettier-ignore -->
+    <%~ includeFile("partials/nav.html", {
+          page: "install",
+          t: it.t.nav,
+          locale: it.locale,
+          locales: it.locales,
+        })
+    %>
 
     <!--
       This layout is heavily inspired by the Bootstrap v5 docs homepage, which
