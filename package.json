@@ -24,7 +24,7 @@
     "bootstrap": "^5.2.0"
   },
   "devDependencies": {
-    "@minify-html/node": "^0.10.0",
+    "@minify-html/node": "^0.10.1",
     "esbuild": "^0.15.6",
     "eta": "^1.12.3",
     "highlight.js": "^11.6.0",
