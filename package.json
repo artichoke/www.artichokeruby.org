@@ -28,7 +28,7 @@
     "esbuild": "^0.15.16",
     "eta": "^1.12.3",
     "highlight.js": "^11.7.0",
-    "marked": "^4.2.3",
+    "marked": "^4.2.5",
     "purgecss": "^5.0.0"
   },
   "eslintConfig": {
