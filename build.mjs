@@ -4,16 +4,12 @@ import { Buffer } from "node:buffer";
 import { readFileSync } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 
 import minifyHtml from "@minify-html/node";
 import { renderFile } from "eta";
 import esbuild from "esbuild";
 import hljs from "highlight.js";
 import { marked } from "marked";
-
-// eslint-disable-next-line no-shadow
-const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 const makeLocale = (language, twitter, isDefaultLocale = false) => {
   const urlPrefix = isDefaultLocale ? "/" : `/${language.toLowerCase()}/`;
@@ -27,7 +23,7 @@ const makeLocale = (language, twitter, isDefaultLocale = false) => {
       install: `${urlPrefix}install/`,
     }),
     default: isDefaultLocale,
-    stringsPath: path.join(__dirname, "src", "locales", `${language}.json`),
+    stringsPath: path.join("src", "locales", `${language}.json`),
   });
   return Object.freeze(locale);
 };
@@ -99,7 +95,7 @@ marked.setOptions({
 });
 
 const includeMarkdown = (source) => {
-  const filePath = path.join(__dirname, "src", source);
+  const filePath = path.join("src", source);
   const content = readFileSync(filePath);
   return marked(content.toString());
 };
@@ -117,7 +113,7 @@ const renderTemplate = async (template, locale) => {
     includeMarkdown,
   };
   let content = await renderFile(template, context, {
-    views: path.join(__dirname, "src"),
+    views: "src",
   });
 
   if (process.argv.includes("--release")) {
@@ -139,42 +135,57 @@ const renderTemplate = async (template, locale) => {
   return content;
 };
 
-const build = async () => {
-  await Promise.all(
-    locales.map(async (locale) => {
-      await fs.mkdir(
-        path.normalize(path.join("dist", locale.pathPrefix, "install")),
-        { recursive: true }
-      );
-    })
-  );
-  await fs.mkdir(path.join("dist", "logos"), { recursive: true });
-  await fs.mkdir(path.join("dist", "social"), { recursive: true });
+const setupOutdir = async (outdir) => {
+  const dirs = [];
+  for (let { pathPrefix } of locales) {
+    dirs.push(path.join(outdir, pathPrefix));
+    dirs.push(path.join(outdir, pathPrefix, "install"));
+  }
+  const socialAssetDir = path.join(outdir, "social");
+  dirs.push(socialAssetDir);
+  const logosAssetDir = path.join(outdir, "logos");
+  dirs.push(logosAssetDir);
+  await Promise.all(dirs.map((dir) => fs.mkdir(dir, { recursive: true })));
 
+  return Object.assign(Object.create(null), {
+    socialAssetDir,
+    logosAssetDir,
+  });
+};
+
+const copyAssets = async (outdir, socialAssetDir, logosAssetDir) => {
   await Promise.all(
     assets.map(async (asset) => {
       const file = path.basename(asset);
       if (asset.includes("/social/")) {
-        await fs.copyFile(asset, path.join(__dirname, "dist", "social", file));
-      } else if (asset.includes("/logos/")) {
-        await fs.copyFile(asset, path.join(__dirname, "dist", "logos", file));
-      } else {
-        await fs.copyFile(asset, path.join(__dirname, "dist", file));
+        await fs.copyFile(asset, path.join(socialAssetDir, file));
+        return;
       }
+      if (asset.includes("/logos/")) {
+        await fs.copyFile(asset, path.join(logosAssetDir, file));
+        return;
+      }
+      await fs.copyFile(asset, path.join(outdir, file));
     })
   );
+};
+
+const build = async () => {
+  const outdir = "dist";
+  const { socialAssetDir, logosAssetDir } = await setupOutdir(outdir);
+  await copyAssets(outdir, socialAssetDir, logosAssetDir);
 
   await Promise.all(
     locales.map(async (locale) => {
       let index = await renderTemplate("index.html", locale);
       const indexOut = path.normalize(
-        path.join(__dirname, "dist", locale.pathPrefix, "index.html")
+        path.join(outdir, locale.pathPrefix, "index.html")
       );
       await fs.writeFile(indexOut, index);
 
       let install = await renderTemplate("install.html", locale);
       const installOut = path.normalize(
-        path.join(__dirname, "dist", locale.pathPrefix, "install", "index.html")
+        path.join(outdir, locale.pathPrefix, "install", "index.html")
       );
       await fs.writeFile(installOut, install);
     })
@@ -186,7 +197,7 @@ const build = async () => {
     },
     entryNames: "[name].bundle",
     bundle: true,
-    outdir: "./dist",
+    outdir,
     loader: {
       ".rb": "text",
       ".ttf": "file",
