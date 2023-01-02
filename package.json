@@ -25,10 +25,10 @@
   },
   "devDependencies": {
     "@minify-html/node": "^0.10.3",
-    "esbuild": "^0.15.16",
+    "esbuild": "^0.16.12",
     "eta": "^1.12.3",
     "highlight.js": "^11.7.0",
-    "marked": "^4.2.3",
+    "marked": "^4.2.5",
     "purgecss": "^5.0.0"
   },
   "eslintConfig": {
