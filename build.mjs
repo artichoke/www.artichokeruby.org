@@ -11,7 +11,6 @@ import { renderFile } from "eta";
 import esbuild from "esbuild";
 import hljs from "highlight.js";
 import { marked } from "marked";
-import { PurgeCSS } from "purgecss";
 
 // eslint-disable-next-line no-shadow
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
@@ -194,15 +193,6 @@ const build = async () => {
     },
     minify: process.argv.includes("--release"),
   });
-
-  const purgeCSSResult = await new PurgeCSS().purge({
-    content: ["dist/**/*.html"],
-    css: ["dist/**/*.css"],
-    safelist: ["show"],
-  });
-  for (const { file, css } of purgeCSSResult) {
-    await fs.writeFile(file, css);
-  }
 };
 
 (async function main() {
