@@ -28,7 +28,7 @@
     "esbuild": "^0.16.12",
     "eta": "^2.0.0",
     "highlight.js": "^11.7.0",
-    "marked": "^4.2.5"
+    "marked": "^4.2.12"
   },
   "eslintConfig": {
     "env": {
