@@ -28,7 +28,7 @@
   description: "Area: Security vulnerabilities and unsoundness issues."
 - name: "A-webapp"
   color: "f7e101"
-  description: "Area: Web frontend for the playground."
+  description: "Area: Web frontend for the project website."
 - name: "A-webpack"
   color: "f7e101"
   description: "Area: Webpack configuration."
