@@ -24,11 +24,12 @@
     "bootstrap": "^5.2.3"
   },
   "devDependencies": {
-    "@minify-html/node": "^0.10.8",
-    "esbuild": "^0.17.15",
-    "eta": "^2.0.1",
-    "highlight.js": "^11.7.0",
-    "marked": "^4.3.0"
+    "@minify-html/node": "^0.11.1",
+    "esbuild": "^0.17.18",
+    "eta": "^2.1.1",
+    "highlight.js": "^11.8.0",
+    "marked": "^5.0.2",
+    "marked-highlight": "^1.0.1"
   },
   "eslintConfig": {
     "env": {
