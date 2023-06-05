@@ -48,7 +48,6 @@ const locales = Object.freeze([
 
 const assets = Object.freeze([
   "src/assets/robots.txt",
-  "src/logos/cargo.svg",
   "src/logos/ruby.svg",
   "node_modules/@artichokeruby/logo/favicons/favicon-32x32.png",
   "node_modules/@artichokeruby/logo/favicons/favicon-128x128.png",
