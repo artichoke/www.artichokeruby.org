@@ -68,6 +68,7 @@
   "nav": {
     "home": "Home",
     "install": "Install",
+    "chat": "Chat",
     "code": "Code",
     "docs": "Docs"
   }
