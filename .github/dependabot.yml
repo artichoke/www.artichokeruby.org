@@ -6,7 +6,7 @@ updates:
     schedule:
       interval: "monthly"
     groups:
-      deps:
+      gha-deps:
         patterns:
           - "*"
     assignees:
@@ -18,7 +18,7 @@ updates:
     schedule:
       interval: monthly
     groups:
-      deps:
+      npm-deps:
         patterns:
           - "*"
     assignees:
