@@ -5,6 +5,10 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
+    groups:
+      deps:
+        patterns:
+          - "*"
     assignees:
       - lopopolo
     labels:
@@ -13,7 +17,10 @@ updates:
     directory: "/"
     schedule:
       interval: monthly
-    open-pull-requests-limit: 15
+    groups:
+      deps:
+        patterns:
+          - "*"
     assignees:
       - lopopolo
     labels:
