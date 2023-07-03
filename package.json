@@ -25,10 +25,10 @@
   },
   "devDependencies": {
     "@minify-html/node": "^0.11.1",
-    "esbuild": "^0.17.19",
-    "eta": "^2.2.0",
+    "esbuild": "^0.18.11",
+    "eta": "^3.0.3",
     "highlight.js": "^11.8.0",
-    "marked": "^5.0.4",
+    "marked": "^5.1.0",
     "marked-highlight": "^2.0.1"
   },
   "eslintConfig": {
