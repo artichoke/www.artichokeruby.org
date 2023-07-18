@@ -28,16 +28,34 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <!-- prettier-ignore -->
-          <a class="nav-link <% if (it.page === 'home') { %> active" aria-current="page" <% } else { %> " <% } %> href="<%= it.locale.links.home %>">
+          <% if (it.page === 'home') { %>
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="<%= it.locale.links.home %>"
+          >
             <%= it.t.home %>
           </a>
+          <% } else { %>
+          <a class="nav-link" href="<%= it.locale.links.home %>">
+            <%= it.t.home %>
+          </a>
+          <% } %>
         </li>
         <li class="nav-item">
-          <!-- prettier-ignore -->
-          <a class="nav-link <% if (it.page === 'install') { %> active" aria-current="page" <% } else { %> " <% } %> href="<%= it.locale.links.install %>">
+          <% if (it.page === 'install') { %>
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="<%= it.locale.links.install %>"
+          >
             <%= it.t.install %>
           </a>
+          <% } else { %>
+          <a class="nav-link" href="<%= it.locale.links.install %>">
+            <%= it.t.install %>
+          </a>
+          <% } %>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="https://artichoke.run">Playground</a>

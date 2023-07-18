@@ -29,7 +29,8 @@
     "eta": "^2.2.0",
     "highlight.js": "^11.8.0",
     "marked": "^5.0.4",
-    "marked-highlight": "^2.0.1"
+    "marked-highlight": "^2.0.1",
+    "prettier": "^3.0.0"
   },
   "eslintConfig": {
     "env": {
@@ -49,7 +50,7 @@
     "clean": "rm -rf dist",
     "dev:debug": "npx concurrently \"npm:serve\" \"npm:watch:debug\"",
     "dev:release": "npx concurrently \"npm:serve\" \"npm:watch:release\"",
-    "fmt": "npx prettier --write \"**/*\"",
+    "fmt": "prettier --write \"**/*\"",
     "lint": "npx eslint . --ext .js,.jsx,.mjs,.ts,.tsx",
     "lint:fix": "npx eslint . --ext .js,.jsx,.mjs,.ts,.tsx --fix",
     "release:markdown_link_check": "find . -name '*.md' -and -not -path '*/node_modules/*' | sort | xargs -n1 npx markdown-link-check --config .github/markdown-link-check.json",
