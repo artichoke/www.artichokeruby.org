@@ -91,7 +91,7 @@ marked.use(
       const html = highlighted.value;
       return html;
     },
-  })
+  }),
 );
 
 const includeMarkdown = (source) => {
@@ -106,7 +106,7 @@ const renderTemplate = async (template, locale) => {
   const context = {
     locale,
     locales: Object.fromEntries(
-      locales.map((locale) => [locale.language, locale])
+      locales.map((locale) => [locale.language, locale]),
     ),
     defaultLocale: locales.find((locale) => locale.default),
     t,
@@ -166,7 +166,7 @@ const copyAssets = async (outdir, socialAssetDir, logosAssetDir) => {
         return;
       }
       await fs.copyFile(asset, path.join(outdir, file));
-    })
+    }),
   );
 };
 
@@ -179,16 +179,16 @@ const build = async () => {
     locales.map(async (locale) => {
       let index = await renderTemplate("index.html", locale);
       const indexOut = path.normalize(
-        path.join(outdir, locale.pathPrefix, "index.html")
+        path.join(outdir, locale.pathPrefix, "index.html"),
       );
       await fs.writeFile(indexOut, index);
 
       let install = await renderTemplate("install.html", locale);
       const installOut = path.normalize(
-        path.join(outdir, locale.pathPrefix, "install", "index.html")
+        path.join(outdir, locale.pathPrefix, "install", "index.html"),
       );
       await fs.writeFile(installOut, install);
-    })
+    }),
   );
 
   await esbuild.build({
