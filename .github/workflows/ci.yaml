@@ -17,10 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v3.6.0
 
       - name: Install Node.js toolchai
-        uses: actions/setup-node@v3.7.0
+        uses: actions/setup-node@v3.8.1
         with:
           node-version: 18
 
@@ -46,10 +46,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v3.6.0
 
       - name: Install Node.js toolchain
-        uses: actions/setup-node@v3.7.0
+        uses: actions/setup-node@v3.8.1
         with:
           node-version: 18
 
@@ -64,10 +64,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v3.6.0
 
       - name: Install Node.js toolchain
-        uses: actions/setup-node@v3.7.0
+        uses: actions/setup-node@v3.8.1
         with:
           node-version: 18
 
