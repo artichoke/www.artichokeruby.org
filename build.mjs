@@ -6,7 +6,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 import minifyHtml from "@minify-html/node";
-import { renderFile } from "eta";
+import { Eta } from "eta";
 import esbuild from "esbuild";
 import hljs from "highlight.js";
 import { marked } from "marked";
@@ -111,9 +111,10 @@ const renderTemplate = async (template, locale) => {
     t,
     includeMarkdown,
   };
-  let content = await renderFile(template, context, {
-    views: "src",
-  });
+  const html = await fs.readFile(path.resolve("src", template), "utf8");
+
+  const eta = new Eta({ views: "src" });
+  const content = eta.renderString(html, context);
 
   const input = Buffer.from(content);
   const output = minifyHtml.minify(input, {
