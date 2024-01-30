@@ -30,7 +30,7 @@
     "highlight.js": "^11.8.0",
     "marked": "^5.1.2",
     "marked-highlight": "^2.0.4",
-    "prettier": "^3.0.3"
+    "prettier": "^3.2.4"
   },
   "eslintConfig": {
     "env": {
