@@ -10,7 +10,6 @@ import { renderFile } from "eta";
 import esbuild from "esbuild";
 import hljs from "highlight.js";
 import { marked } from "marked";
-import { markedHighlight } from "marked-highlight";
 
 const makeLocale = (language, twitter, isDefaultLocale = false) => {
   const urlPrefix = isDefaultLocale ? "/" : `/${language.toLowerCase()}/`;
@@ -74,28 +73,28 @@ const assets = Object.freeze([
   "node_modules/@artichokeruby/logo/social/discord-logo.svg",
 ]);
 
-marked.use({
-  headerIds: false,
-  mangle: false,
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  highlight: (code, language) => {
+    const highlighted = hljs.highlight(code, {
+      language,
+      ignoreIllegals: true,
+    });
+    const html = highlighted.value;
+    return html;
+  },
+  langPrefix: "hljs artichoke-highlight language-",
+  pedantic: false,
+  gfm: true,
+  breaks: false,
+  sanitize: false,
+  smartLists: true,
+  smartypants: false,
+  xhtml: false,
 });
 
-marked.use(
-  markedHighlight({
-    langPrefix: "hljs artichoke-highlight language-",
-    highlight(code, lang) {
-      const language = hljs.getLanguage(lang) ? lang : "plaintext";
-      const highlighted = hljs.highlight(code, {
-        language,
-        ignoreIllegals: true,
-      });
-      const html = highlighted.value;
-      return html;
-    },
-  }),
-);
-
 const includeMarkdown = (source) => {
-  const filePath = path.join("src", source);
+  const filePath = path.resolve("src", source);
   const content = readFileSync(filePath);
   return marked.parse(content.toString());
 };
@@ -116,23 +115,19 @@ const renderTemplate = async (template, locale) => {
     views: "src",
   });
 
-  if (process.argv.includes("--release")) {
-    const input = Buffer.from(content);
-    const output = minifyHtml.minify(input, {
-      do_not_minify_doctype: true,
-      ensure_spec_compliant_unquoted_attribute_values: true,
-      keep_closing_tags: true,
-      keep_html_and_head_opening_tags: true,
-      keep_spaces_between_attributes: true,
-      minify_js: true,
-      minify_css: true,
-      remove_bangs: false,
-    });
+  const input = Buffer.from(content);
+  const output = minifyHtml.minify(input, {
+    do_not_minify_doctype: true,
+    ensure_spec_compliant_unquoted_attribute_values: true,
+    keep_closing_tags: true,
+    keep_html_and_head_opening_tags: true,
+    keep_spaces_between_attributes: true,
+    minify_js: true,
+    minify_css: true,
+    remove_bangs: false,
+  });
 
-    content = output.toString();
-  }
-
-  return content;
+  return output.toString();
 };
 
 const setupOutdir = async (outdir) => {
@@ -202,7 +197,7 @@ const build = async () => {
       ".rb": "text",
       ".ttf": "file",
     },
-    minify: process.argv.includes("--release"),
+    minify: true,
   });
 };
 

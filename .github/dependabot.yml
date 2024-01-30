@@ -25,3 +25,8 @@ updates:
       - lopopolo
     labels:
       - A-deps
+    ignore:
+      - dependency-name: "marked"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "rimraf"
+        update-types: ["version-update:semver-major"]
