@@ -21,7 +21,8 @@
   "dependencies": {
     "@artichokeruby/logo": "^0.12.0",
     "@popperjs/core": "^2.11.8",
-    "bootstrap": "^5.3.1"
+    "bootstrap": "^5.3.1",
+    "marked": "^4.3.0"
   },
   "devDependencies": {
     "@minify-html/node": "^0.11.1",
@@ -29,9 +30,8 @@
     "eslint": "8.56.0",
     "eta": "^2.2.0",
     "highlight.js": "^11.8.0",
-    "marked": "^5.1.2",
-    "marked-highlight": "^2.0.4",
-    "prettier": "^3.2.4"
+    "prettier": "^3.2.4",
+    "rimraf": "^3.0.2"
   },
   "eslintConfig": {
     "env": {
@@ -46,17 +46,14 @@
     }
   },
   "scripts": {
-    "build:debug": "node build.mjs",
-    "build:release": "node build.mjs --release",
-    "clean": "rm -rf dist",
-    "dev:debug": "npx concurrently \"npm:serve\" \"npm:watch:debug\"",
-    "dev:release": "npx concurrently \"npm:serve\" \"npm:watch:release\"",
-    "fmt": "prettier --write \"**/*\"",
-    "lint": "npx eslint . --ext .js,.jsx,.mjs,.ts,.tsx",
-    "lint:fix": "npx eslint . --ext .js,.jsx,.mjs,.ts,.tsx --fix",
-    "release:markdown_link_check": "find . -name '*.md' -and -not -path '*/node_modules/*' | sort | xargs -n1 npx markdown-link-check --config .github/markdown-link-check.json",
+    "dev": "npx concurrently \"npm:serve\" \"npm:watch\"",
+    "build": "node build.mjs",
     "serve": "python3 -u -m http.server --directory dist --bind localhost 0",
-    "watch:debug": "npx chokidar-cli \"package.json\" \"package-lock.json\" \"build.mjs\" \"src/**/*\" -c \"npm run build:debug\" --initial",
-    "watch:release": "npx chokidar-cli \"package.json\" \"package-lock.json\" \"build.mjs\" \"src/**/*\" -c \"npm run build:release\" --initial"
+    "watch": "npx chokidar-cli \"package.json\" \"package-lock.json\" \"build.mjs\" \"src/**/*\" -c \"npm run build\" --initial",
+    "clean": "rimraf dist",
+    "fmt": "prettier --write \"**/*\"",
+    "lint": "eslint . --ext .js,.jsx,.mjs,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.mjs,.ts,.tsx --fix",
+    "release:markdown_link_check": "find . -name '*.md' -and -not -path '*/node_modules/*' | sort | xargs -n1 npx markdown-link-check --config .github/markdown-link-check.json"
   }
 }

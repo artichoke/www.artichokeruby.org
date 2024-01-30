@@ -12,7 +12,7 @@ Artichoke Ruby.
 To launch a local development server:
 
 ```sh
-npm run dev:debug # or npm run dev:release
+npm run dev
 ```
 
 ## Deployment
