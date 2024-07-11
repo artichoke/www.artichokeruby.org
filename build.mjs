@@ -1,11 +1,7 @@
-/* eslint-disable no-console */
-
-import { Buffer } from "node:buffer";
 import { readFileSync } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
 
-import minifyHtml from "@minify-html/node";
 import { Eta } from "eta";
 import esbuild from "esbuild";
 import hljs from "highlight.js";
@@ -116,19 +112,7 @@ const renderTemplate = async (template, locale) => {
   const eta = new Eta({ views: "src" });
   const content = eta.renderString(html, context);
 
-  const input = Buffer.from(content);
-  const output = minifyHtml.minify(input, {
-    do_not_minify_doctype: true,
-    ensure_spec_compliant_unquoted_attribute_values: true,
-    keep_closing_tags: true,
-    keep_html_and_head_opening_tags: true,
-    keep_spaces_between_attributes: true,
-    minify_js: true,
-    minify_css: true,
-    remove_bangs: false,
-  });
-
-  return output.toString();
+  return content;
 };
 
 const setupOutdir = async (outdir) => {
