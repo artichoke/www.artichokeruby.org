@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import { Buffer } from "node:buffer";
 import { readFileSync } from "node:fs";
 import fs from "node:fs/promises";

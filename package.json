@@ -2,6 +2,7 @@
   "name": "@artichokeruby/www.artichokeruby.org",
   "version": "0.5.0",
   "private": true,
+  "type": "module",
   "description": "Artichoke project website",
   "keywords": [
     "programming language",
@@ -25,25 +26,15 @@
     "marked": "^4.3.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.6.0",
     "@minify-html/node": "^0.15.0",
     "esbuild": "^0.20.2",
-    "eslint": "8.57.0",
+    "eslint": "^9.6.0",
     "eta": "^3.2.0",
+    "globals": "^15.8.0",
     "highlight.js": "^11.9.0",
     "prettier": "^3.2.5",
     "rimraf": "^3.0.2"
-  },
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "commonjs": true,
-      "es6": true,
-      "node": true
-    },
-    "parserOptions": {
-      "ecmaVersion": 2020,
-      "sourceType": "module"
-    }
   },
   "scripts": {
     "dev": "npx concurrently \"npm:serve\" \"npm:watch\"",
@@ -52,8 +43,8 @@
     "watch": "npx chokidar-cli \"package.json\" \"package-lock.json\" \"build.mjs\" \"src/**/*\" -c \"npm run build\" --initial",
     "clean": "rimraf dist",
     "fmt": "prettier --write \"**/*\"",
-    "lint": "eslint . --ext .js,.jsx,.mjs,.ts,.tsx",
-    "lint:fix": "eslint . --ext .js,.jsx,.mjs,.ts,.tsx --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "release:markdown_link_check": "find . -name '*.md' -and -not -path '*/node_modules/*' | sort | xargs -n1 npx markdown-link-check --config .github/markdown-link-check.json"
   }
 }
