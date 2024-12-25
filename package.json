@@ -43,7 +43,6 @@
     "clean": "rimraf dist",
     "fmt": "prettier --write \"**/*\"",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
-    "release:markdown_link_check": "find . -name '*.md' -and -not -path '*/node_modules/*' | sort | xargs -n1 npx markdown-link-check --config .github/markdown-link-check.json"
+    "lint:fix": "eslint --fix ."
   }
 }
