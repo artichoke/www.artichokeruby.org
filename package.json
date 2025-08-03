@@ -27,6 +27,8 @@
   },
   "devDependencies": {
     "@eslint/js": "9.32.0",
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^9.2.0",
     "esbuild": "^0.25.8",
     "eslint": "9.32.0",
     "eta": "^3.5.0",
@@ -36,10 +38,10 @@
     "rimraf": "^6.0.1"
   },
   "scripts": {
-    "dev": "npx concurrently \"npm:serve\" \"npm:watch\"",
+    "dev": "concurrently \"npm:serve\" \"npm:watch\"",
     "build": "node build.mjs",
     "serve": "python3 -u -m http.server --directory dist --bind localhost 0",
-    "watch": "npx chokidar-cli \"package.json\" \"package-lock.json\" \"build.mjs\" \"src/**/*\" -c \"npm run build\" --initial",
+    "watch": "chokidar \"package.json\" \"package-lock.json\" \"build.mjs\" \"src/**/*\" -c \"npm run build\" --initial",
     "clean": "rimraf dist",
     "fmt": "prettier --write \"**/*\"",
     "lint": "eslint .",
