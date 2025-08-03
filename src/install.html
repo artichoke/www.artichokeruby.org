@@ -267,7 +267,14 @@
       </div>
     </div>
 
-    <%~ include("/partials/footer.html", { t: it.t.footer }) %>
+    <!-- prettier-ignore -->
+    <%~ include("/partials/footer.html", {
+          page: "install",
+          t: it.t.footer,
+          locale: it.locale,
+          locales: it.locales,
+        })
+    %>
     <script async type="module" src="/main.bundle.js"></script>
   </body>
 </html>
