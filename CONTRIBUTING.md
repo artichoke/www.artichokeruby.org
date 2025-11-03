@@ -19,13 +19,6 @@ please file one before beginning to work on a PR.
 [filed an issue so we can fix it]:
   https://github.com/artichoke/artichoke/issues/new
 
-## Discussion
-
-If you'd like to engage in a discussion outside of GitHub, you can [join
-Artichoke's public Discord server].
-
-[join artichoke's public discord server]: https://discord.gg/QCe2tp2
-
 ## Setup
 
 The Artichoke project website is a static site that includes HTML and JavaScript
