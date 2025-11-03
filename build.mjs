@@ -66,7 +66,6 @@ const assets = Object.freeze([
   "node_modules/@artichokeruby/logo/social/twitter-logo-black.svg",
   "node_modules/@artichokeruby/logo/social/twitter-logo-blue.svg",
   "node_modules/@artichokeruby/logo/social/github-logo.svg",
-  "node_modules/@artichokeruby/logo/social/discord-logo.svg",
 ]);
 
 marked.setOptions({
